@@ -68,93 +68,9 @@ h4 {
   line-height: 15px;
   letter-spacing: -0.25px;
 }
-
-/* Buttons */
-
 .invoice-details-bold {
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
   letter-spacing: -0.3125px;
-}
-button {
-  font-family: "Spartan", sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: -0.25px;
-  border: none;
-  padding: 17px 24px 16px 24px;
-  border-radius: 24px;
-  cursor: pointer;
-}
-button.new-invoice {
-  background-color: var(--dark-violet);
-  color: white;
-  padding: 8px 15px 8px 8px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-}
-button.new-invoice .circle {
-  background-color: white;
-  border-radius: 100%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-button.button-new-invoice:hover {
-  background-color: var(--light-violet);
-}
-button.mark-paid {
-  background-color: var(--dark-violet);
-  color: white;
-}
-button.mark-paid:hover {
-  background-color: var(--light-violet);
-}
-button.edit,
-button.add-item {
-  background-color: var(--off-white-btn);
-  color: var(--pastel-violet);
-}
-button.edit:hover,
-button.add-item:hover {
-  background-color: var(--mist);
-}
-button.edit.dark,
-button.add-item.dark {
-  background-color: var(--slate);
-  color: var(--mist);
-}
-button.edit.dark:hover,
-button.add-item.dark:hover {
-  background-color: white;
-}
-button.add-item {
-  width: 100%;
-}
-button.save-draft {
-  color: var(--light-gray);
-  background-color: var(--dark-gray);
-}
-button.save-draft:hover {
-  background-color: var(--off-black);
-}
-button.save-draft.dark {
-  color: var(--mist);
-  background-color: var(--dark-gray);
-}
-button.save-draft.dark:hover {
-  background-color: var(--navy);
-}
-button.delete {
-  background-color: var(--pastel-orange);
-  color: white;
-}
-button.delete:hover {
-  background-color: var(--peach);
 }

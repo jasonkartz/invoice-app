@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css?family=Spartan:wght@500;700&display=swap");
+
+/* Color Variables */
+:root {
+  --dark-violet: #7c5dfa;
+  --light-violet: #9277ff;
+  --navy: #1e2139;
+  --slate: #252945;
+  --mist: #dfe3fa;
+  --pastel-violet: #7e88c3;
+  --off-black: #0c0e16;
+  --pastel-orange: #ec5757;
+  --peach: #ff9797;
+  --off-white: #f8f8fb;
+  --off-white-btn: #f9fafe;
+  --light-gray: #888eb0;
+  --dark-gray: #373b53;
+  --darker-gray: #141625;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+button {
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  border: none;
+  padding: 17px 24px 16px 24px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+button.new-invoice {
+  background-color: var(--dark-violet);
+  color: white;
+  padding: 8px 15px 8px 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+button.new-invoice .circle {
+  background-color: white;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.new-invoice:hover {
+  background-color: var(--light-violet);
+}
+button.mark-paid {
+  background-color: var(--dark-violet);
+  color: white;
+}
+button.mark-paid:hover {
+  background-color: var(--light-violet);
+}
+button.edit,
+button.add-item {
+  background-color: var(--off-white-btn);
+  color: var(--pastel-violet);
+}
+button.edit:hover,
+button.add-item:hover {
+  background-color: var(--mist);
+}
+button.edit.dark,
+button.add-item.dark {
+  background-color: var(--slate);
+  color: var(--mist);
+}
+button.edit.dark:hover,
+button.add-item.dark:hover {
+  background-color: white;
+}
+button.add-item {
+  width: 100%;
+}
+button.save-draft {
+  color: var(--light-gray);
+  background-color: var(--dark-gray);
+}
+button.save-draft:hover {
+  background-color: var(--off-black);
+}
+button.save-draft.dark {
+  color: var(--mist);
+  background-color: var(--dark-gray);
+}
+button.save-draft.dark:hover {
+  background-color: var(--navy);
+}
+button.delete {
+  background-color: var(--pastel-orange);
+  color: white;
+}
+button.delete:hover {
+  background-color: var(--peach);
+}

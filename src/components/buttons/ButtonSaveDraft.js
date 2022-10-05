@@ -1,3 +1,5 @@
+import styles from "./Buttons.module.css";
+
 export default function ButtonSaveDraft() {
-  return <button className="save-draft">Save as Draft</button>;
+  return <button className={styles["save-draft"]}>Save as Draft</button>;
 }

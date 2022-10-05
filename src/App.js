@@ -6,7 +6,7 @@ import ButtonDelete from "./components/buttons/ButtonDelete";
 import ButtonAddItem from "./components/buttons/ButtonAddItem";
 
 function App() {
-  return <ButtonAddItem />;
+  return <ButtonSaveDraft />;
 }
 
 export default App;
