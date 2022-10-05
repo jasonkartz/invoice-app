@@ -1,5 +1,5 @@
 function App() {
-  return <div>Test</div>;
+  return <h1 className="alt-heading">Test</h1>;
 }
 
 export default App;
