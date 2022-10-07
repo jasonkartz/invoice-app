@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import MainLayout from "./components/MainLayout";
 import ButtonNewInvoice from "./components/buttons/ButtonNewInvoice";
 import ButtonMarkPaid from "./components/buttons/ButtonMarkPaid";
 import ButtonEdit from "./components/buttons/ButtonEdit";
@@ -32,17 +33,13 @@ function App() {
   };
   console.log(localStorage);
   return (
-    <>
-      <button onClick={themeSwitch}>
-        {darkTheme ? "Light Theme" : "Dark Theme"}
-      </button>
-      <ButtonNewInvoice />
-      <ButtonMarkPaid />
-      <ButtonEdit />
-      <ButtonSaveDraft darkTheme={darkTheme} />
-      <ButtonDelete />
-      <ButtonAddItem darkTheme={darkTheme} />
-    </>
+    <div className={`main-container ${darkTheme && "dark"}`}>
+      <MainLayout
+        darkTheme={darkTheme}
+        setDarkTheme={setDarkTheme}
+        themeSwitch={themeSwitch}
+      />
+    </div>
   );
 }
 

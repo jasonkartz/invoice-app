@@ -74,3 +74,29 @@ h4 {
   line-height: 20px;
   letter-spacing: -0.3125px;
 }
+.main-container {
+  width: 100%;
+  background-color: var(--off-white);
+  margin-inline: auto;
+}
+.main-container.dark {
+  background-color: var(--darker-gray);
+}
+button {
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  border: none;
+  padding: 17px 24px 16px 24px;
+  border-radius: 24px;
+  cursor: pointer;
+  background-color: transparent;
+}
+@media (min-width: 1000px) {
+  .main-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
