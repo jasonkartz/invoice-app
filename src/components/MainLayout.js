@@ -12,7 +12,7 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
           <img src={logo} className={styles.logo} alt="logo" />
           <div className={styles.logoBackgroundShape}></div>
         </div>
-        <button className="styles.themeToggle" onClick={themeSwitch}>
+        <button className={styles.themeToggle} onClick={themeSwitch}>
           <img
             src={darkTheme ? sun : moon}
             alt="toggle theme"

@@ -75,7 +75,10 @@ h4 {
   letter-spacing: -0.3125px;
 }
 .main-container {
+  position: relative;
   width: 100%;
+  min-height: 100vh;
+  padding-bottom: 25px;
   background-color: var(--off-white);
   margin-inline: auto;
 }
@@ -97,6 +100,6 @@ button {
 @media (min-width: 1000px) {
   .main-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
   }
 }

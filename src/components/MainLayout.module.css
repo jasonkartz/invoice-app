@@ -78,13 +78,22 @@ button.themeToggle {
   height: auto;
   border-radius: 20px;
 }
-
+.invoicesDisplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  max-width: 730px;
+}
 @media (min-width: 1000px) {
   header.header {
     width: 103px;
     height: 100vh;
     flex-direction: column;
     justify-content: flex-end;
+    position: fixed;
+    left: 0;
   }
   .logoContainer {
     width: 100%;
