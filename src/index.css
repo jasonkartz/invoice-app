@@ -22,7 +22,17 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+[type="checkbox"] {
+  accent-color: var(--dark-violet);
+}
+[type="checkbox"]:hover + label {
+  cursor: pointer;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 body {
   font-family: "Spartan", sans-serif;
   color: var(--off-black);
@@ -74,17 +84,6 @@ h4 {
   line-height: 20px;
   letter-spacing: -0.3125px;
 }
-.main-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding-bottom: 25px;
-  background-color: var(--off-white);
-  margin-inline: auto;
-}
-.main-container.dark {
-  background-color: var(--darker-gray);
-}
 button {
   font-family: "Spartan", sans-serif;
   font-weight: 700;
@@ -97,6 +96,18 @@ button {
   cursor: pointer;
   background-color: transparent;
 }
+.main-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 25px;
+  background-color: var(--off-white);
+  margin-inline: auto;
+}
+.main-container.dark {
+  background-color: var(--darker-gray);
+}
+
 @media (min-width: 1000px) {
   .main-container {
     display: flex;

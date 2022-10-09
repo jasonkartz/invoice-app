@@ -48,10 +48,27 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
             <h2>Invoices</h2>
             <p>No invoices</p>
           </div>
-          <button>
-            {filterText}&nbsp; &nbsp; &nbsp;
-            <img src={downArrow} alt="down arrow" />
-          </button>
+          <div className={styles.invoiceFilter}>
+            <button>
+              {filterText}&nbsp; &nbsp; &nbsp;
+              <img src={downArrow} alt="down arrow" />
+            </button>
+
+            <ul className={styles.filterOptions}>
+              <li>
+                <input type="checkbox" id="draft" value="draft" />
+                <label htmlFor="draft"> Draft</label>
+              </li>
+              <li>
+                <input type="checkbox" id="pending" value="pending" />
+                <label htmlFor="pending"> Pending</label>
+              </li>
+              <li>
+                <input type="checkbox" id="paid" value="paid" />
+                <label htmlFor="paid"> Paid</label>
+              </li>
+            </ul>
+          </div>
           <ButtonNewInvoice />
         </section>
         <section className={styles.invoicesDisplay}>{children}</section>
