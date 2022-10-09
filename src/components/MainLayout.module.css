@@ -24,9 +24,10 @@
 }
 header.header {
   background-color: var(--dark-gray);
-  height: 72px;
+  min-height: 72px;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
 }
@@ -35,7 +36,7 @@ header.header.dark {
 }
 .logoContainer {
   width: 72px;
-  height: 100%;
+  height: 72px;
   background-color: var(--dark-violet);
   position: relative;
   display: flex;
@@ -78,13 +79,44 @@ button.themeToggle {
   height: auto;
   border-radius: 20px;
 }
+.main {
+  width: 100%;
+  max-width: 730px;
+  margin-inline: auto;
+  padding: 32px 24px;
+}
+.invoiceOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  gap: 18px;
+  color: var(--off-black);
+}
+.invoiceOptions p {
+  color: var(--light-gray);
+}
+.invoiceOptions button {
+  color: var(--off-black);
+}
+.invoiceOptions.dark,
+.invoiceOptions.dark button {
+  color: white;
+}
+.invoiceOptions.dark p {
+  color: var(--mist);
+}
+.invoiceStatus {
+  margin-right: auto;
+}
 .invoicesDisplay {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-inline: auto;
-  max-width: 730px;
+  width: 100%;
 }
 @media (min-width: 1000px) {
   header.header {

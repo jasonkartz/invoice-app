@@ -3,8 +3,25 @@ import logo from "../assets/logo.svg";
 import sun from "../assets/icon-sun.svg";
 import moon from "../assets/icon-moon.svg";
 import avatar from "../assets/image-avatar.jpg";
+import downArrow from "../assets/icon-arrow-down.svg";
+import ButtonNewInvoice from "./buttons/ButtonNewInvoice";
+import { useEffect, useState } from "react";
 
 export default function MainLayout({ children, darkTheme, themeSwitch }) {
+  const [filterText, setFilterText] = useState("Filter by status");
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 767) {
+        setFilterText("Filter by status");
+      } else {
+        setFilterText("Filter");
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+  });
+
   return (
     <>
       <header className={`${styles.header} ${darkTheme && styles.dark}`}>
@@ -24,7 +41,19 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
         </div>
       </header>
       <main className={styles.main}>
-        <section className={styles.invoiceOptions}></section>
+        <section
+          className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
+        >
+          <div className={styles.invoiceStatus}>
+            <h2>Invoices</h2>
+            <p>No invoices</p>
+          </div>
+          <button>
+            {filterText}&nbsp; &nbsp; &nbsp;
+            <img src={downArrow} alt="down arrow" />
+          </button>
+          <ButtonNewInvoice />
+        </section>
         <section className={styles.invoicesDisplay}>{children}</section>
       </main>
     </>

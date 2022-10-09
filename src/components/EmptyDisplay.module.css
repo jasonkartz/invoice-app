@@ -23,11 +23,12 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  width: 217px;
+  max-width: 217px;
   margin-top: 102px;
 }
 .container img {
   margin-bottom: 40px;
+  max-width: 193px;
 }
 .container h2 {
   color: var(--off-black);
@@ -48,8 +49,11 @@ p.tabletDesktop {
 
 @media (min-width: 768px) {
   .container {
-    width: 242px;
+    max-width: 242px;
     margin-top: 210px;
+  }
+  .container img {
+    max-width: 242px;
   }
   .container h2,
   .container p {
