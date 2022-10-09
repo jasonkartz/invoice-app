@@ -4,11 +4,13 @@ import sun from "../assets/icon-sun.svg";
 import moon from "../assets/icon-moon.svg";
 import avatar from "../assets/image-avatar.jpg";
 import downArrow from "../assets/icon-arrow-down.svg";
+import upArrow from "../assets/icon-arrow-up.svg";
 import ButtonNewInvoice from "./buttons/ButtonNewInvoice";
 import { useEffect, useState } from "react";
 
 export default function MainLayout({ children, darkTheme, themeSwitch }) {
   const [filterText, setFilterText] = useState("Filter by status");
+  const [displayFilter, setDisplayFilter] = useState(false);
 
   useEffect(() => {
     function handleResize() {
@@ -48,24 +50,56 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
             <h2>Invoices</h2>
             <p>No invoices</p>
           </div>
+
           <div className={styles.invoiceFilter}>
-            <button>
+            <button
+              className={styles.filterBtn}
+              onClick={() => setDisplayFilter(!displayFilter)}
+            >
               {filterText}&nbsp; &nbsp; &nbsp;
-              <img src={downArrow} alt="down arrow" />
+              <img src={displayFilter ? upArrow : downArrow} alt="arrow" />
             </button>
 
-            <ul className={styles.filterOptions}>
+            <ul
+              className={`${styles.filterOptions} ${
+                displayFilter && styles.display
+              } ${darkTheme && styles.dark}`}
+            >
               <li>
-                <input type="checkbox" id="draft" value="draft" />
-                <label htmlFor="draft"> Draft</label>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  id="draft"
+                  value="draft"
+                />
+                <label className={styles.label} htmlFor="draft">
+                  {" "}
+                  Draft
+                </label>
               </li>
               <li>
-                <input type="checkbox" id="pending" value="pending" />
-                <label htmlFor="pending"> Pending</label>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  id="pending"
+                  value="pending"
+                />
+                <label className={styles.label} htmlFor="pending">
+                  {" "}
+                  Pending
+                </label>
               </li>
               <li>
-                <input type="checkbox" id="paid" value="paid" />
-                <label htmlFor="paid"> Paid</label>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  id="paid"
+                  value="paid"
+                />
+                <label className={styles.label} htmlFor="paid">
+                  {" "}
+                  Paid
+                </label>
               </li>
             </ul>
           </div>

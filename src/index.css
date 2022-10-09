@@ -25,6 +25,7 @@
 [type="checkbox"] {
   accent-color: var(--dark-violet);
 }
+[type="checkbox"]:hover,
 [type="checkbox"]:hover + label {
   cursor: pointer;
 }
