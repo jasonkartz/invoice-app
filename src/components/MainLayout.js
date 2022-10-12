@@ -47,7 +47,7 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
           className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
         >
           <div className={styles.invoiceStatus}>
-            <h2>Invoices</h2>
+            <h1>Invoices</h1>
             <p>No invoices</p>
           </div>
 

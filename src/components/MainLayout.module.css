@@ -112,6 +112,9 @@ button.themeToggle {
 }
 .invoiceStatus {
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .invoicesDisplay {
   display: flex;
@@ -119,6 +122,7 @@ button.themeToggle {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding-top: 32px;
 }
 .invoiceFilter {
   position: relative;
@@ -216,6 +220,7 @@ button.themeToggle {
     justify-content: flex-end;
     position: fixed;
     left: 0;
+    border-radius: 0px 20px 20px 0px;
   }
   .logoContainer {
     width: 100%;

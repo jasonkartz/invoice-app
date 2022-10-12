@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import data from "./data/data.json";
 import MainLayout from "./components/MainLayout";
+import InvoicePreview from "./components/invoices/InvoicePreview";
 import EmptyDisplay from "./components/EmptyDisplay";
 import ButtonNewInvoice from "./components/buttons/ButtonNewInvoice";
 import ButtonMarkPaid from "./components/buttons/ButtonMarkPaid";
@@ -32,7 +34,7 @@ function App() {
       localStorage.darkTheme = true;
     }
   };
-  console.log(localStorage);
+  console.log(localStorage, data);
   return (
     <div className={`main-container ${darkTheme && "dark"}`}>
       <MainLayout
@@ -40,7 +42,18 @@ function App() {
         setDarkTheme={setDarkTheme}
         themeSwitch={themeSwitch}
       >
-        <EmptyDisplay darkTheme={darkTheme} />
+        {data.map((invoice, index) => {
+          return (
+            <InvoicePreview
+              key={index}
+              id={invoice.id}
+              paymentDue={invoice.paymentDue}
+              clientName={invoice.clientName}
+              total={invoice.total}
+              status={invoice.status}
+            />
+          );
+        })}
       </MainLayout>
     </div>
   );

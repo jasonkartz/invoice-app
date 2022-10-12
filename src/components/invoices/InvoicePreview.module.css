@@ -1,0 +1,35 @@
+/* Color Variables */
+:root {
+  --dark-violet: #7c5dfa;
+  --light-violet: #9277ff;
+  --navy: #1e2139;
+  --slate: #252945;
+  --mist: #dfe3fa;
+  --pastel-violet: #7e88c3;
+  --off-black: #0c0e16;
+  --pastel-orange: #ec5757;
+  --peach: #ff9797;
+  --off-white: #f8f8fb;
+  --off-white-btn: #f9fafe;
+  --light-gray: #888eb0;
+  --dark-gray: #373b53;
+  --darker-gray: #141625;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  text-transform: capitalize;
+}
+.bullet {
+  font-size: 40px;
+}
