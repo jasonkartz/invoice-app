@@ -18,13 +18,32 @@
 
 .container {
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 24px;
+  display: grid;
+  grid-template-areas:
+    "id clientName"
+    "paymentDue status"
+    "total status";
+
+  column-gap: 24px;
   padding: 24px;
 }
+.id {
+  grid-area: id;
+  margin-bottom: 24px;
+}
+.paymentDue {
+  grid-area: paymentDue;
+  margin-bottom: 8px;
+}
+.clientName {
+  grid-area: clientName;
+  margin-bottom: 24px;
+}
+.total {
+  grid-area: total;
+}
 .status {
+  grid-area: status;
   display: flex;
   align-items: center;
   gap: 3px;
@@ -32,4 +51,17 @@
 }
 .bullet {
   font-size: 40px;
+}
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .id,
+  .paymentDue,
+  .clientName {
+    margin: 0;
+  }
 }
