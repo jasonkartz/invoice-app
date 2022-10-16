@@ -86,6 +86,10 @@
   color: #373b53;
   background-color: rgba(55, 59, 83, 0.06);
 }
+.container.dark .statusDraft {
+  color: var(--mist);
+  background-color: rgba(223, 227, 250, 0.06);
+}
 .bullet {
   font-size: 50px;
 }
