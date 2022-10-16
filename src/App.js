@@ -36,13 +36,30 @@ function App() {
     }
   };
 
-  console.log(localStorage, data);
+  //filtering invoices
+
+  const [invoiceFilter, setInvoiceFilter] = useState({
+    draft: false,
+    pending: false,
+    paid: false,
+  });
+
+  const handleChange = (event) => {
+    const { name, checked } = event.target;
+    setInvoiceFilter((formData) => ({ ...formData, [name]: checked }));
+  };
+
+  console.log(invoiceFilter);
   return (
     <div className={`main-container ${darkTheme && "dark"}`}>
       <MainLayout
         darkTheme={darkTheme}
         setDarkTheme={setDarkTheme}
         themeSwitch={themeSwitch}
+        handleChange={handleChange}
+        draftChecked={invoiceFilter.draft}
+        pendingChecked={invoiceFilter.pending}
+        paidChecked={invoiceFilter.paid}
       >
         {data.map((invoice, index) => {
           return (

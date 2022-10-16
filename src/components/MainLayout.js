@@ -8,21 +8,17 @@ import upArrow from "../assets/icon-arrow-up.svg";
 import ButtonNewInvoice from "./buttons/ButtonNewInvoice";
 import { useEffect, useState } from "react";
 
-export default function MainLayout({ children, darkTheme, themeSwitch }) {
+export default function MainLayout({
+  children,
+  darkTheme,
+  themeSwitch,
+  handleChange,
+  draftChecked,
+  pendingChecked,
+  paidChecked,
+}) {
   const [filterText, setFilterText] = useState("Filter by status");
   const [displayFilterForm, setDisplayFilterForm] = useState(false);
-
-  const [filterForm, setFilterForm] = useState({
-    draft: false,
-    pending: false,
-    paid: false,
-  });
-
-  const handleChange = (event) => {
-    const { name, checked } = event.target;
-    setFilterForm((formData) => ({ ...formData, [name]: checked }));
-  };
-  console.log("filterForm", filterForm);
 
   useEffect(() => {
     function handleResize() {
@@ -83,8 +79,8 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   type="checkbox"
                   id="draft"
                   name="draft"
-                  checked={filterForm.draft}
-                  onChange={handleChange}
+                  checked={draftChecked}
+                  onChange={(event) => handleChange(event)}
                 />
                 <label className={styles.label} htmlFor="draft">
                   {" "}
@@ -97,8 +93,8 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   type="checkbox"
                   id="pending"
                   name="pending"
-                  checked={filterForm.pending}
-                  onChange={handleChange}
+                  checked={pendingChecked}
+                  onChange={(event) => handleChange(event)}
                 />
                 <label className={styles.label} htmlFor="pending">
                   {" "}
@@ -111,8 +107,8 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   type="checkbox"
                   id="paid"
                   name="paid"
-                  checked={filterForm.paid}
-                  onChange={handleChange}
+                  checked={paidChecked}
+                  onChange={(event) => handleChange(event)}
                 />
                 <label className={styles.label} htmlFor="paid">
                   {" "}
