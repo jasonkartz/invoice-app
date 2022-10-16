@@ -1,4 +1,5 @@
 import styles from "./InvoicePreview.module.css";
+import arrowRight from "../../assets/icon-arrow-right.svg";
 
 export default function InvoicePreview({
   id,
@@ -30,6 +31,7 @@ export default function InvoicePreview({
         <span className={styles.bullet}>&middot; </span>
         <span>{status}</span>
       </h4>
+      <img className={styles.arrowRight} src={arrowRight} alt="arrow right" />
     </div>
   );
 }

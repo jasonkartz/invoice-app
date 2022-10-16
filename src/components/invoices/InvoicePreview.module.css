@@ -29,6 +29,10 @@
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   border-radius: 8px;
 }
+.container:hover {
+  cursor: pointer;
+  outline: var(--dark-violet) 1px solid;
+}
 .container.dark {
   background-color: var(--navy);
   color: white;
@@ -65,7 +69,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3px;
   text-transform: capitalize;
   width: 104px;
   height: 40px;
@@ -84,9 +87,12 @@
   background-color: rgba(55, 59, 83, 0.06);
 }
 .bullet {
-  font-size: 40px;
+  font-size: 50px;
 }
-@media (min-width: 630px) {
+.arrowRight {
+  display: none;
+}
+@media (min-width: 660px) {
   .container {
     display: flex;
     justify-content: space-between;
@@ -99,5 +105,8 @@
   .paymentDue,
   .clientName {
     margin: 0;
+  }
+  .arrowRight {
+    display: initial;
   }
 }
