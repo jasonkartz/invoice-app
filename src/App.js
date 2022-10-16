@@ -39,9 +39,9 @@ function App() {
   //filtering invoices
 
   const [invoiceFilter, setInvoiceFilter] = useState({
-    draft: false,
-    pending: false,
-    paid: false,
+    draft: true,
+    pending: true,
+    paid: true,
   });
 
   const handleChange = (event) => {
@@ -49,19 +49,15 @@ function App() {
     setInvoiceFilter((formData) => ({ ...formData, [name]: checked }));
   };
 
-  console.log(invoiceFilter);
-  return (
-    <div className={`main-container ${darkTheme && "dark"}`}>
-      <MainLayout
-        darkTheme={darkTheme}
-        setDarkTheme={setDarkTheme}
-        themeSwitch={themeSwitch}
-        handleChange={handleChange}
-        draftChecked={invoiceFilter.draft}
-        pendingChecked={invoiceFilter.pending}
-        paidChecked={invoiceFilter.paid}
-      >
-        {data.map((invoice, index) => {
+  const displayInvoices = () => {
+    const allFiltersFalse = Object.values(invoiceFilter).every(
+      (status) => status === false
+    );
+    if (allFiltersFalse) {
+      return <EmptyDisplay darkTheme={darkTheme} />;
+    } else {
+      return data.map((invoice, index) => {
+        if (invoiceFilter[invoice.status]) {
           return (
             <InvoicePreview
               key={index}
@@ -73,7 +69,22 @@ function App() {
               darkTheme={darkTheme}
             />
           );
-        })}
+        }
+      });
+    }
+  };
+  return (
+    <div className={`main-container ${darkTheme && "dark"}`}>
+      <MainLayout
+        darkTheme={darkTheme}
+        setDarkTheme={setDarkTheme}
+        themeSwitch={themeSwitch}
+        handleChange={handleChange}
+        draftChecked={invoiceFilter.draft}
+        pendingChecked={invoiceFilter.pending}
+        paidChecked={invoiceFilter.paid}
+      >
+        {displayInvoices()}
       </MainLayout>
     </div>
   );
