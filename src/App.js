@@ -11,6 +11,7 @@ import ButtonDelete from "./components/buttons/ButtonDelete";
 import ButtonAddItem from "./components/buttons/ButtonAddItem";
 
 function App() {
+  //toggling dark theme
   const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
       localStorage.darkTheme = true;
     }
   };
+
   console.log(localStorage, data);
   return (
     <div className={`main-container ${darkTheme && "dark"}`}>

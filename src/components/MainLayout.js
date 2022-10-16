@@ -10,7 +10,19 @@ import { useEffect, useState } from "react";
 
 export default function MainLayout({ children, darkTheme, themeSwitch }) {
   const [filterText, setFilterText] = useState("Filter by status");
-  const [displayFilter, setDisplayFilter] = useState(false);
+  const [displayFilterForm, setDisplayFilterForm] = useState(false);
+
+  const [filterForm, setFilterForm] = useState({
+    draft: false,
+    pending: false,
+    paid: false,
+  });
+
+  const handleChange = (event) => {
+    const { name, checked } = event.target;
+    setFilterForm((formData) => ({ ...formData, [name]: checked }));
+  };
+  console.log("filterForm", filterForm);
 
   useEffect(() => {
     function handleResize() {
@@ -51,18 +63,18 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
             <p>No invoices</p>
           </div>
 
-          <div className={styles.invoiceFilter}>
+          <div className={styles.filterForm}>
             <button
               className={styles.filterBtn}
-              onClick={() => setDisplayFilter(!displayFilter)}
+              onClick={() => setDisplayFilterForm(!displayFilterForm)}
             >
               {filterText}&nbsp; &nbsp; &nbsp;
-              <img src={displayFilter ? upArrow : downArrow} alt="arrow" />
+              <img src={displayFilterForm ? upArrow : downArrow} alt="arrow" />
             </button>
 
             <ul
               className={`${styles.filterOptions} ${
-                displayFilter && styles.display
+                displayFilterForm && styles.display
               } ${darkTheme && styles.dark}`}
             >
               <li>
@@ -70,7 +82,9 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   className={styles.checkbox}
                   type="checkbox"
                   id="draft"
-                  value="draft"
+                  name="draft"
+                  checked={filterForm.draft}
+                  onChange={handleChange}
                 />
                 <label className={styles.label} htmlFor="draft">
                   {" "}
@@ -82,7 +96,9 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   className={styles.checkbox}
                   type="checkbox"
                   id="pending"
-                  value="pending"
+                  name="pending"
+                  checked={filterForm.pending}
+                  onChange={handleChange}
                 />
                 <label className={styles.label} htmlFor="pending">
                   {" "}
@@ -94,7 +110,9 @@ export default function MainLayout({ children, darkTheme, themeSwitch }) {
                   className={styles.checkbox}
                   type="checkbox"
                   id="paid"
-                  value="paid"
+                  name="paid"
+                  checked={filterForm.paid}
+                  onChange={handleChange}
                 />
                 <label className={styles.label} htmlFor="paid">
                   {" "}
