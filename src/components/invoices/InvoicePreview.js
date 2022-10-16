@@ -6,6 +6,7 @@ export default function InvoicePreview({
   clientName,
   total,
   status,
+  darkTheme,
 }) {
   const statusColor = () => {
     if (status === "paid") {
@@ -17,7 +18,7 @@ export default function InvoicePreview({
     }
   };
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${darkTheme && styles.dark}`}>
       <h4 className={styles.id}>
         <span className={styles.pound}>#</span>
         {id}

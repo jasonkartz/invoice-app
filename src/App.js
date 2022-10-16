@@ -51,6 +51,7 @@ function App() {
               clientName={invoice.clientName}
               total={invoice.total}
               status={invoice.status}
+              darkTheme={darkTheme}
             />
           );
         })}

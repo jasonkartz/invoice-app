@@ -23,11 +23,20 @@
     "id clientName"
     "paymentDue status"
     "total status";
-  column-gap: 24px;
+  column-gap: 5%;
   padding: 24px;
   background-color: white;
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   border-radius: 8px;
+}
+.container.dark {
+  background-color: var(--navy);
+  color: white;
+}
+.container.dark .pound,
+.container.dark .paymentDue,
+.container.dark .clientName {
+  color: var(--mist);
 }
 .id {
   grid-area: id;
@@ -77,7 +86,7 @@
 .bullet {
   font-size: 40px;
 }
-@media (min-width: 768px) {
+@media (min-width: 630px) {
   .container {
     display: flex;
     justify-content: space-between;
