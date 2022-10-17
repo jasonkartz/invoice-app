@@ -49,10 +49,11 @@ function App() {
     setInvoiceFilter((formData) => ({ ...formData, [name]: checked }));
   };
 
+  const allFiltersFalse = Object.values(invoiceFilter).every(
+    (status) => status === false
+  );
+
   const displayInvoices = () => {
-    const allFiltersFalse = Object.values(invoiceFilter).every(
-      (status) => status === false
-    );
     if (allFiltersFalse) {
       return <EmptyDisplay darkTheme={darkTheme} />;
     } else {
@@ -83,6 +84,7 @@ function App() {
         draftChecked={invoiceFilter.draft}
         pendingChecked={invoiceFilter.pending}
         paidChecked={invoiceFilter.paid}
+        allFiltersFalse={allFiltersFalse}
       >
         {displayInvoices()}
       </MainLayout>

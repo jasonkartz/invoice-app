@@ -6,7 +6,7 @@ import avatar from "../assets/image-avatar.jpg";
 import downArrow from "../assets/icon-arrow-down.svg";
 import upArrow from "../assets/icon-arrow-up.svg";
 import ButtonNewInvoice from "./buttons/ButtonNewInvoice";
-import { useEffect, useState } from "react";
+import { useState, Children } from "react";
 
 export default function MainLayout({
   children,
@@ -16,21 +16,26 @@ export default function MainLayout({
   draftChecked,
   pendingChecked,
   paidChecked,
+  allFiltersFalse,
 }) {
-  const [filterText, setFilterText] = useState("Filter by status");
   const [displayFilterForm, setDisplayFilterForm] = useState(false);
 
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth > 767) {
-        setFilterText("Filter by status");
-      } else {
-        setFilterText("Filter");
-      }
+  const invoiceCount = Children.toArray(children).length;
+  const invoiceDisplayCount = () => {
+    if (allFiltersFalse) {
+      return 0;
+    } else {
+      return invoiceCount;
     }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-  });
+  };
+
+  const invoiceDisplayCountText = () => {
+    if (allFiltersFalse) {
+      return "No Invoices";
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -56,7 +61,17 @@ export default function MainLayout({
         >
           <div className={styles.invoiceStatus}>
             <h1>Invoices</h1>
-            <p>No invoices</p>
+            <p>
+              <span className={styles.expandedText}>
+                {!allFiltersFalse && "There are"}
+              </span>{" "}
+              {allFiltersFalse ? "No" : invoiceDisplayCount()}{" "}
+              <span className={styles.expandedText}>
+                {!allFiltersFalse && "total"}
+              </span>{" "}
+              invoice
+              {allFiltersFalse || invoiceCount > 1 ? "s" : ""}
+            </p>
           </div>
 
           <div className={styles.filterForm}>
@@ -64,7 +79,8 @@ export default function MainLayout({
               className={styles.filterBtn}
               onClick={() => setDisplayFilterForm(!displayFilterForm)}
             >
-              {filterText}&nbsp; &nbsp; &nbsp;
+              Filter <span className={styles.expandedText}>by status</span>{" "}
+              &nbsp; &nbsp; &nbsp;
               <img src={displayFilterForm ? upArrow : downArrow} alt="arrow" />
             </button>
 
