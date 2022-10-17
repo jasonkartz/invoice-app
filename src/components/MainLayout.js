@@ -63,11 +63,15 @@ export default function MainLayout({
             <h1>Invoices</h1>
             <p>
               <span className={styles.expandedText}>
-                {!allFiltersFalse && "There are"}
+                {!allFiltersFalse && invoiceCount > 1
+                  ? "There are"
+                  : allFiltersFalse
+                  ? ""
+                  : "There is"}
               </span>{" "}
               {allFiltersFalse ? "No" : invoiceDisplayCount()}{" "}
               <span className={styles.expandedText}>
-                {!allFiltersFalse && "total"}
+                {!allFiltersFalse && invoiceCount > 1 ? "total" : ""}
               </span>{" "}
               invoice
               {allFiltersFalse || invoiceCount > 1 ? "s" : ""}
