@@ -17,6 +17,8 @@ export default function MainLayout({
   pendingChecked,
   paidChecked,
   allFiltersFalse,
+  screen,
+  setScreen,
 }) {
   const [displayFilterForm, setDisplayFilterForm] = useState(false);
 
@@ -26,14 +28,6 @@ export default function MainLayout({
       return 0;
     } else {
       return invoiceCount;
-    }
-  };
-
-  const invoiceDisplayCountText = () => {
-    if (allFiltersFalse) {
-      return "No Invoices";
-    } else {
-      return;
     }
   };
 
@@ -56,89 +50,95 @@ export default function MainLayout({
         </div>
       </header>
       <main className={styles.main}>
-        <section
-          className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
-        >
-          <div className={styles.invoiceStatus}>
-            <h1>Invoices</h1>
-            <p>
-              <span className={styles.expandedText}>
-                {!allFiltersFalse && invoiceCount > 1
-                  ? "There are"
-                  : allFiltersFalse
-                  ? ""
-                  : "There is"}
-              </span>{" "}
-              {allFiltersFalse ? "No" : invoiceDisplayCount()}{" "}
-              <span className={styles.expandedText}>
-                {!allFiltersFalse && invoiceCount > 1 ? "total" : ""}
-              </span>{" "}
-              invoice
-              {allFiltersFalse || invoiceCount > 1 ? "s" : ""}
-            </p>
-          </div>
+        {screen === "main" && (
+          <section
+            className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
+          >
+            <div className={styles.invoiceStatus}>
+              <h1>Invoices</h1>
+              <p>
+                <span className={styles.expandedText}>
+                  {!allFiltersFalse && invoiceCount > 1
+                    ? "There are"
+                    : allFiltersFalse
+                    ? ""
+                    : "There is"}
+                </span>{" "}
+                {allFiltersFalse ? "No" : invoiceDisplayCount()}{" "}
+                <span className={styles.expandedText}>
+                  {!allFiltersFalse && invoiceCount > 1 ? "total" : ""}
+                </span>{" "}
+                invoice
+                {allFiltersFalse || invoiceCount > 1 ? "s" : ""}
+              </p>
+            </div>
 
-          <div className={styles.filterForm}>
-            <button
-              className={styles.filterBtn}
-              onClick={() => setDisplayFilterForm(!displayFilterForm)}
-            >
-              Filter <span className={styles.expandedText}>by status</span>{" "}
-              &nbsp; &nbsp; &nbsp;
-              <img src={displayFilterForm ? upArrow : downArrow} alt="arrow" />
-            </button>
+            <div className={styles.filterForm}>
+              <button
+                className={styles.filterBtn}
+                onClick={() => setDisplayFilterForm(!displayFilterForm)}
+              >
+                Filter <span className={styles.expandedText}>by status</span>{" "}
+                &nbsp; &nbsp; &nbsp;
+                <img
+                  src={displayFilterForm ? upArrow : downArrow}
+                  alt="arrow"
+                />
+              </button>
 
-            <ul
-              className={`${styles.filterOptions} ${
-                displayFilterForm && styles.display
-              } ${darkTheme && styles.dark}`}
-            >
-              <li>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  id="draft"
-                  name="draft"
-                  checked={draftChecked}
-                  onChange={(event) => handleChange(event)}
-                />
-                <label className={styles.label} htmlFor="draft">
-                  {" "}
-                  Draft
-                </label>
-              </li>
-              <li>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  id="pending"
-                  name="pending"
-                  checked={pendingChecked}
-                  onChange={(event) => handleChange(event)}
-                />
-                <label className={styles.label} htmlFor="pending">
-                  {" "}
-                  Pending
-                </label>
-              </li>
-              <li>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  id="paid"
-                  name="paid"
-                  checked={paidChecked}
-                  onChange={(event) => handleChange(event)}
-                />
-                <label className={styles.label} htmlFor="paid">
-                  {" "}
-                  Paid
-                </label>
-              </li>
-            </ul>
-          </div>
-          <ButtonNewInvoice />
-        </section>
+              <ul
+                className={`${styles.filterOptions} ${
+                  displayFilterForm && styles.display
+                } ${darkTheme && styles.dark}`}
+              >
+                <li>
+                  <input
+                    className={styles.checkbox}
+                    type="checkbox"
+                    id="draft"
+                    name="draft"
+                    checked={draftChecked}
+                    onChange={(event) => handleChange(event)}
+                  />
+                  <label className={styles.label} htmlFor="draft">
+                    {" "}
+                    Draft
+                  </label>
+                </li>
+                <li>
+                  <input
+                    className={styles.checkbox}
+                    type="checkbox"
+                    id="pending"
+                    name="pending"
+                    checked={pendingChecked}
+                    onChange={(event) => handleChange(event)}
+                  />
+                  <label className={styles.label} htmlFor="pending">
+                    {" "}
+                    Pending
+                  </label>
+                </li>
+                <li>
+                  <input
+                    className={styles.checkbox}
+                    type="checkbox"
+                    id="paid"
+                    name="paid"
+                    checked={paidChecked}
+                    onChange={(event) => handleChange(event)}
+                  />
+                  <label className={styles.label} htmlFor="paid">
+                    {" "}
+                    Paid
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <ButtonNewInvoice />
+          </section>
+        )}
+
         <section className={styles.invoicesDisplay}>{children}</section>
       </main>
     </>

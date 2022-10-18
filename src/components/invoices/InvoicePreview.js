@@ -8,6 +8,7 @@ export default function InvoicePreview({
   total,
   status,
   darkTheme,
+  setScreen,
 }) {
   const statusColor = () => {
     if (status === "paid") {
@@ -20,7 +21,12 @@ export default function InvoicePreview({
   };
   const dueDate = new Date(paymentDue);
   return (
-    <div className={`${styles.container} ${darkTheme && styles.dark}`}>
+    <div
+      className={`${styles.container} ${darkTheme && styles.dark}`}
+      onClick={() => {
+        setScreen("viewInvoice");
+      }}
+    >
       <h4 className={styles.id}>
         <span className={styles.pound}>#</span>
         {id}
