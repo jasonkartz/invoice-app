@@ -24,8 +24,11 @@ export default function ViewInvoice({
   };
   const dueDate = new Date(paymentDue);
   return (
-    <div className={styles.container}>
-      <button className={styles.backButton} onClick={() => setScreen("main")}>
+    <div className={`${styles.container} ${darkTheme && styles.dark}`}>
+      <button
+        className={`${styles.backButton} ${darkTheme && styles.dark}`}
+        onClick={() => setScreen("main")}
+      >
         <img src={arrowLeft} alt="arrow-left" />
         &nbsp; &nbsp; &nbsp; Go Back
       </button>
@@ -35,8 +38,8 @@ export default function ViewInvoice({
           <span className={styles.bullet}>&middot; </span>
           <span>Pending</span>
         </h4>
-        <div className={styles.btnContainer}>
-          <ButtonEdit />
+        <div className={`${styles.btnContainer}`}>
+          <ButtonEdit darkTheme={darkTheme} />
           <ButtonDelete />
           <ButtonMarkPaid />
         </div>

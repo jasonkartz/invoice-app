@@ -93,7 +93,9 @@ function App() {
         setScreen={setScreen}
       >
         {screen === "main" && displayInvoices()}
-        {screen === "viewInvoice" && <ViewInvoice setScreen={setScreen} />}
+        {screen === "viewInvoice" && (
+          <ViewInvoice setScreen={setScreen} darkTheme={darkTheme} />
+        )}
       </MainLayout>
     </div>
   );
