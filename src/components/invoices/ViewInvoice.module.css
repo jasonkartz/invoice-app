@@ -20,12 +20,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 16px;
   width: 100%;
   margin-top: -32px;
   color: var(--pastel-violet);
 }
 .container.dark {
   color: var(--mist);
+}
+.container.dark .invoiceHead,
+.container.dark .btnContainer,
+.container.dark .invoiceDetails {
+  background-color: var(--navy);
 }
 .backButton {
   align-self: flex-start;
@@ -37,6 +43,7 @@
 .invoiceHead {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
@@ -80,6 +87,7 @@
 }
 .btnContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -93,8 +101,59 @@
   left: 0;
   z-index: 10;
 }
-
-@media (min-width: 768px) {
+.invoiceDetails {
+  padding: 24px;
+  background-color: white;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  border-radius: 8px;
+  width: 100%;
+}
+.generalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.topInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+.id {
+  color: var(--off-black);
+}
+.detailsBold {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.3125px;
+  margin-top: 12px;
+  color: var(--off-black);
+}
+.container.dark .id,
+.container.dark .detailsBold {
+  color: white;
+}
+.customerDetails {
+  display: flex;
+  gap: 41px;
+  flex-wrap: wrap;
+}
+.dates {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 32px;
+}
+.customerAddress address {
+  margin-top: 8px;
+}
+.priceDetails {
+  width: 100%;
+  background-color: var(--off-white-bt);
+  border-radius: 8px;
+}
+@media (min-width: 595px) {
   .invoiceHead {
     padding: 20px 32px;
     justify-content: flex-start;
@@ -107,5 +166,23 @@
     height: auto;
     padding: 0;
     margin-left: auto;
+  }
+  .invoiceDetails {
+    padding: 32px;
+  }
+  .topInfo {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .topInfo address {
+    text-align: right;
+  }
+  .customerDetails {
+    justify-content: space-between;
+  }
+}
+@media (min-width: 1000px) {
+  .invoiceDetails {
+    padding: 48px;
   }
 }

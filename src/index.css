@@ -73,17 +73,17 @@ h3 {
   line-height: 24px;
   letter-spacing: -0.8px;
 }
+h3.responsive {
+  font-weight: 700;
+  font-size: clamp(12px, 2.3vw, 16px);
+  line-height: clamp(15px 2.3vw, 24px);
+  letter-spacing: clamp(-0.25px, 2.3vw, -0.8px);
+}
 h4 {
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
   letter-spacing: -0.25px;
-}
-.invoice-details-bold {
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: -0.3125px;
 }
 button {
   font-family: "Spartan", sans-serif;
@@ -96,6 +96,12 @@ button {
   border-radius: 24px;
   cursor: pointer;
   background-color: transparent;
+}
+address {
+  font-size: 11px;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: -0.229167px;
 }
 .main-container {
   position: relative;
