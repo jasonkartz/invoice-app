@@ -15,3 +15,67 @@
   --dark-gray: #373b53;
   --darker-gray: #141625;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: -32px;
+}
+.backButton {
+  align-self: flex-start;
+}
+.invoiceHead {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  border-radius: 8px;
+  min-height: 88px;
+  padding: 24px;
+}
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  width: 104px;
+  height: 40px;
+  border-radius: 6px;
+}
+.statusPaid {
+  color: rgb(51, 214, 159);
+  background-color: rgba(51, 214, 159, 0.06);
+}
+.statusPending {
+  color: #ff8f00;
+  background-color: rgba(255, 143, 0, 0.06);
+}
+.statusDraft {
+  color: #373b53;
+  background-color: rgba(55, 59, 83, 0.06);
+}
+.container.dark .statusDraft {
+  color: var(--mist);
+  background-color: rgba(223, 227, 250, 0.06);
+}
+.bullet {
+  font-size: 50px;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  padding: 22px 24px;
+  height: 91px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}

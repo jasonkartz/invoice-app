@@ -98,5 +98,10 @@ function App() {
     </div>
   );
 }
-
+/*id={id}
+        paymentDue={paymentDue}
+        clientName={clientName}
+        total={total}
+        status={status}
+  darkTheme={darkTheme}*/
 export default App;
