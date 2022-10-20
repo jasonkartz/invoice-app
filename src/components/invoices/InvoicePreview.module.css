@@ -64,7 +64,6 @@
   grid-area: total;
 }
 .status {
-  justify-self: flex-end;
   grid-area: status;
   display: flex;
   justify-content: center;
