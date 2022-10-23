@@ -1,5 +1,6 @@
 import styles from "./InvoicePreview.module.css";
-import arrowRight from "../../assets/icon-arrow-right.svg";
+import arrowRight from "../../../assets/icon-arrow-right.svg";
+import StatusBox from "../../misc/StatusBox/StatusBox";
 
 export default function InvoicePreview({
   id,
@@ -10,15 +11,6 @@ export default function InvoicePreview({
   darkTheme,
   setScreen,
 }) {
-  const statusColor = () => {
-    if (status === "paid") {
-      return styles.statusPaid;
-    } else if (status === "pending") {
-      return styles.statusPending;
-    } else {
-      return styles.statusDraft;
-    }
-  };
   const dueDate = new Date(paymentDue);
   return (
     <div
@@ -36,10 +28,7 @@ export default function InvoicePreview({
       </span>
       <span className={styles.clientName}>{clientName}</span>
       <h3 className={styles.total}>${total.toFixed(2)}</h3>
-      <h4 className={`${styles.status} ${statusColor()}`}>
-        <span className={styles.bullet}>&middot; </span>
-        <span>{status}</span>
-      </h4>
+      <StatusBox status={status} darkTheme={darkTheme} />
       <img className={styles.arrowRight} src={arrowRight} alt="arrow right" />
     </div>
   );

@@ -1,4 +1,4 @@
-import illustration from "../assets/illustration-empty.svg";
+import illustration from "../../../assets/illustration-empty.svg";
 import styles from "./EmptyDisplay.module.css";
 
 export default function EmptyDisplay({ darkTheme }) {

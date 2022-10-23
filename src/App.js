@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import data from "./data/data.json";
 import MainLayout from "./components/MainLayout";
-import InvoicePreview from "./components/invoices/InvoicePreview";
-import EmptyDisplay from "./components/EmptyDisplay";
-import ViewInvoice from "./components/invoices/ViewInvoice";
+import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
+import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
+import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 
 function App() {
   const [screen, setScreen] = useState("main");
-
-  //filtering invoices
+  const [darkTheme, setDarkTheme] = useState(false); //toggling dark theme
   const [invoiceFilter, setInvoiceFilter] = useState({
     draft: true,
     pending: true,
     paid: true,
   });
-
+  //filtering invoices
   const handleChange = (event) => {
     const { name, checked } = event.target;
     setInvoiceFilter((formData) => ({ ...formData, [name]: checked }));
@@ -46,10 +45,7 @@ function App() {
       });
     }
   };
-
   //toggling dark theme
-  const [darkTheme, setDarkTheme] = useState(false);
-
   useEffect(() => {
     if (
       localStorage.darkTheme === "true" ||
