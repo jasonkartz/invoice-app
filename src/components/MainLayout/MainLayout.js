@@ -1,11 +1,11 @@
 import styles from "./MainLayout.module.css";
-import logo from "../assets/logo.svg";
-import sun from "../assets/icon-sun.svg";
-import moon from "../assets/icon-moon.svg";
-import avatar from "../assets/image-avatar.jpg";
-import downArrow from "../assets/icon-arrow-down.svg";
-import upArrow from "../assets/icon-arrow-up.svg";
-import ButtonNewInvoice from "./buttons/ButtonNewInvoice";
+import logo from "../../assets/logo.svg";
+import sun from "../../assets/icon-sun.svg";
+import moon from "../../assets/icon-moon.svg";
+import avatar from "../../assets/image-avatar.jpg";
+import downArrow from "../../assets/icon-arrow-down.svg";
+import upArrow from "../../assets/icon-arrow-up.svg";
+import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import { useState, Children } from "react";
 
 export default function MainLayout({

@@ -185,7 +185,7 @@ button.themeToggle {
   outline: 1px solid #7c5dfa;
 }
 .checkbox:checked + .label::before {
-  content: url("../assets/icon-check.svg");
+  content: url("../../assets/icon-check.svg");
   color: white;
   font-weight: 700;
   background-color: var(--dark-violet);
