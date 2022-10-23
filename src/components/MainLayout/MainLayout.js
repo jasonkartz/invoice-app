@@ -4,6 +4,7 @@ import sun from "../../assets/icon-sun.svg";
 import moon from "../../assets/icon-moon.svg";
 import avatar from "../../assets/image-avatar.jpg";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
+import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
 import { useState, Children } from "react";
 
@@ -30,22 +31,7 @@ export default function MainLayout({
 
   return (
     <>
-      <header className={`${styles.header} ${darkTheme && styles.dark}`}>
-        <div className={styles.logoContainer}>
-          <img src={logo} className={styles.logo} alt="logo" />
-          <div className={styles.logoBackgroundShape}></div>
-        </div>
-        <button className={styles.themeToggle} onClick={themeSwitch}>
-          <img
-            src={darkTheme ? sun : moon}
-            alt="toggle theme"
-            className={styles.themeIcon}
-          />{" "}
-        </button>
-        <div className={styles.avatarContainer}>
-          <img src={avatar} alt="user avatar" className={styles.avatar} />
-        </div>
-      </header>
+      <Header darkTheme={darkTheme} themeSwitch={themeSwitch} />
       <main className={styles.main}>
         {screen === "main" && (
           <section
