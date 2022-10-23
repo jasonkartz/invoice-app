@@ -3,9 +3,8 @@ import logo from "../../assets/logo.svg";
 import sun from "../../assets/icon-sun.svg";
 import moon from "../../assets/icon-moon.svg";
 import avatar from "../../assets/image-avatar.jpg";
-import downArrow from "../../assets/icon-arrow-down.svg";
-import upArrow from "../../assets/icon-arrow-up.svg";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
+import FilterOptions from "./FilterOptions/FilterOptions";
 import { useState, Children } from "react";
 
 export default function MainLayout({
@@ -20,8 +19,6 @@ export default function MainLayout({
   screen,
   setScreen,
 }) {
-  const [displayFilterForm, setDisplayFilterForm] = useState(false);
-
   const invoiceCount = Children.toArray(children).length;
   const invoiceDisplayCount = () => {
     if (allFiltersFalse) {
@@ -73,68 +70,13 @@ export default function MainLayout({
               </p>
             </div>
 
-            <div className={styles.filterForm}>
-              <button
-                className={styles.filterBtn}
-                onClick={() => setDisplayFilterForm(!displayFilterForm)}
-              >
-                Filter <span className={styles.expandedText}>by status</span>{" "}
-                &nbsp; &nbsp; &nbsp;
-                <img
-                  src={displayFilterForm ? upArrow : downArrow}
-                  alt="arrow"
-                />
-              </button>
-
-              <ul
-                className={`${styles.filterOptions} ${
-                  displayFilterForm && styles.display
-                } ${darkTheme && styles.dark}`}
-              >
-                <li>
-                  <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    id="draft"
-                    name="draft"
-                    checked={draftChecked}
-                    onChange={(event) => handleChange(event)}
-                  />
-                  <label className={styles.label} htmlFor="draft">
-                    {" "}
-                    Draft
-                  </label>
-                </li>
-                <li>
-                  <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    id="pending"
-                    name="pending"
-                    checked={pendingChecked}
-                    onChange={(event) => handleChange(event)}
-                  />
-                  <label className={styles.label} htmlFor="pending">
-                    {" "}
-                    Pending
-                  </label>
-                </li>
-                <li>
-                  <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    id="paid"
-                    name="paid"
-                    checked={paidChecked}
-                    onChange={(event) => handleChange(event)}
-                  />
-                  <label className={styles.label} htmlFor="paid">
-                    {" "}
-                    Paid
-                  </label>
-                </li>
-              </ul>
-            </div>
+            <FilterOptions
+              draftChecked={draftChecked}
+              darkTheme={darkTheme}
+              handleChange={handleChange}
+              pendingChecked={pendingChecked}
+              paidChecked={paidChecked}
+            />
             <ButtonNewInvoice />
           </section>
         )}

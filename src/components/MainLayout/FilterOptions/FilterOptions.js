@@ -1,16 +1,16 @@
 import styles from "./FilterOptions.module.css";
 import downArrow from "../../../assets/icon-arrow-down.svg";
 import upArrow from "../../../assets/icon-arrow-up.svg";
+import { useState } from "react";
 
-export default function filterOptions({
-  setDisplayFilterForm,
-  displayFilterForm,
+export default function FilterOptions({
   draftChecked,
   darkTheme,
   handleChange,
   pendingChecked,
   paidChecked,
 }) {
+  const [displayFilterForm, setDisplayFilterForm] = useState(false);
   return (
     <div className={styles.filterForm}>
       <button
