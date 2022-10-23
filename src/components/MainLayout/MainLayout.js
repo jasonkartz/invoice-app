@@ -1,12 +1,8 @@
 import styles from "./MainLayout.module.css";
-import logo from "../../assets/logo.svg";
-import sun from "../../assets/icon-sun.svg";
-import moon from "../../assets/icon-moon.svg";
-import avatar from "../../assets/image-avatar.jpg";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
-import { useState, Children } from "react";
+import { Children } from "react";
 
 export default function MainLayout({
   children,
@@ -18,7 +14,6 @@ export default function MainLayout({
   paidChecked,
   allFiltersFalse,
   screen,
-  setScreen,
 }) {
   const invoiceCount = Children.toArray(children).length;
   const invoiceDisplayCount = () => {
