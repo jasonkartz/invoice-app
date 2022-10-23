@@ -34,21 +34,12 @@
 .invoiceOptions p {
   color: var(--light-gray);
 }
-.filterBtn:hover {
-  opacity: 0.75;
-}
 .invoiceOptions.dark,
 .invoiceOptions.dark .filterBtn {
   color: white;
 }
 .invoiceOptions.dark p {
   color: var(--mist);
-}
-.invoiceStatus {
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 .invoicesDisplay {
   display: flex;
@@ -60,14 +51,8 @@
   padding-top: 32px;
 }
 
-.expandedText {
-  display: none;
-}
 @media (min-width: 768px) {
   .invoiceOptions {
     gap: 40px;
-  }
-  .expandedText {
-    display: initial;
   }
 }

@@ -2,6 +2,7 @@ import styles from "./MainLayout.module.css";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
+import InvoiceStatus from "./InvoiceStatus/InvoiceStatus";
 import { Children } from "react";
 
 export default function MainLayout({
@@ -16,13 +17,6 @@ export default function MainLayout({
   screen,
 }) {
   const invoiceCount = Children.toArray(children).length;
-  const invoiceDisplayCount = () => {
-    if (allFiltersFalse) {
-      return 0;
-    } else {
-      return invoiceCount;
-    }
-  };
 
   return (
     <>
@@ -32,24 +26,10 @@ export default function MainLayout({
           <section
             className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
           >
-            <div className={styles.invoiceStatus}>
-              <h1>Invoices</h1>
-              <p>
-                <span className={styles.expandedText}>
-                  {!allFiltersFalse && invoiceCount > 1
-                    ? "There are"
-                    : allFiltersFalse
-                    ? ""
-                    : "There is"}
-                </span>{" "}
-                {allFiltersFalse ? "No" : invoiceDisplayCount()}{" "}
-                <span className={styles.expandedText}>
-                  {!allFiltersFalse && invoiceCount > 1 ? "total" : ""}
-                </span>{" "}
-                invoice
-                {allFiltersFalse || invoiceCount > 1 ? "s" : ""}
-              </p>
-            </div>
+            <InvoiceStatus
+              allFiltersFalse={allFiltersFalse}
+              invoiceCount={invoiceCount}
+            />
 
             <FilterOptions
               draftChecked={draftChecked}

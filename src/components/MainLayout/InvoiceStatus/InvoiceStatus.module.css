@@ -1,0 +1,14 @@
+.invoiceStatus {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.expandedText {
+  display: none;
+}
+@media (min-width: 768px) {
+  .expandedText {
+    display: initial;
+  }
+}
