@@ -7,6 +7,7 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 
 function App() {
   const [screen, setScreen] = useState("main");
+  const [mobileView, setMobileView] = useState(true);
   const [darkTheme, setDarkTheme] = useState(false); //toggling dark theme
   const [invoiceFilter, setInvoiceFilter] = useState({
     draft: true,
@@ -50,9 +51,9 @@ function App() {
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth > 767) {
-        //setFilterText("Filter by status");
+        setMobileView(true);
       } else {
-        //setFilterText("Filter");
+        setMobileView(false);
       }
     }
     handleResize();
@@ -97,7 +98,11 @@ function App() {
       >
         {screen === "main" && displayInvoices()}
         {screen === "viewInvoice" && (
-          <ViewInvoice setScreen={setScreen} darkTheme={darkTheme} />
+          <ViewInvoice
+            setScreen={setScreen}
+            darkTheme={darkTheme}
+            mobileView={mobileView}
+          />
         )}
       </MainLayout>
     </div>
