@@ -13,6 +13,7 @@ function App() {
     pending: true,
     paid: true,
   });
+
   //filtering invoices
   const handleChange = (event) => {
     const { name, checked } = event.target;
@@ -45,6 +46,18 @@ function App() {
       });
     }
   };
+  //handling resize
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 767) {
+        //setFilterText("Filter by status");
+      } else {
+        //setFilterText("Filter");
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+  });
   //toggling dark theme
   useEffect(() => {
     if (
