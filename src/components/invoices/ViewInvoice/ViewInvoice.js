@@ -2,6 +2,8 @@ import styles from "./ViewInvoice.module.css";
 import InvoiceHead from "./InvoiceHead";
 import CustomerDetails from "./CustomerDetails";
 import arrowLeft from "../../../assets/icon-arrow-left.svg";
+import InvoiceItemsMobile from "./InvoiceItemsMobile";
+import InvoiceTotal from "./InvoiceTotal";
 
 export default function ViewInvoice({
   id,
@@ -27,8 +29,8 @@ export default function ViewInvoice({
         <CustomerDetails />
 
         <div className={styles.priceDetails}>
-          <div className={styles.invoiceItems}></div>
-          <div className={styles.invoiceTotal}></div>
+          <InvoiceItemsMobile />
+          <InvoiceTotal />
         </div>
       </section>
     </div>

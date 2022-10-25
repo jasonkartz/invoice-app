@@ -67,6 +67,11 @@ h2 {
   line-height: 22px;
   letter-spacing: -0.625px;
 }
+h2.alt-heading {
+  font-size: clamp(20px, 4.5vw, 24px);
+  line-height: clamp(22px, 4.5vw, 32px);
+  letter-spacing: clamp(-0.625px, 4.5vw, -0.5px);
+}
 h3 {
   font-weight: 700;
   font-size: 16px;
