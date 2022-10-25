@@ -1,7 +1,6 @@
 import styles from "./ViewInvoice.module.css";
-import ButtonContainer from "./ButtonContainer";
 
-export default function InvoiceHead({ darkTheme }) {
+export default function InvoiceHead({ children }) {
   return (
     <section className={styles.invoiceHead}>
       <span>Status</span>
@@ -9,7 +8,7 @@ export default function InvoiceHead({ darkTheme }) {
         <span className={styles.bullet}>&middot; </span>
         <span>Pending</span>
       </h4>
-      <ButtonContainer darkTheme={darkTheme} />
+      {children}
     </section>
   );
 }
