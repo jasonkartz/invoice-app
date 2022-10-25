@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import useDarkTheme from "./hooks/useDarkTheme";
+import useMobileView from "./hooks/useMobileView";
 import data from "./data/data.json";
 import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
@@ -7,8 +9,8 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 
 function App() {
   const [screen, setScreen] = useState("main");
-  const [mobileView, setMobileView] = useState(true);
-  const [darkTheme, setDarkTheme] = useState(false); //toggling dark theme
+  const [mobileView] = useMobileView(); //mobile screens and resizing screens
+  const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
   const [invoiceFilter, setInvoiceFilter] = useState({
     draft: true,
     pending: true,
@@ -47,46 +49,11 @@ function App() {
       });
     }
   };
-  //handling resize
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth > 767) {
-        setMobileView(true);
-      } else {
-        setMobileView(false);
-      }
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-  });
-  //toggling dark theme
-  useEffect(() => {
-    if (
-      localStorage.darkTheme === "true" ||
-      (!("darkTheme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setDarkTheme(true);
-    } else {
-      setDarkTheme(false);
-    }
-  }, []);
-
-  const themeSwitch = () => {
-    if (darkTheme) {
-      setDarkTheme(false);
-      localStorage.darkTheme = false;
-    } else {
-      setDarkTheme(true);
-      localStorage.darkTheme = true;
-    }
-  };
 
   return (
     <div className={`main-container ${darkTheme && "dark"}`}>
       <MainLayout
         darkTheme={darkTheme}
-        setDarkTheme={setDarkTheme}
         themeSwitch={themeSwitch}
         handleChange={handleChange}
         draftChecked={invoiceFilter.draft}

@@ -1,8 +1,5 @@
 import styles from "./ViewInvoice.module.css";
-import ButtonEdit from "../../buttons/ButtonEdit";
-import ButtonDelete from "../../buttons/ButtonDelete";
-import ButtonMarkPaid from "../../buttons/ButtonMarkPaid";
-import StatusBox from "../../misc/StatusBox/StatusBox";
+import ButtonContainer from "./ButtonContainer";
 
 export default function InvoiceHead({ darkTheme }) {
   return (
@@ -12,11 +9,7 @@ export default function InvoiceHead({ darkTheme }) {
         <span className={styles.bullet}>&middot; </span>
         <span>Pending</span>
       </h4>
-      <div className={`${styles.btnContainer}`}>
-        <ButtonEdit darkTheme={darkTheme} />
-        <ButtonDelete />
-        <ButtonMarkPaid />
-      </div>
+      <ButtonContainer darkTheme={darkTheme} />
     </section>
   );
 }
