@@ -28,7 +28,11 @@ export default function InvoicePreview({
       </span>
       <span className={styles.clientName}>{clientName}</span>
       <h3 className={styles.total}>${total.toFixed(2)}</h3>
-      <StatusBox status={status} darkTheme={darkTheme} />
+      <StatusBox
+        status={status}
+        darkTheme={darkTheme}
+        customClass={styles.statusBox}
+      />
       <img className={styles.arrowRight} src={arrowRight} alt="arrow right" />
     </div>
   );
