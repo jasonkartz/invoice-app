@@ -1,52 +1,52 @@
 import styles from "./ViewInvoice.module.css";
 
-export default function CustomerDetails() {
+export default function CustomerDetails({ invoice, invoiceDate, dueDate }) {
   return (
     <>
       <div className={styles.invoiceDetailsHead}>
         <div>
           <h3 className="responsive">
-            #<span className={styles.id}>XM9141</span>
+            #<span className={styles.id}>{invoice.id}</span>
           </h3>
-          <p>Graphic Design</p>
+          <p>{invoice.description}</p>
         </div>
         <address>
-          19 Union Terrace
+          {invoice.senderAddress.street}
           <br />
-          London
+          {invoice.senderAddress.city}
           <br />
-          E1 3EZ
+          {invoice.senderAddress.postCode}
           <br />
-          United Kingdom
+          {invoice.senderAddress.country}
         </address>
       </div>
       <div className={styles.customerDetails}>
         <div className={styles.dates}>
           <div>
             <p>Invoice Date</p>
-            <p className={styles.detailsBold}>21 Aug 2021</p>
+            <p className={styles.detailsBold}>{invoiceDate}</p>
           </div>
           <div>
             <p>Payment Due</p>
-            <p className={styles.detailsBold}>20 Sep 2021</p>
+            <p className={styles.detailsBold}>{dueDate}</p>
           </div>
         </div>
         <div className={styles.customerAddress}>
           <p>Bill To</p>
-          <p className={styles.detailsBold}>Alex Grim</p>
+          <p className={styles.detailsBold}>{invoice.clientName}</p>
           <address>
-            84 Church Way
+            {invoice.clientAddress.street}
             <br />
-            Bradford
+            {invoice.clientAddress.city}
             <br />
-            BD1 9PB
+            {invoice.clientAddress.postCode}
             <br />
-            United Kingdom
+            {invoice.clientAddress.country}
           </address>
         </div>
         <div>
           <p>Sent to</p>
-          <p className={styles.detailsBold}>alexgrim@mail.com</p>
+          <p className={styles.detailsBold}>{invoice.clientEmail}</p>
         </div>
       </div>
     </>

@@ -72,7 +72,6 @@
 @media (min-width: 660px) {
   .container {
     grid-template-areas: "id paymentDue clientName clientName clientName clientName total total total status arrow";
-
     align-items: center;
     gap: 3%;
   }

@@ -10,12 +10,15 @@ export default function InvoicePreview({
   status,
   darkTheme,
   setScreen,
+  index,
+  setSelectedIndex,
 }) {
-  const dueDate = new Date(paymentDue);
+  const dueDate = new Date(paymentDue).toDateString().slice(3);
   return (
     <div
       className={`${styles.container} ${darkTheme && styles.dark}`}
       onClick={() => {
+        setSelectedIndex(index);
         setScreen("viewInvoice");
       }}
     >
@@ -23,9 +26,7 @@ export default function InvoicePreview({
         <span className={styles.pound}>#</span>
         {id}
       </h4>
-      <span className={styles.paymentDue}>
-        Due &nbsp;{dueDate.toDateString().slice(3)}
-      </span>
+      <span className={styles.paymentDue}>Due &nbsp;{dueDate}</span>
       <span className={styles.clientName}>{clientName}</span>
       <h3 className={styles.total}>${total.toFixed(2)}</h3>
       <StatusBox

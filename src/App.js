@@ -11,6 +11,7 @@ function App() {
   const [screen, setScreen] = useState("main");
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [invoiceFilter, setInvoiceFilter] = useState({
     draft: true,
     pending: true,
@@ -35,7 +36,7 @@ function App() {
         if (invoiceFilter[invoice.status]) {
           return (
             <InvoicePreview
-              key={index}
+              key={invoice.id}
               id={invoice.id}
               paymentDue={invoice.paymentDue}
               clientName={invoice.clientName}
@@ -43,6 +44,8 @@ function App() {
               status={invoice.status}
               darkTheme={darkTheme}
               setScreen={setScreen}
+              index={index}
+              setSelectedIndex={setSelectedIndex}
             />
           );
         }
@@ -69,16 +72,12 @@ function App() {
             setScreen={setScreen}
             darkTheme={darkTheme}
             mobileView={mobileView}
+            invoice={data[selectedIndex]}
           />
         )}
       </MainLayout>
     </div>
   );
 }
-/*id={id}
-        paymentDue={paymentDue}
-        clientName={clientName}
-        total={total}
-        status={status}
-  darkTheme={darkTheme}*/
+
 export default App;

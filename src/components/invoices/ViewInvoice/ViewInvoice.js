@@ -8,16 +8,13 @@ import InvoiceTotal from "./InvoiceTotal";
 import ButtonContainer from "./ButtonContainer";
 
 export default function ViewInvoice({
-  id,
-  paymentDue,
-  clientName,
-  total,
-  status,
   darkTheme,
   setScreen,
   mobileView,
+  invoice,
 }) {
-  const dueDate = new Date(paymentDue);
+  const invoiceDate = new Date(invoice.createdAt).toDateString().slice(3);
+  const dueDate = new Date(invoice.paymentDue).toDateString().slice(3);
   return (
     <>
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
@@ -28,18 +25,29 @@ export default function ViewInvoice({
           <img src={arrowLeft} alt="arrow-left" />
           &nbsp; &nbsp; &nbsp; Go Back
         </button>
-        <InvoiceHead darkTheme={darkTheme} mobileView={mobileView}>
+        <InvoiceHead
+          darkTheme={darkTheme}
+          mobileView={mobileView}
+          status={invoice.status}
+        >
           {!mobileView && <ButtonContainer />}
         </InvoiceHead>
         <section className={`${styles.invoiceDetails}`}>
-          <CustomerDetails />
+          <CustomerDetails
+            invoice={invoice}
+            invoiceDate={invoiceDate}
+            dueDate={dueDate}
+          />
           <div className={styles.priceDetails}>
             {mobileView ? (
-              <InvoiceItemsMobile darkTheme={darkTheme} />
+              <InvoiceItemsMobile darkTheme={darkTheme} items={invoice.items} />
             ) : (
-              <InvoiceItems darkTheme={darkTheme} />
+              <InvoiceItems darkTheme={darkTheme} items={invoice.items} />
             )}
-            <InvoiceTotal darkTheme={darkTheme} />
+            <InvoiceTotal
+              darkTheme={darkTheme}
+              total={invoice.total.toFixed(2)}
+            />
           </div>
         </section>
       </div>

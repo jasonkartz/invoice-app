@@ -1,22 +1,21 @@
 import styles from "./ViewInvoice.module.css";
 
-export default function InvoiceItemsMobile({ darkTheme }) {
+export default function InvoiceItemsMobile({ darkTheme, items }) {
   return (
     <div className={`${styles.invoiceItemsMobile} ${darkTheme && styles.dark}`}>
-      <div className={styles.itemLine}>
-        <div>
-          <h4 className={styles.title}>Banner Design</h4>
-          <h4>1 x $156.00</h4>
-        </div>
-        <h4 className={styles.title}>$156.00</h4>
-      </div>
-      <div className={styles.itemLine}>
-        <div>
-          <h4 className={styles.title}>Email Design</h4>
-          <h4>2 x $200.00</h4>
-        </div>
-        <h4 className={styles.title}>$400.00</h4>
-      </div>
+      {items.map((item, index) => {
+        return (
+          <div className={styles.itemLine} key={index}>
+            <div>
+              <h4 className={styles.title}>{item.name}</h4>
+              <h4>
+                {item.quantity} x ${item.price.toFixed(2)}
+              </h4>
+            </div>
+            <h4 className={styles.title}>${item.total.toFixed(2)}</h4>
+          </div>
+        );
+      })}
     </div>
   );
 }
