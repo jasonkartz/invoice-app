@@ -81,3 +81,7 @@ function App() {
 }
 
 export default App;
+
+// create form components
+// create reusuable component structure for both 'new invoice' and 'edit' screens
+// store initial data to local storage
