@@ -1,0 +1,143 @@
+/* Color Variables */
+:root {
+  --dark-violet: #7c5dfa;
+  --light-violet: #9277ff;
+  --navy: #1e2139;
+  --slate: #252945;
+  --mist: #dfe3fa;
+  --pastel-violet: #7e88c3;
+  --off-black: #0c0e16;
+  --pastel-orange: #ec5757;
+  --peach: #ff9797;
+  --off-white: #f8f8fb;
+  --off-white-btn: #f9fafe;
+  --light-gray: #888eb0;
+  --dark-gray: #373b53;
+  --darker-gray: #141625;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--pastel-violet);
+  width: 240px;
+}
+.inputContainer.dark,
+.dropDownContainer.dark {
+  color: var(--mist);
+}
+.inputContainer input,
+.dropDownToggle {
+  background: #ffffff;
+  color: var(--off-black);
+  font-family: "Spartan";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  height: 48px;
+  border: 1px solid #dfe3fa;
+  border-radius: 4px;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+.inputContainer input {
+  caret-color: var(--dark-violet);
+}
+.inputContainer.dark input,
+.dropDownToggle.dark {
+  background-color: var(--navy);
+  color: white;
+  border: var(--slate) 1px solid;
+}
+.inputContainer input:focus,
+.inputContainer input:hover,
+.dropDownToggle:hover,
+.dropDownToggle.active {
+  outline: var(--light-violet) 1px solid;
+}
+.inputContainer.dark input:focus,
+.inputContainer.dark input:hover {
+  outline: var(--dark-violet) 1px solid;
+}
+.dropDownToggle.dark:hover,
+.dropDownToggle.dark.active {
+  outline: var(--slate) 1px solid;
+}
+.dropDownContainer {
+  width: 240px;
+  color: var(--pastel-violet);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+.dropDownToggle {
+  width: 100%;
+  background-image: url(../../../assets/icon-arrow-down.svg);
+  background-repeat: no-repeat;
+  background-position: right 6% bottom 18px;
+  text-align: left;
+}
+.dropDownList {
+  display: none;
+  width: 100%;
+  color: var(--off-black);
+  font-family: "Spartan";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  border-radius: 8px;
+  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+  z-index: 10;
+  position: absolute;
+  top: 90px;
+}
+.dropDownList.display {
+  display: initial;
+}
+.dropDownList.dark {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+.dropDownList li {
+  width: 100%;
+  display: flex;
+}
+.dropDownList li input[type="radio"] {
+  display: none;
+}
+.dropDownList li label {
+  width: 100%;
+  cursor: pointer;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--mist);
+  background: #ffffff;
+}
+.dropDownList li label:hover {
+  color: var(--dark-violet);
+}
+.dropDownList li:nth-child(1) label {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.dropDownList li:last-child label {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom: none;
+}
+.dropDownList.dark li label {
+  background-color: var(--slate);
+  color: white;
+  border-bottom: 1px solid var(--navy);
+}
+.dropDownList.dark li:last-child label {
+  border-bottom: none;
+}
+.dropDownList.dark li label:hover,
+.dropDownList.dark li label.selected {
+  color: var(--light-violet);
+}

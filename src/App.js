@@ -6,6 +6,8 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
 import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
+import TextField from "./components/forms/formElements/TextField";
+import Dropdown from "./components/forms/formElements/Dropdown";
 
 function App() {
   const [screen, setScreen] = useState("main");
@@ -66,15 +68,8 @@ function App() {
         screen={screen}
         setScreen={setScreen}
       >
-        {screen === "main" && displayInvoices()}
-        {screen === "viewInvoice" && (
-          <ViewInvoice
-            setScreen={setScreen}
-            darkTheme={darkTheme}
-            mobileView={mobileView}
-            invoice={data[selectedIndex]}
-          />
-        )}
+        <Dropdown darkTheme={darkTheme} />
+        <TextField darkTheme={darkTheme} label={"Street Address"} />
       </MainLayout>
     </div>
   );
@@ -85,3 +80,15 @@ export default App;
 // create form components
 // create reusuable component structure for both 'new invoice' and 'edit' screens
 // store initial data to local storage
+
+/*
+{screen === "main" && displayInvoices()}
+        {screen === "viewInvoice" && (
+          <ViewInvoice
+            setScreen={setScreen}
+            darkTheme={darkTheme}
+            mobileView={mobileView}
+            invoice={data[selectedIndex]}
+          />
+        )}
+*/
