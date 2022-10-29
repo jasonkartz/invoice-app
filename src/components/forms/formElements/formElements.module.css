@@ -23,6 +23,17 @@
   color: var(--pastel-violet);
   width: 240px;
 }
+.inputContainer input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+.inputContainer input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: url("../../../assets/icon-calendar.svg");
+  background-repeat: no-repeat;
+  background-position: right 5% bottom 50%;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
 .inputContainer.dark,
 .dropDownContainer.dark {
   color: var(--mist);
@@ -40,7 +51,7 @@
   height: 48px;
   border: 1px solid #dfe3fa;
   border-radius: 4px;
-  padding: 15px 20px;
+  padding: 18px 20px 15px 20px;
   cursor: pointer;
 }
 .inputContainer input {
@@ -113,7 +124,7 @@
 .dropDownList li label {
   width: 100%;
   cursor: pointer;
-  padding: 16px 20px;
+  padding: 18px 20px 15px 20px;
   border-bottom: 1px solid var(--mist);
   background: #ffffff;
 }

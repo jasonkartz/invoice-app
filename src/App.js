@@ -8,6 +8,8 @@ import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import TextField from "./components/forms/formElements/TextField";
 import Dropdown from "./components/forms/formElements/Dropdown";
+import DatePicker from "./components/forms/formElements/DatePicker";
+import ReactDatePicker from "./components/forms/formElements/ReactDatePicker";
 
 function App() {
   const [screen, setScreen] = useState("main");
@@ -69,7 +71,9 @@ function App() {
         setScreen={setScreen}
       >
         <Dropdown darkTheme={darkTheme} />
-        <TextField darkTheme={darkTheme} label={"Street Address"} />
+        <TextField darkTheme={darkTheme} />
+        <DatePicker darkTheme={darkTheme} />
+        <ReactDatePicker darkTheme={darkTheme} />
       </MainLayout>
     </div>
   );
