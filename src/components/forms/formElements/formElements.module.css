@@ -22,6 +22,7 @@
   gap: 10px;
   color: var(--pastel-violet);
   width: 240px;
+  position: relative;
 }
 .inputContainer input[type="date"]::-webkit-inner-spin-button {
   display: none;
@@ -39,7 +40,8 @@
   color: var(--mist);
 }
 .inputContainer input,
-.dropDownToggle {
+.dropDownToggle,
+.calendarBtn {
   background: #ffffff;
   color: var(--off-black);
   font-family: "Spartan";
@@ -58,7 +60,8 @@
   caret-color: var(--dark-violet);
 }
 .inputContainer.dark input,
-.dropDownToggle.dark {
+.dropDownToggle.dark,
+.calendarBtn.dark {
   background-color: var(--navy);
   color: white;
   border: var(--slate) 1px solid;
@@ -66,7 +69,9 @@
 .inputContainer input:focus,
 .inputContainer input:hover,
 .dropDownToggle:hover,
-.dropDownToggle.active {
+.dropDownToggle.active,
+.calendarBtn:hover,
+.calendarBtn.active {
   outline: var(--light-violet) 1px solid;
 }
 .inputContainer.dark input:focus,
@@ -74,8 +79,26 @@
   outline: var(--dark-violet) 1px solid;
 }
 .dropDownToggle.dark:hover,
-.dropDownToggle.dark.active {
+.dropDownToggle.dark.active,
+.calendarBtn.dark:hover,
+.calendarBtn.active.dark {
   outline: var(--slate) 1px solid;
+}
+.calendarBtn {
+  background-image: url(../../../assets/icon-calendar.svg);
+  background-repeat: no-repeat;
+  background-position: right 6% bottom 50%;
+  text-align: left;
+}
+.calendarContainer {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  top: 90px;
+}
+.calendarContainer.display {
+  display: initial;
 }
 .dropDownContainer {
   width: 240px;
