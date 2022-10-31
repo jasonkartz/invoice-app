@@ -3,6 +3,7 @@ import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
 import InvoiceStatus from "./InvoiceStatus/InvoiceStatus";
+import InvoiceForm from "../forms/InvoiceForm";
 import { Children } from "react";
 
 export default function MainLayout({
@@ -21,6 +22,7 @@ export default function MainLayout({
   return (
     <>
       <Header darkTheme={darkTheme} themeSwitch={themeSwitch} />
+      <InvoiceForm darkTheme={darkTheme} />
       <main className={styles.main}>
         {screen === "main" && (
           <section
@@ -41,8 +43,7 @@ export default function MainLayout({
             <ButtonNewInvoice />
           </section>
         )}
-
-        <section className={styles.invoicesDisplay}>{children}</section>
+        <section className="invoicesDisplay">{children}</section>
       </main>
     </>
   );

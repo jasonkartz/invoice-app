@@ -70,10 +70,15 @@ function App() {
         screen={screen}
         setScreen={setScreen}
       >
-        <TextField darkTheme={darkTheme} />
-        <DatePicker darkTheme={darkTheme} />
-        <CustomDatePicker darkTheme={darkTheme} />
-        <Dropdown darkTheme={darkTheme} />
+        {screen === "main" && displayInvoices()}
+        {screen === "viewInvoice" && (
+          <ViewInvoice
+            setScreen={setScreen}
+            darkTheme={darkTheme}
+            mobileView={mobileView}
+            invoice={data[selectedIndex]}
+          />
+        )}
       </MainLayout>
     </div>
   );

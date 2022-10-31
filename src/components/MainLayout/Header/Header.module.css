@@ -6,6 +6,7 @@ header.header {
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
+  z-index: 30;
 }
 header.header.dark {
   background-color: var(--navy);
