@@ -84,6 +84,13 @@ h3.responsive {
   line-height: clamp(15px 2.3vw, 24px);
   letter-spacing: clamp(-0.25px, 2.3vw, -0.8px);
 }
+h3.form {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: -0.375px;
+  color: #777f98;
+}
 h4 {
   font-weight: 700;
   font-size: 12px;

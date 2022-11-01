@@ -18,6 +18,25 @@ export default function InvoiceForm({ darkTheme }) {
           <TextField label="Post Code" customClass={styles.postCodeFrom} />
           <TextField label="Country" customClass={styles.countryFrom} />
         </section>
+        <h4 className={styles.billToTitle}>Bill To</h4>
+        <section className={styles.billTo}>
+          <TextField label="Client's Name" customClass={styles.clientName} />
+          <TextField label="Client's Email" customClass={styles.clientEmail} />
+          <TextField label="Street Address" customClass={styles.streetTo} />
+          <TextField label="City" customClass={styles.cityTo} />
+          <TextField label="Post Code" customClass={styles.postCodeTo} />
+          <TextField label="Country" customClass={styles.countryTo} />
+        </section>
+        <section className={styles.generalDetails}>
+          <CustomDatePicker />
+          <Dropdown />
+          <TextField
+            label="Product Description"
+            customClass={styles.ProductDesc}
+          />
+        </section>
+        <h3 className="form">Item List</h3>
+        <section className={styles.itemList}></section>
       </form>
     </div>
   );

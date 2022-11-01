@@ -25,7 +25,10 @@ export default function CustomDatePicker({
       <button
         className={`${styles.calendarBtn} ${darkTheme && styles.dark}`}
         id={id || "date"}
-        onClick={() => setCalendarDisplay(!calendarDisplay)}
+        onClick={(e) => {
+          e.preventDefault();
+          setCalendarDisplay(!calendarDisplay);
+        }}
       >
         {dateDisplay}
       </button>

@@ -1,7 +1,7 @@
 import styles from "./formElements.module.css";
 import { useState } from "react";
 
-export default function Dropdown({ darkTheme, label, id, name, customClass }) {
+export default function Dropdown({ darkTheme, name, customClass }) {
   const [toggleActive, setToggleActive] = useState(false);
   return (
     <div
@@ -12,7 +12,10 @@ export default function Dropdown({ darkTheme, label, id, name, customClass }) {
       <p>Payment Terms</p>
       <button
         className={`${styles.dropDownToggle} ${darkTheme && styles.dark}`}
-        onClick={() => setToggleActive(!toggleActive)}
+        onClick={(e) => {
+          e.preventDefault();
+          setToggleActive(!toggleActive);
+        }}
       >
         Select
       </button>

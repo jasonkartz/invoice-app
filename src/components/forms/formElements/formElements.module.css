@@ -22,6 +22,7 @@
   gap: 10px;
   color: var(--pastel-violet);
   position: relative;
+  min-width: 0;
 }
 .inputContainer input[type="date"]::-webkit-inner-spin-button {
   display: none;
