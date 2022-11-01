@@ -2,7 +2,7 @@ import styles from "./Buttons.module.css";
 import iconPlus from "../../assets/icon-plus.svg";
 import { useEffect, useState } from "react";
 
-export default function ButtonNewInvoice() {
+export default function ButtonNewInvoice({ setDisplayNewInvoice }) {
   const [text, setText] = useState("New");
 
   useEffect(() => {
@@ -17,7 +17,10 @@ export default function ButtonNewInvoice() {
     window.addEventListener("resize", handleResize);
   });
   return (
-    <button className={styles["new-invoice"]}>
+    <button
+      className={styles["new-invoice"]}
+      onClick={() => setDisplayNewInvoice(true)}
+    >
       <span className={styles.circle}>
         <img src={iconPlus} alt="plus icon" />
       </span>

@@ -105,3 +105,9 @@
   gap: 24px;
   margin-top: 16px;
 }
+
+@media (min-width: 1000px) {
+  .container {
+    padding-left: 103px;
+  }
+}

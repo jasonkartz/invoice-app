@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
 import InvoiceStatus from "./InvoiceStatus/InvoiceStatus";
 import InvoiceForm from "../forms/InvoiceForm";
-import { Children } from "react";
+import { Children, useState } from "react";
 
 export default function MainLayout({
   children,
@@ -17,12 +17,18 @@ export default function MainLayout({
   allFiltersFalse,
   screen,
 }) {
+  const [displayNewInvoice, setDisplayNewInvoice] = useState(false);
   const invoiceCount = Children.toArray(children).length;
 
   return (
     <>
       <Header darkTheme={darkTheme} themeSwitch={themeSwitch} />
-      <InvoiceForm darkTheme={darkTheme} />
+      {displayNewInvoice && (
+        <InvoiceForm
+          darkTheme={darkTheme}
+          setDisplayNewInvoice={setDisplayNewInvoice}
+        />
+      )}
       <main className={styles.main}>
         {screen === "main" && (
           <section
@@ -40,7 +46,7 @@ export default function MainLayout({
               pendingChecked={pendingChecked}
               paidChecked={paidChecked}
             />
-            <ButtonNewInvoice />
+            <ButtonNewInvoice setDisplayNewInvoice={setDisplayNewInvoice} />
           </section>
         )}
         <section className="invoicesDisplay">{children}</section>

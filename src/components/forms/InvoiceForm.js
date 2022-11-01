@@ -1,15 +1,18 @@
 import styles from "./InvoiceForm.module.css";
-import BackButton from "../misc/BackButton/BackButton";
+import BackButton from "../buttons/BackButton";
 import TextField from "./formElements/TextField";
 import Dropdown from "./formElements/Dropdown";
 import CustomDatePicker from "./formElements/CustomDatePicker";
 import InvoiceItem from "./InvoiceItem";
 
-export default function InvoiceForm({ darkTheme }) {
+export default function InvoiceForm({ darkTheme, setDisplayNewInvoice }) {
   return (
     <div className={`${styles.container} ${darkTheme && styles.dark}`}>
       <form>
-        <BackButton darkTheme={darkTheme} />
+        <BackButton
+          darkTheme={darkTheme}
+          handleClick={() => setDisplayNewInvoice(false)}
+        />
         <h1 className="alt-heading">New Invoice</h1>
         <h4>Bill From</h4>
         <section className={styles.billFrom}>

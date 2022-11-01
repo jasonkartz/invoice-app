@@ -6,7 +6,7 @@ import InvoiceItems from "./InvoiceItems";
 import InvoiceItemsMobile from "./InvoiceItemsMobile";
 import InvoiceTotal from "./InvoiceTotal";
 import ButtonContainer from "./ButtonContainer";
-import BackButton from "../../misc/BackButton/BackButton";
+import BackButton from "../../buttons/BackButton";
 
 export default function ViewInvoice({
   darkTheme,
@@ -19,7 +19,13 @@ export default function ViewInvoice({
   return (
     <>
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
-        <BackButton setScreen={setScreen} darkTheme={darkTheme} />
+        <BackButton
+          setScreen={setScreen}
+          darkTheme={darkTheme}
+          handleClick={() => {
+            setScreen("main");
+          }}
+        />
         <InvoiceHead
           darkTheme={darkTheme}
           mobileView={mobileView}

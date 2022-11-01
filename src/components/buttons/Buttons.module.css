@@ -92,3 +92,11 @@ button.delete {
 button.delete:hover {
   background-color: var(--peach);
 }
+button.backButton {
+  align-self: flex-start;
+  color: var(--off-black);
+  padding-left: 0;
+}
+button.backButton.dark {
+  color: white;
+}
