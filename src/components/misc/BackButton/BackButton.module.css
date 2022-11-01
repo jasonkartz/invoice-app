@@ -1,6 +1,7 @@
 .backButton {
   align-self: flex-start;
   color: var(--off-black);
+  padding-left: 0;
 }
 .backButton.dark {
   color: white;

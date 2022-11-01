@@ -24,7 +24,8 @@
   align-items: center;
   gap: 24px;
   max-width: 217px;
-  margin-top: 102px;
+  margin-top: 50px;
+  margin-inline: auto;
 }
 .container img {
   margin-bottom: 40px;
@@ -50,7 +51,6 @@ p.tabletDesktop {
 @media (min-width: 768px) {
   .container {
     max-width: 242px;
-    margin-top: 210px;
   }
   .container img {
     max-width: 242px;
@@ -68,6 +68,6 @@ p.tabletDesktop {
 }
 @media (min-width: 1000px) {
   .container {
-    margin-top: 141px;
+    margin-top: 100px;
   }
 }

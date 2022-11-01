@@ -23,6 +23,12 @@ const useDarkTheme = () => {
       localStorage.darkTheme = true;
     }
   };
+  if (darkTheme) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+
   return [darkTheme, themeSwitch];
 };
 

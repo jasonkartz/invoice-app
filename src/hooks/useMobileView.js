@@ -5,7 +5,7 @@ const useMobileView = () => {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth < 767) {
+      if (window.innerWidth < 699) {
         setMobileView(true);
       } else {
         setMobileView(false);

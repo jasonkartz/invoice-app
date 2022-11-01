@@ -65,7 +65,7 @@
   padding: 22px 24px;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  left: 0;
 }
 .status {
   display: flex;
@@ -231,7 +231,7 @@
     justify-content: space-between;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .invoiceHead {
     padding: 20px 32px;
     justify-content: flex-start;

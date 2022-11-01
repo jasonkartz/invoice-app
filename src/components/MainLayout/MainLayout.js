@@ -22,7 +22,7 @@ export default function MainLayout({
   return (
     <>
       <Header darkTheme={darkTheme} themeSwitch={themeSwitch} />
-      <InvoiceForm darkTheme={darkTheme} />
+
       <main className={styles.main}>
         {screen === "main" && (
           <section

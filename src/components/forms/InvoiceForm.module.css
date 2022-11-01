@@ -18,18 +18,18 @@
 .container {
   position: absolute;
   left: 0;
-  background-color: white;
+  top: 0;
   width: 100%;
   height: auto;
-  padding-top: 10px;
+  padding-top: 104px;
   z-index: 20;
 }
 .container form {
+  background-color: white;
   width: 100%;
   padding: 24px;
   display: flex;
   flex-direction: column;
-
   gap: 24px;
 }
 .container form h4 {
@@ -40,7 +40,6 @@
 .billFrom {
   max-width: 100%;
   display: grid;
-  grid-template-columns: auto;
   grid-template-areas:
     "streetFrom streetFrom"
     "cityFrom postCodeFrom"
@@ -67,7 +66,6 @@
 .billTo {
   max-width: 100%;
   display: grid;
-  grid-template-columns: auto;
   grid-template-areas:
     "clientName clientName"
     "clientEmail clientEmail"
