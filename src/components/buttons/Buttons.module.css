@@ -100,3 +100,6 @@ button.backButton {
 button.backButton.dark {
   color: white;
 }
+button.backButton:hover {
+  opacity: 0.5;
+}

@@ -46,7 +46,7 @@ export default function MainLayout({
               pendingChecked={pendingChecked}
               paidChecked={paidChecked}
             />
-            <ButtonNewInvoice setDisplayNewInvoice={setDisplayNewInvoice} />
+            <ButtonNewInvoice handleClick={() => setDisplayNewInvoice(true)} />
           </section>
         )}
         <section className="invoicesDisplay">{children}</section>
