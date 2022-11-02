@@ -2,7 +2,7 @@ import styles from "./MainLayout.module.css";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
-import InvoiceStatus from "./InvoiceStatus/InvoiceStatus";
+import InvoicesStatus from "./InvoicesStatus";
 import InvoiceForm from "../forms/InvoiceForm";
 import { Children, useState } from "react";
 
@@ -34,10 +34,15 @@ export default function MainLayout({
           <section
             className={`${styles.invoiceOptions} ${darkTheme && styles.dark}`}
           >
-            <InvoiceStatus
-              allFiltersFalse={allFiltersFalse}
-              invoiceCount={invoiceCount}
-            />
+            <div className={styles.invoiceStatus}>
+              <h1>Invoices</h1>
+              <p>
+                <InvoicesStatus
+                  allFiltersFalse={allFiltersFalse}
+                  invoiceCount={invoiceCount}
+                />
+              </p>
+            </div>
 
             <FilterOptions
               draftChecked={draftChecked}

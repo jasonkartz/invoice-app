@@ -26,6 +26,12 @@
   flex-direction: column;
   gap: 24px;
 }
+.invoiceStatus {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .invoiceOptions {
   display: flex;
   flex-wrap: wrap;

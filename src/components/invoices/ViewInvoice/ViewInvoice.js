@@ -1,19 +1,15 @@
 import styles from "./ViewInvoice.module.css";
 import InvoiceHead from "./InvoiceHead";
 import CustomerDetails from "./CustomerDetails";
-import arrowLeft from "../../../assets/icon-arrow-left.svg";
 import InvoiceItems from "./InvoiceItems";
 import InvoiceItemsMobile from "./InvoiceItemsMobile";
 import InvoiceTotal from "./InvoiceTotal";
 import ButtonContainer from "./ButtonContainer";
 import BackButton from "../../buttons/BackButton";
+import useMobileView from "../../../hooks/useMobileView";
 
-export default function ViewInvoice({
-  darkTheme,
-  setScreen,
-  mobileView,
-  invoice,
-}) {
+export default function ViewInvoice({ darkTheme, setScreen, invoice }) {
+  const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const invoiceDate = new Date(invoice.createdAt).toDateString().slice(3);
   const dueDate = new Date(invoice.paymentDue).toDateString().slice(3);
   return (

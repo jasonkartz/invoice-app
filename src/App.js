@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useDarkTheme from "./hooks/useDarkTheme";
 import useMobileView from "./hooks/useMobileView";
 import data from "./data/data.json";
@@ -6,10 +6,6 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
 import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
-import TextField from "./components/forms/formElements/TextField";
-import Dropdown from "./components/forms/formElements/Dropdown";
-import DatePicker from "./components/forms/formElements/DatePicker";
-import CustomDatePicker from "./components/forms/formElements/CustomDatePicker";
 
 function App() {
   const [screen, setScreen] = useState("main");
@@ -75,7 +71,6 @@ function App() {
           <ViewInvoice
             setScreen={setScreen}
             darkTheme={darkTheme}
-            mobileView={mobileView}
             invoice={data[selectedIndex]}
           />
         )}
