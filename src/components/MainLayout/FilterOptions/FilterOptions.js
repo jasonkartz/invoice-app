@@ -2,6 +2,7 @@ import styles from "./FilterOptions.module.css";
 import downArrow from "../../../assets/icon-arrow-down.svg";
 import upArrow from "../../../assets/icon-arrow-up.svg";
 import { useState } from "react";
+import useMobileView from "../../../hooks/useMobileView";
 
 export default function FilterOptions({
   draftChecked,
@@ -11,14 +12,14 @@ export default function FilterOptions({
   paidChecked,
 }) {
   const [displayFilterForm, setDisplayFilterForm] = useState(false);
+  const [mobileView] = useMobileView(); //mobile screens and resizing screens
   return (
     <div className={styles.filterForm}>
       <button
         className={`${styles.filterBtn} ${darkTheme && styles.dark}`}
         onClick={() => setDisplayFilterForm(!displayFilterForm)}
       >
-        Filter <span className={styles.expandedText}>by status</span> &nbsp;
-        &nbsp; &nbsp;
+        Filter {!mobileView && "by status"}&nbsp; &nbsp; &nbsp;
         <img src={displayFilterForm ? upArrow : downArrow} alt="arrow" />
       </button>
 

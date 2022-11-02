@@ -4,9 +4,6 @@
 .filterBtn.dark {
   color: white;
 }
-.expandedText {
-  display: none;
-}
 .filterOptions {
   position: absolute;
   background-color: white;
@@ -71,9 +68,6 @@
   background-color: #dfe3fa;
 }
 @media (min-width: 768px) {
-  .expandedText {
-    display: initial;
-  }
   .filterOptions {
     min-width: 192px;
     padding: 24px;
