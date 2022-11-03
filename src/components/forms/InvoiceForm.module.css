@@ -105,9 +105,32 @@
   gap: 24px;
   margin-top: 16px;
 }
-
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+@media (min-width: 700px) {
+  .container {
+    background-color: rgba(12, 14, 22, 0.5);
+  }
+  .backBtn {
+    display: none;
+  }
+  .container form {
+    width: 616px;
+    border-radius: 0px 20px 20px 0px;
+  }
+}
 @media (min-width: 1000px) {
   .container {
     padding-left: 103px;
+    position: fixed;
+    height: 100vh;
+  }
+  .container form {
+    height: 100%;
+    overflow-x: scroll;
+    border-radius: 0px 20px 20px 0px;
   }
 }

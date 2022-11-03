@@ -37,7 +37,7 @@
 }
 .inputContainer.dark,
 .dropDownContainer.dark {
-  color: var(--mist);
+  color: var(--light-gray);
 }
 .inputContainer input,
 .dropDownToggle,

@@ -17,7 +17,7 @@ export default function CustomDatePicker({
   let dateDisplay = value.toString().slice(4, 15);
   return (
     <div
-      className={`${styles.inputContainer} ${darkTheme && styles.dark} ${
+      className={`${styles.dropDownContainer} ${darkTheme && styles.dark} ${
         customClass && customClass
       }`}
     >

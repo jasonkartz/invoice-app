@@ -10,7 +10,7 @@ export default function DatePicker({
   let today = new Date().toISOString().slice(0, 10);
   return (
     <div
-      className={`${styles.inputContainer} ${darkTheme && styles.dark} ${
+      className={`${styles.dropDownContainer} ${darkTheme && styles.dark} ${
         customClass && customClass
       }`}
     >

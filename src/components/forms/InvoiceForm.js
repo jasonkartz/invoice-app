@@ -12,6 +12,7 @@ export default function InvoiceForm({ darkTheme, setDisplayNewInvoice }) {
         <BackButton
           darkTheme={darkTheme}
           handleClick={() => setDisplayNewInvoice(false)}
+          customClass={styles.backBtn}
         />
         <h1 className="alt-heading">New Invoice</h1>
         <h4>Bill From</h4>
@@ -81,7 +82,8 @@ export default function InvoiceForm({ darkTheme, setDisplayNewInvoice }) {
         </section>
         <h3 className="form">Item List</h3>
         <section className={styles.itemList}>
-          <InvoiceItem />
+          <InvoiceItem darkTheme={darkTheme} />
+          <InvoiceItem darkTheme={darkTheme} />
         </section>
       </form>
     </div>
