@@ -43,30 +43,30 @@ button.new-invoice .circle {
 button.new-invoice:hover {
   background-color: var(--light-violet);
 }
-button.mark-paid {
+button.purple {
   background-color: var(--dark-violet);
   color: white;
 }
-button.mark-paid:hover {
+button.purple:hover {
   background-color: var(--light-violet);
 }
-button.edit,
+button.standard,
 button.add-item {
   background-color: var(--off-white-btn);
   color: var(--pastel-violet);
 }
-button.edit:hover,
+button.standard:hover,
 button.add-item:hover {
   background-color: var(--mist);
 }
-button.edit.dark,
+button.standard.dark,
 button.add-item.dark {
   background-color: var(--slate);
   color: var(--mist);
 }
-button.edit.dark:hover,
+button.standard.dark:hover,
 button.add-item.dark:hover {
-  background-color: white;
+  background-color: var(--navy);
 }
 button.add-item {
   width: 100%;

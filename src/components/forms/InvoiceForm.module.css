@@ -21,8 +21,11 @@
   width: 100%;
   height: auto;
   z-index: 20;
+  color: var(--pastel-violet);
 }
-
+.container.dark {
+  color: var(--light-gray);
+}
 .container form {
   background-color: white;
   width: 100%;
@@ -30,6 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  position: relative;
 }
 .container.dark form {
   background-color: var(--darker-gray);
@@ -110,27 +114,143 @@
   flex-direction: column;
   gap: 48px;
 }
+.btnSection {
+  margin-top: 15px;
+  margin-inline: -24px;
+  margin-bottom: -24px;
+  padding: 24px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: inherit;
+  box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.1);
+}
+.container.dark form .btnSection {
+  box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 375px) {
+  .btnSection {
+    margin-top: 64px;
+    justify-content: space-evenly;
+    gap: 7px;
+  }
+}
 @media (min-width: 700px) {
   .container {
     background-color: rgba(12, 14, 22, 0.5);
   }
-  .backBtn {
-    display: none;
-  }
   .container form {
     width: 616px;
     border-radius: 0px 20px 20px 0px;
+    padding: 56px 56px 32px 56px;
+    overflow-x: hidden;
+  }
+
+  .container.dark form h1 {
+    margin-bottom: 24px;
+  }
+  .billFrom {
+    grid-template-areas:
+      "streetFrom streetFrom streetFrom"
+      "cityFrom postCodeFrom countryFrom";
+    gap: 24px;
+  }
+  .billTo {
+    grid-template-areas:
+      "clientName clientName clientName"
+      "clientEmail clientEmail clientEmail"
+      "streetTo streetTo streetTo"
+      "cityTo postCodeTo countryTo";
+    gap: 24px;
+  }
+  .generalDetails {
+    display: grid;
+    grid-template-areas:
+      "date dropDown"
+      "productDesc productDesc";
+  }
+  .date {
+    grid-area: date;
+  }
+  .dropDown {
+    grid-area: dropDown;
+  }
+  .productDesc {
+    grid-area: productDesc;
+  }
+  .itemHeading {
+    min-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+  .name {
+    min-width: 211px;
+  }
+  .qty {
+    grid-area: qty;
+    min-width: 45px;
+  }
+  .price {
+    min-width: 97px;
+  }
+  .itemList {
+    gap: 16px;
+  }
+  .btnSection {
+    margin-top: 23px;
+    margin-inline: 0;
+    margin-bottom: 0;
+    padding: 0;
+    justify-content: flex-end;
+    gap: 8px;
+    box-shadow: none;
+  }
+  .container.dark form .btnSection {
+    box-shadow: none;
+  }
+  .btnDiscard {
+    margin-right: auto;
   }
 }
 @media (min-width: 1000px) {
   .container {
-    padding-left: 103px;
     position: fixed;
     height: 100vh;
   }
   .container form {
+    width: 719px;
+    padding-left: 159px;
+    padding-bottom: 150px;
     height: 100%;
-    overflow-x: scroll;
     border-radius: 0px 20px 20px 0px;
+  }
+  .container form::-webkit-scrollbar {
+    width: 8px;
+  }
+  .container form::-webkit-scrollbar-thumb {
+    background-color: #dfe3fa;
+    border-radius: 4px;
+    height: 100px;
+    width: 8px;
+  }
+  .container.dark form::-webkit-scrollbar-thumb {
+    background-color: #252945;
+  }
+  .container form::-webkit-scrollbar-track {
+    margin-left: 10px;
+  }
+  .btnSection {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 719px;
+    padding: 31px 56px 31px 159px;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.1);
+  }
+  .container.dark form .btnSection {
+    box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.5);
   }
 }

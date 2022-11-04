@@ -1,14 +1,21 @@
 import styles from "./ViewInvoice.module.css";
-import ButtonEdit from "../../buttons/ButtonEdit";
+import ButtonStandard from "../../buttons/ButtonStandard";
 import ButtonDelete from "../../buttons/ButtonDelete";
-import ButtonMarkPaid from "../../buttons/ButtonMarkPaid";
+import ButtonPurple from "../../buttons/ButtonPurple";
 
 export default function ButtonContainer({ darkTheme }) {
   return (
     <div className={`${styles.btnContainer} ${darkTheme && styles.dark}`}>
-      <ButtonEdit darkTheme={darkTheme} />
+      <ButtonStandard
+        darkTheme={darkTheme}
+        handleClick={(e) => e.preventDefault()}
+        btnText="Edit"
+      />
       <ButtonDelete />
-      <ButtonMarkPaid />
+      <ButtonPurple
+        btnText="Mark as Paid"
+        handleClick={(e) => e.preventDefault()}
+      />
     </div>
   );
 }

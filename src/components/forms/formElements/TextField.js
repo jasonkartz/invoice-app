@@ -14,7 +14,7 @@ export default function TextField({
         customClass && customClass
       }`}
     >
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
       <input type={type} id={id} name={name} />
     </div>
   );

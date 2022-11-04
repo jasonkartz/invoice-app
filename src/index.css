@@ -113,6 +113,9 @@ button {
   cursor: pointer;
   background-color: transparent;
 }
+button.responsive {
+  padding: 18px 16px 18px 16px;
+}
 address {
   font-size: 11px;
   font-style: normal;
@@ -131,6 +134,11 @@ address {
   background-color: var(--darker-gray);
 }
 
+@media (min-width: 700px) {
+  button.responsive {
+    padding: 17px 24px 16px 24px;
+  }
+}
 @media (min-width: 1000px) {
   .main-container {
     display: flex;
