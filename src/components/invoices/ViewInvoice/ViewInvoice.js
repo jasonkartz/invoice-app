@@ -1,4 +1,5 @@
 import styles from "./ViewInvoice.module.css";
+import ConfirmDelete from "./ConfirmDelete";
 import InvoiceHead from "./InvoiceHead";
 import CustomerDetails from "./CustomerDetails";
 import InvoiceItems from "./InvoiceItems";
@@ -7,6 +8,7 @@ import InvoiceTotal from "./InvoiceTotal";
 import ButtonContainer from "./ButtonContainer";
 import BackButton from "../../buttons/BackButton";
 import useMobileView from "../../../hooks/useMobileView";
+import { useState } from "react";
 
 export default function ViewInvoice({
   darkTheme,
@@ -14,6 +16,7 @@ export default function ViewInvoice({
   invoice,
   setDisplayForm,
 }) {
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const invoiceDate = new Date(invoice.createdAt).toDateString().slice(3);
   const dueDate = new Date(invoice.paymentDue).toDateString().slice(3);
@@ -25,11 +28,22 @@ export default function ViewInvoice({
     });
   };
 
+  const cancelDelete = () => {
+    setDeleteConfirm(false);
+  };
   const btnContainer = () => (
-    <ButtonContainer darkTheme={darkTheme} editInvoice={editInvoice} />
+    <ButtonContainer
+      darkTheme={darkTheme}
+      editInvoice={editInvoice}
+      deleteInvoice={() => setDeleteConfirm(true)}
+    />
   );
+
   return (
     <>
+      {deleteConfirm && (
+        <ConfirmDelete cancel={cancelDelete} darkTheme={darkTheme} />
+      )}
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
         <BackButton
           setScreen={setScreen}

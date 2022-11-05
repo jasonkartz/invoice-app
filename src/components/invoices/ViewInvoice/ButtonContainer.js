@@ -3,7 +3,11 @@ import ButtonStandard from "../../buttons/ButtonStandard";
 import ButtonDelete from "../../buttons/ButtonDelete";
 import ButtonPurple from "../../buttons/ButtonPurple";
 
-export default function ButtonContainer({ darkTheme, editInvoice }) {
+export default function ButtonContainer({
+  darkTheme,
+  editInvoice,
+  deleteInvoice,
+}) {
   return (
     <div className={`${styles.btnContainer} ${darkTheme && styles.dark}`}>
       <ButtonStandard
@@ -11,7 +15,7 @@ export default function ButtonContainer({ darkTheme, editInvoice }) {
         handleClick={editInvoice}
         btnText="Edit"
       />
-      <ButtonDelete />
+      <ButtonDelete handleClick={deleteInvoice} />
       <ButtonPurple
         btnText="Mark as Paid"
         handleClick={(e) => e.preventDefault()}
