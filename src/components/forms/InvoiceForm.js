@@ -10,18 +10,17 @@ import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
 
-export default function InvoiceForm({ darkTheme, setDisplayNewInvoice }) {
+export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
   const [mobileView] = useMobileView();
   return (
     <div className={`${styles.container} ${darkTheme && styles.dark}`}>
       <form>
         {mobileView && (
-          <BackButton
-            darkTheme={darkTheme}
-            handleClick={() => setDisplayNewInvoice(false)}
-          />
+          <BackButton darkTheme={darkTheme} handleClick={cancelForm} />
         )}
-        <h1 className="alt-heading">New Invoice</h1>
+        <h1 className="alt-heading">
+          {invoiceEdit ? "Edit #XM9141" : "New Invoice"}
+        </h1>
         <h4>Bill From</h4>
         <section className={styles.billFrom}>
           <TextField
@@ -109,20 +108,19 @@ export default function InvoiceForm({ darkTheme, setDisplayNewInvoice }) {
         <section className={styles.btnSection}>
           <ButtonStandard
             darkTheme={darkTheme}
-            handleClick={(e) => {
-              e.preventDefault();
-              setDisplayNewInvoice(false);
-            }}
-            btnText="Discard"
-            customClass={`responsive ${styles.btnDiscard}`}
+            handleClick={cancelForm}
+            btnText={invoiceEdit ? "Cancel" : "Discard"}
+            customClass={`responsive ${!invoiceEdit && styles.btnDiscard}`}
           />
-          <ButtonSaveDraft
-            handleClick={(e) => e.preventDefault()}
-            darkTheme={darkTheme}
-            customClass="responsive"
-          />
+          {!invoiceEdit && (
+            <ButtonSaveDraft
+              handleClick={(e) => e.preventDefault()}
+              darkTheme={darkTheme}
+              customClass="responsive"
+            />
+          )}
           <ButtonPurple
-            btnText="Save & Send"
+            btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
             handleClick={(e) => e.preventDefault()}
             customClass="responsive"
           />

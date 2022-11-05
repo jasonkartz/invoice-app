@@ -9,6 +9,10 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 
 function App() {
   const [screen, setScreen] = useState("main");
+  const [displayForm, setDisplayForm] = useState({
+    display: false,
+    editInvoice: false,
+  });
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -65,6 +69,8 @@ function App() {
         allFiltersFalse={allFiltersFalse}
         screen={screen}
         setScreen={setScreen}
+        displayForm={displayForm}
+        setDisplayForm={setDisplayForm}
       >
         {screen === "main" && displayInvoices()}
         {screen === "viewInvoice" && (
@@ -72,6 +78,7 @@ function App() {
             setScreen={setScreen}
             darkTheme={darkTheme}
             invoice={data[selectedIndex]}
+            setDisplayForm={setDisplayForm}
           />
         )}
       </MainLayout>
@@ -80,19 +87,3 @@ function App() {
 }
 
 export default App;
-
-// create form components
-// create reusuable component structure for both 'new invoice' and 'edit' screens
-// store initial data to local storage
-
-/*
-{screen === "main" && displayInvoices()}
-        {screen === "viewInvoice" && (
-          <ViewInvoice
-            setScreen={setScreen}
-            darkTheme={darkTheme}
-            mobileView={mobileView}
-            invoice={data[selectedIndex]}
-          />
-        )}
-*/

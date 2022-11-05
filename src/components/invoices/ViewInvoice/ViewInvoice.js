@@ -8,10 +8,26 @@ import ButtonContainer from "./ButtonContainer";
 import BackButton from "../../buttons/BackButton";
 import useMobileView from "../../../hooks/useMobileView";
 
-export default function ViewInvoice({ darkTheme, setScreen, invoice }) {
+export default function ViewInvoice({
+  darkTheme,
+  setScreen,
+  invoice,
+  setDisplayForm,
+}) {
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const invoiceDate = new Date(invoice.createdAt).toDateString().slice(3);
   const dueDate = new Date(invoice.paymentDue).toDateString().slice(3);
+
+  const editInvoice = () => {
+    setDisplayForm({
+      display: true,
+      editInvoice: true,
+    });
+  };
+
+  const btnContainer = () => (
+    <ButtonContainer darkTheme={darkTheme} editInvoice={editInvoice} />
+  );
   return (
     <>
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
@@ -27,7 +43,7 @@ export default function ViewInvoice({ darkTheme, setScreen, invoice }) {
           mobileView={mobileView}
           status={invoice.status}
         >
-          {!mobileView && <ButtonContainer />}
+          {!mobileView && btnContainer()}
         </InvoiceHead>
         <section className={`${styles.invoiceDetails}`}>
           <CustomerDetails
@@ -48,7 +64,7 @@ export default function ViewInvoice({ darkTheme, setScreen, invoice }) {
           </div>
         </section>
       </div>
-      {mobileView && <ButtonContainer darkTheme={darkTheme} />}
+      {mobileView && btnContainer()}
     </>
   );
 }

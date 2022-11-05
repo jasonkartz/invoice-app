@@ -3,12 +3,12 @@ import ButtonStandard from "../../buttons/ButtonStandard";
 import ButtonDelete from "../../buttons/ButtonDelete";
 import ButtonPurple from "../../buttons/ButtonPurple";
 
-export default function ButtonContainer({ darkTheme }) {
+export default function ButtonContainer({ darkTheme, editInvoice }) {
   return (
     <div className={`${styles.btnContainer} ${darkTheme && styles.dark}`}>
       <ButtonStandard
         darkTheme={darkTheme}
-        handleClick={(e) => e.preventDefault()}
+        handleClick={editInvoice}
         btnText="Edit"
       />
       <ButtonDelete />

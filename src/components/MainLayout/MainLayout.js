@@ -16,17 +16,32 @@ export default function MainLayout({
   paidChecked,
   allFiltersFalse,
   screen,
+  displayForm,
+  setDisplayForm,
 }) {
-  const [displayNewInvoice, setDisplayNewInvoice] = useState(false);
   const invoiceCount = Children.toArray(children).length;
 
+  const newInvoice = () => {
+    setDisplayForm({
+      display: true,
+      editInvoice: false,
+    });
+  };
+  const cancelForm = (e) => {
+    e.preventDefault();
+    setDisplayForm({
+      display: false,
+      editInvoice: false,
+    });
+  };
   return (
     <>
       <Header darkTheme={darkTheme} themeSwitch={themeSwitch} />
-      {displayNewInvoice && (
+      {displayForm.display && (
         <InvoiceForm
           darkTheme={darkTheme}
-          setDisplayNewInvoice={setDisplayNewInvoice}
+          cancelForm={(e) => cancelForm(e)}
+          invoiceEdit={displayForm.editInvoice}
         />
       )}
       <main className={styles.main}>
@@ -51,7 +66,7 @@ export default function MainLayout({
               pendingChecked={pendingChecked}
               paidChecked={paidChecked}
             />
-            <ButtonNewInvoice handleClick={() => setDisplayNewInvoice(true)} />
+            <ButtonNewInvoice handleClick={newInvoice} />
           </section>
         )}
         <section className="invoicesDisplay">{children}</section>
