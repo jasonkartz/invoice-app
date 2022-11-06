@@ -62,6 +62,12 @@
   justify-self: end;
   align-self: end;
 }
+.delete svg {
+  fill: var(--light-gray);
+}
+.delete:hover svg {
+  fill: var(--pastel-orange);
+}
 @media (min-width: 700px) {
   .itemContainer {
     display: flex;
