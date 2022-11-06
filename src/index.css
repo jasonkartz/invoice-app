@@ -43,6 +43,7 @@ body {
   line-height: 15px;
   letter-spacing: -0.25px;
   background-color: var(--off-white);
+  padding-top: 72px;
 }
 body.dark {
   background-color: var(--darker-gray);
@@ -139,7 +140,15 @@ address {
     padding: 17px 24px 16px 24px;
   }
 }
+@media (min-width: 768px) {
+  body {
+    padding-top: 80px;
+  }
+}
 @media (min-width: 1000px) {
+  body {
+    padding-top: 0;
+  }
   .main-container {
     display: flex;
     justify-content: center;

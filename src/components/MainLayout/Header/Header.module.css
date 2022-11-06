@@ -6,7 +6,9 @@ header.header {
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
-  z-index: 30;
+  z-index: 100;
+  position: fixed;
+  top: 0;
 }
 header.header.dark {
   background-color: var(--navy);
@@ -80,7 +82,6 @@ button.themeToggle {
     height: 100vh;
     flex-direction: column;
     justify-content: flex-end;
-    position: fixed;
     left: 0;
     border-radius: 0px 20px 20px 0px;
   }
