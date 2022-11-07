@@ -10,7 +10,12 @@ import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
 
-export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
+export default function InvoiceForm({
+  darkTheme,
+  invoiceEdit,
+  cancelForm,
+  selectedInvoice,
+}) {
   const [mobileView] = useMobileView();
   return (
     <div className={`${styles.container} ${darkTheme && styles.dark}`}>
@@ -19,7 +24,7 @@ export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
           <BackButton darkTheme={darkTheme} handleClick={cancelForm} />
         )}
         <h1 className="alt-heading">
-          {invoiceEdit ? "Edit #XM9141" : "New Invoice"}
+          {invoiceEdit ? `Edit #${selectedInvoice.id}` : "New Invoice"}
         </h1>
         <h4>Bill From</h4>
         <section className={styles.billFrom}>
@@ -27,21 +32,25 @@ export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
             label="Street Address"
             customClass={styles.streetFrom}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.senderAddress.street}
           />
           <TextField
             label="City"
             customClass={styles.cityFrom}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.senderAddress.city}
           />
           <TextField
             label="Post Code"
             customClass={styles.postCodeFrom}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.senderAddress.postCode}
           />
           <TextField
             label="Country"
             customClass={styles.countryFrom}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.senderAddress.country}
           />
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
@@ -50,31 +59,37 @@ export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
             label="Client's Name"
             customClass={styles.clientName}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientName}
           />
           <TextField
             label="Client's Email"
             customClass={styles.clientEmail}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientEmail}
           />
           <TextField
             label="Street Address"
             customClass={styles.streetTo}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientAddress.street}
           />
           <TextField
             label="City"
             customClass={styles.cityTo}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientAddress.city}
           />
           <TextField
             label="Post Code"
             customClass={styles.postCodeTo}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientAddress.postCode}
           />
           <TextField
             label="Country"
             customClass={styles.countryTo}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.clientAddress.country}
           />
         </section>
         <section className={styles.generalDetails}>
@@ -84,6 +99,7 @@ export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
             label="Product Description"
             customClass={styles.productDesc}
             darkTheme={darkTheme}
+            value={selectedInvoice && selectedInvoice.description}
           />
         </section>
         <h3 className="form">Item List</h3>
@@ -96,8 +112,13 @@ export default function InvoiceForm({ darkTheme, invoiceEdit, cancelForm }) {
               <span className={styles.total}>Total</span>
             </div>
           )}
-          <InvoiceItem darkTheme={darkTheme} />
-          <InvoiceItem darkTheme={darkTheme} />
+          {selectedInvoice &&
+            selectedInvoice.items.map((item, index) => {
+              return (
+                <InvoiceItem key={index} darkTheme={darkTheme} item={item} />
+              );
+            })}
+
           <ButtonAddItem
             darkTheme={darkTheme}
             handleClick={(e) => {

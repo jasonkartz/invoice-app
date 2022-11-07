@@ -73,6 +73,7 @@ function App() {
         setScreen={setScreen}
         displayForm={displayForm}
         setDisplayForm={setDisplayForm}
+        selectedInvoice={invoices[selectedIndex]}
       >
         {screen === "main" && displayInvoices()}
         {screen === "viewInvoice" && (

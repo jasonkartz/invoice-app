@@ -17,7 +17,7 @@
 }
 
 .itemContainer {
-  min-width: 100%;
+  width: 100%;
   display: grid;
   grid-template-areas:
     "name name name name"
@@ -58,6 +58,7 @@
 }
 .delete {
   grid-area: delete;
+  padding: 0;
   height: 48px;
   justify-self: end;
   align-self: end;
@@ -70,18 +71,16 @@
 }
 @media (min-width: 700px) {
   .itemContainer {
-    display: flex;
-    justify-content: space-between;
+    grid-template-areas: "name qty price total delete";
     row-gap: 18px;
   }
   .name {
-    min-width: 214px;
+    width: 214px;
   }
   .qty {
-    grid-area: qty;
-    min-width: 46px;
+    width: 46px;
   }
   .price {
-    min-width: 100px;
+    width: 100px;
   }
 }

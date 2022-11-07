@@ -18,6 +18,7 @@ export default function MainLayout({
   screen,
   displayForm,
   setDisplayForm,
+  selectedInvoice,
 }) {
   const invoiceCount = Children.toArray(children).length;
 
@@ -42,6 +43,7 @@ export default function MainLayout({
           darkTheme={darkTheme}
           cancelForm={(e) => cancelForm(e)}
           invoiceEdit={displayForm.editInvoice}
+          selectedInvoice={displayForm.editInvoice && selectedInvoice}
         />
       )}
       <main className={styles.main}>

@@ -7,6 +7,7 @@ export default function TextField({
   name,
   customClass,
   type,
+  value,
 }) {
   return (
     <div
@@ -15,7 +16,7 @@ export default function TextField({
       }`}
     >
       {label && <label htmlFor={id}>{label}</label>}
-      <input type={type} id={id} name={name} />
+      <input type={type} id={id} name={name} value={value} />
     </div>
   );
 }

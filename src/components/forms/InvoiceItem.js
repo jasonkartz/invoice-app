@@ -2,7 +2,7 @@ import useMobileView from "../../hooks/useMobileView";
 import styles from "./InvoiceItem.module.css";
 import TextField from "./formElements/TextField";
 
-export default function InvoiceItem({ darkTheme }) {
+export default function InvoiceItem({ darkTheme, item }) {
   const [mobileView] = useMobileView();
   return (
     <div className={`${styles.itemContainer} ${darkTheme && styles.dark}`}>
@@ -10,20 +10,23 @@ export default function InvoiceItem({ darkTheme }) {
         label={mobileView && "Item Name"}
         darkTheme={darkTheme}
         customClass={styles.name}
+        value={item.name}
       />
       <TextField
         label={mobileView && "Qty."}
         darkTheme={darkTheme}
         customClass={styles.qty}
+        value={item.quantity}
       />
       <TextField
         label={mobileView && "Price"}
         darkTheme={darkTheme}
         customClass={styles.price}
+        value={item.price.toFixed(2)}
       />
       <div className={styles.total}>
         {mobileView && <p>Total</p>}
-        <p className={styles.bold}>$156.00</p>
+        <p className={styles.bold}>${item.total.toFixed(2)}</p>
       </div>
       <button
         className={styles.delete}
