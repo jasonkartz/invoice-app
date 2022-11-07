@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useDarkTheme from "./hooks/useDarkTheme";
 import useMobileView from "./hooks/useMobileView";
-import data from "./data/data.json";
+import useLocalStorage from "./hooks/useLocalStorage";
 import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
 import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 
 function App() {
+  const [invoices] = useLocalStorage();
+  console.log(invoices);
   const [screen, setScreen] = useState("main");
   const [displayForm, setDisplayForm] = useState({
     display: false,
@@ -36,7 +38,7 @@ function App() {
     if (allFiltersFalse) {
       return <EmptyDisplay darkTheme={darkTheme} />;
     } else {
-      return data.map((invoice, index) => {
+      return invoices.map((invoice, index) => {
         if (invoiceFilter[invoice.status]) {
           return (
             <InvoicePreview
@@ -77,7 +79,7 @@ function App() {
           <ViewInvoice
             setScreen={setScreen}
             darkTheme={darkTheme}
-            invoice={data[selectedIndex]}
+            invoice={invoices[selectedIndex]}
             setDisplayForm={setDisplayForm}
           />
         )}
