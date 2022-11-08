@@ -6,9 +6,11 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
 import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
+import "animate.css";
 
 function App() {
-  const [invoices] = useLocalStorage();
+  const [invoices, isLoading] = useLocalStorage();
+  //localStorage.clear();
   console.log(invoices);
   const [screen, setScreen] = useState("main");
   const [displayForm, setDisplayForm] = useState({
@@ -73,9 +75,11 @@ function App() {
         setScreen={setScreen}
         displayForm={displayForm}
         setDisplayForm={setDisplayForm}
-        selectedInvoice={invoices[selectedIndex]}
+        selectedInvoice={invoices.length && invoices[selectedIndex]}
+        invoices={invoices}
+        isLoading={isLoading}
       >
-        {screen === "main" && displayInvoices()}
+        {screen === "main" && invoices.length > 0 && displayInvoices()}
         {screen === "viewInvoice" && (
           <ViewInvoice
             setScreen={setScreen}

@@ -1,4 +1,5 @@
 import styles from "./MainLayout.module.css";
+import "animate.css";
 import ButtonNewInvoice from "../buttons/ButtonNewInvoice";
 import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
@@ -19,6 +20,8 @@ export default function MainLayout({
   displayForm,
   setDisplayForm,
   selectedInvoice,
+  invoices,
+  isLoading,
 }) {
   const invoiceCount = Children.toArray(children).length;
 
@@ -53,12 +56,19 @@ export default function MainLayout({
           >
             <div className={styles.invoiceStatus}>
               <h1>Invoices</h1>
-              <p>
-                <InvoicesStatus
-                  allFiltersFalse={allFiltersFalse}
-                  invoiceCount={invoiceCount}
-                />
-              </p>
+
+              {isLoading ? (
+                <p className="animate__animated animate__pulse animate__infinite infinite">
+                  Loading invoices..
+                </p>
+              ) : (
+                <p>
+                  <InvoicesStatus
+                    allFiltersFalse={allFiltersFalse}
+                    invoiceCount={invoiceCount}
+                  />
+                </p>
+              )}
             </div>
 
             <FilterOptions

@@ -47,6 +47,7 @@ body {
 }
 body.dark {
   background-color: var(--darker-gray);
+  color: white;
 }
 .body-2 {
   font-weight: 500;
@@ -122,6 +123,9 @@ address {
   font-style: normal;
   line-height: 18px;
   letter-spacing: -0.229167px;
+}
+.ri-loader-2-line {
+  font-size: xx-large;
 }
 .main-container {
   position: relative;

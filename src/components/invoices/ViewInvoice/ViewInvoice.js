@@ -42,7 +42,11 @@ export default function ViewInvoice({
   return (
     <>
       {deleteConfirm && (
-        <ConfirmDelete cancel={cancelDelete} darkTheme={darkTheme} />
+        <ConfirmDelete
+          cancel={cancelDelete}
+          darkTheme={darkTheme}
+          idNumber={invoice.id}
+        />
       )}
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
         <BackButton

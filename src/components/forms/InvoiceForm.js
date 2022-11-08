@@ -1,5 +1,6 @@
 import useMobileView from "../../hooks/useMobileView";
 import styles from "./InvoiceForm.module.css";
+import "animate.css";
 import BackButton from "../buttons/BackButton";
 import TextField from "./formElements/TextField";
 import Dropdown from "./formElements/Dropdown";
@@ -18,7 +19,12 @@ export default function InvoiceForm({
 }) {
   const [mobileView] = useMobileView();
   return (
-    <div className={`${styles.container} ${darkTheme && styles.dark}`}>
+    <div
+      className={`${styles.container} ${
+        darkTheme && styles.dark
+      } animate__animated animate__fadeInLeft`}
+      style={{ animationDuration: "0.25s" }}
+    >
       <form>
         {mobileView && (
           <BackButton darkTheme={darkTheme} handleClick={cancelForm} />

@@ -1,14 +1,20 @@
 import styles from "./ConfirmDelete.module.css";
+import "animate.css";
 import ButtonStandard from "../../buttons/ButtonStandard";
 import ButtonDelete from "../../buttons/ButtonDelete";
-export default function ConfirmDelete({ darkTheme, cancel }) {
+export default function ConfirmDelete({ darkTheme, cancel, idNumber }) {
   return (
-    <div className={`${styles.confirmContainer} ${darkTheme && styles.dark}`}>
+    <div
+      className={`${styles.confirmContainer} ${
+        darkTheme && styles.dark
+      } animate__animated animate__fadeIn`}
+      style={{ animationDuration: "0.25s" }}
+    >
       <section className={styles.confirmBox}>
         <h2 className="alt-heading">Confirm Deletion</h2>
         <p>
-          Are you sure you want to delete invoice #XM9141? This action cannot be
-          undone.
+          Are you sure you want to delete invoice #{idNumber}? This action
+          cannot be undone.
         </p>
         <div className={styles.confirmBtns}>
           <ButtonStandard

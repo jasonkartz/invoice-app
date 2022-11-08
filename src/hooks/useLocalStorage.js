@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import data from "../data/data.json";
 const useLocalStorage = () => {
+  const [invoices, setInvoices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (!localStorage.invoiceData) {
-      localStorage.setItem("invoiceData", JSON.stringify(data));
-    }
+    setTimeout(() => {
+      if (!localStorage.invoiceData) {
+        localStorage.setItem("invoiceData", JSON.stringify(data));
+      }
+      const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
+      setInvoices(invoiceData);
+      setIsLoading(false);
+    }, 1000);
   }, []);
-  const [invoices, setInvoices] = useState(
-    JSON.parse(localStorage.getItem("invoiceData"))
-  );
-  return [invoices];
+
+  return [invoices, isLoading];
 };
 
 export default useLocalStorage;
