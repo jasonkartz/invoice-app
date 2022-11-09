@@ -23,7 +23,7 @@
   margin: 0;
   outline-color: transparent;
   transition: background-color 0.15s linear, color 0.15s linear,
-    outline 0.25s ease-in-out, opacity 0.15s linear;
+    outline 0.25s ease-in-out, opacity 0.15s linear, fill 0.1s linear;
 }
 [type="checkbox"] {
   accent-color: var(--dark-violet);
