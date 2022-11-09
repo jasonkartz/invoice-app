@@ -30,10 +30,8 @@
   color: var(--mist);
 }
 .container.dark .invoiceHead,
-.container.dark .btnContainer,
 .container.dark .invoiceDetails,
-.container.dark .invoiceHead,
-.btnContainer.dark {
+.container.dark .invoiceHead {
   background-color: var(--navy);
 }
 .backButton {
@@ -61,11 +59,16 @@
   align-items: center;
   gap: 8px;
   background-color: #ffffff;
-  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.1);
   padding: 22px 24px;
   width: 100%;
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   left: 0;
+}
+.btnContainer.dark {
+  background-color: var(--navy);
+  box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.5);
 }
 .status {
   display: flex;
@@ -238,12 +241,17 @@
   }
   .btnContainer {
     position: static;
-    background-color: transparent;
     box-shadow: none;
     width: auto;
     height: auto;
     padding: 0;
     margin-left: auto;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .btnContainer.dark {
+    box-shadow: none;
+    background-color: transparent;
   }
   .invoiceTotal {
     padding: 32px;

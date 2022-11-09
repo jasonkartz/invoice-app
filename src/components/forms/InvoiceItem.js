@@ -17,12 +17,14 @@ export default function InvoiceItem({ darkTheme, item }) {
         darkTheme={darkTheme}
         customClass={styles.qty}
         value={item.quantity}
+        type="number"
       />
       <TextField
         label={mobileView && "Price"}
         darkTheme={darkTheme}
         customClass={styles.price}
         value={item.price.toFixed(2)}
+        type="number"
       />
       <div className={styles.total}>
         {mobileView && <p>Total</p>}
