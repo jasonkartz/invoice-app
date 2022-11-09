@@ -8,6 +8,7 @@ export default function TextField({
   customClass,
   type,
   value,
+  handleChange,
 }) {
   return (
     <div
@@ -16,7 +17,13 @@ export default function TextField({
       }`}
     >
       {label && <label htmlFor={id}>{label}</label>}
-      <input type={type} id={id} name={name} value={value} />
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={handleChange}
+      />
     </div>
   );
 }
@@ -26,4 +33,5 @@ TextField.defaultProps = {
   id: "text",
   name: "text",
   type: "text",
+  handleChange: null,
 };

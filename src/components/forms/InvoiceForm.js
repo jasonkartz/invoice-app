@@ -10,6 +10,9 @@ import ButtonAddItem from "../buttons/ButtonAddItem";
 import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
+import { useState } from "react";
+
+import React from "react";
 
 export default function InvoiceForm({
   darkTheme,
@@ -17,7 +20,39 @@ export default function InvoiceForm({
   cancelForm,
   selectedInvoice,
 }) {
+  const [form, setForm] = useState({
+    id: "",
+    createdAt: selectedInvoice ? selectedInvoice.createdAt : "",
+    paymentDue: selectedInvoice ? selectedInvoice.paymentDue : "",
+    description: selectedInvoice ? selectedInvoice.description : "",
+    paymentTerms: 1,
+    clientName: selectedInvoice ? selectedInvoice.clientName : "",
+    clientEmail: selectedInvoice ? selectedInvoice.clientEmail : "",
+    status: "draft",
+    senderStreet: selectedInvoice ? selectedInvoice.senderAddress.street : "",
+    senderCity: selectedInvoice ? selectedInvoice.senderAddress.city : "",
+    senderPostCode: selectedInvoice
+      ? selectedInvoice.senderAddress.postCode
+      : "",
+    senderCountry: selectedInvoice ? selectedInvoice.senderAddress.country : "",
+    clientStreet: selectedInvoice ? selectedInvoice.clientAddress.street : "",
+    clientCity: selectedInvoice ? selectedInvoice.clientAddress.city : "",
+    clientPostCode: selectedInvoice
+      ? selectedInvoice.clientAddress.postCode
+      : "",
+    clientCountry: selectedInvoice ? selectedInvoice.clientAddress.country : "",
+    total: 0,
+  });
+  const [itemsList, setItemsList] = useState([]);
   const [mobileView] = useMobileView();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setForm((data) => ({ ...data, [name]: value }));
+  };
+
   return (
     <div
       className={`${styles.container} ${
@@ -38,25 +73,33 @@ export default function InvoiceForm({
             label="Street Address"
             customClass={styles.streetFrom}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.senderAddress.street}
+            name="senderStreet"
+            value={form.senderStreet}
+            handleChange={handleChange}
           />
           <TextField
             label="City"
             customClass={styles.cityFrom}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.senderAddress.city}
+            name="senderCity"
+            value={form.senderCity}
+            handleChange={handleChange}
           />
           <TextField
             label="Post Code"
             customClass={styles.postCodeFrom}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.senderAddress.postCode}
+            name="senderPostCode"
+            value={form.senderPostCode}
+            handleChange={handleChange}
           />
           <TextField
             label="Country"
             customClass={styles.countryFrom}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.senderAddress.country}
+            name="senderCountry"
+            value={form.senderCountry}
+            handleChange={handleChange}
           />
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
@@ -65,37 +108,50 @@ export default function InvoiceForm({
             label="Client's Name"
             customClass={styles.clientName}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientName}
+            name="clientName"
+            value={form.clientName}
+            handleChange={handleChange}
           />
           <TextField
+            type="email"
             label="Client's Email"
             customClass={styles.clientEmail}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientEmail}
+            name="clientEmail"
+            value={form.clientEmail}
+            handleChange={handleChange}
           />
           <TextField
             label="Street Address"
             customClass={styles.streetTo}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientAddress.street}
+            name="senderStreet"
+            value={form.senderStreet}
+            handleChange={handleChange}
           />
           <TextField
             label="City"
             customClass={styles.cityTo}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientAddress.city}
+            name="senderCity"
+            value={form.senderCity}
+            handleChange={handleChange}
           />
           <TextField
             label="Post Code"
             customClass={styles.postCodeTo}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientAddress.postCode}
+            name="senderPostCode"
+            value={form.senderPostCode}
+            handleChange={handleChange}
           />
           <TextField
             label="Country"
             customClass={styles.countryTo}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.clientAddress.country}
+            name="senderCountry"
+            value={form.senderCountry}
+            handleChange={handleChange}
           />
         </section>
         <section className={styles.generalDetails}>
@@ -105,7 +161,9 @@ export default function InvoiceForm({
             label="Product Description"
             customClass={styles.productDesc}
             darkTheme={darkTheme}
-            value={selectedInvoice && selectedInvoice.description}
+            name="description"
+            value={form.description}
+            handleChange={handleChange}
           />
         </section>
         <h3 className="form">Item List</h3>
@@ -121,7 +179,13 @@ export default function InvoiceForm({
           {selectedInvoice &&
             selectedInvoice.items.map((item, index) => {
               return (
-                <InvoiceItem key={index} darkTheme={darkTheme} item={item} />
+                <InvoiceItem
+                  key={index}
+                  darkTheme={darkTheme}
+                  item={item}
+                  form={form}
+                  handleChange={handleChange}
+                />
               );
             })}
 
