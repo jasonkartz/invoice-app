@@ -33,7 +33,7 @@ export default function InvoiceForm({
       ? new Date(selectedInvoice.paymentDue)
       : new Date(),
     description: selectedInvoice ? selectedInvoice.description : "",
-    paymentTerms: 1,
+    paymentTerms: selectedInvoice ? selectedInvoice.paymentTerms : 1,
     clientName: selectedInvoice ? selectedInvoice.clientName : "",
     clientEmail: selectedInvoice ? selectedInvoice.clientEmail : "",
     status: "draft",
@@ -53,8 +53,10 @@ export default function InvoiceForm({
     total: 0,
   };
 
-  const { register, handleSubmit, control } = useForm({ defaultValues });
-  const [startDate, setStartDate] = useState(new Date());
+  const { register, handleSubmit, getValues, control } = useForm({
+    defaultValues,
+  });
+  const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
   return (
     <div
@@ -166,11 +168,11 @@ export default function InvoiceForm({
               darkTheme && formStyles.dark
             } ${styles.date}`}
           >
-            <label>Payment Due</label>
+            <label>{selectedInvoice ? "Invoice Date" : "Issue Date"}</label>
             <img src={calendarIcon} alt="calendar icon" width="16" />
             <Controller
               control={control}
-              name="paymentDue"
+              name="createdAt"
               render={({ field }) => (
                 <DatePicker
                   onChange={(date) => field.onChange(date)}
@@ -182,7 +184,85 @@ export default function InvoiceForm({
               )}
             />
           </div>
-          <Dropdown darkTheme={darkTheme} customClass={styles.dropDown} />
+
+          {/* Drop Down */}
+          <div
+            className={`${formStyles.dropDownContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.dropdown}`}
+          >
+            <p>Payment Terms</p>
+            <button
+              className={`${formStyles.dropDownToggle} ${
+                darkTheme && formStyles.dark
+              }`}
+              onClick={(e) => {
+                e.preventDefault();
+                setToggleDropdown(!toggleDropdown);
+              }}
+            >
+              Net {getValues("paymentTerms")} Day
+              {getValues("paymentTerms") !== "1" && "s"}
+            </button>
+            <ul
+              className={`${formStyles.dropDownList} ${
+                toggleDropdown && formStyles.display
+              } ${darkTheme && formStyles.dark}`}
+            >
+              <li>
+                <input
+                  type="radio"
+                  {...register("paymentTerms")}
+                  id="1"
+                  value={1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setToggleDropdown(!toggleDropdown);
+                  }}
+                />
+                <label htmlFor="1">Net 1 Day</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  {...register("paymentTerms")}
+                  id="7"
+                  value={7}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setToggleDropdown(!toggleDropdown);
+                  }}
+                />
+                <label htmlFor="7">Net 7 Days</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  {...register("paymentTerms")}
+                  id="14"
+                  value={14}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setToggleDropdown(!toggleDropdown);
+                  }}
+                />
+                <label htmlFor="14">Net 14 Days</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  {...register("paymentTerms")}
+                  id="30"
+                  value={30}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setToggleDropdown(!toggleDropdown);
+                  }}
+                />
+                <label htmlFor="30">Net 30 Days</label>
+              </li>
+            </ul>
+          </div>
           <div
             className={`${formStyles.inputContainer} ${
               darkTheme && formStyles.dark

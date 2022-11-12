@@ -191,7 +191,7 @@ body.dark .react-datepicker {
   text-align: center;
   background-color: white;
   border: none;
-  border-top-left-radius: 0.3rem;
+  border-radius: 8px;
   padding: 8px 0;
   position: relative;
 }
@@ -207,7 +207,7 @@ body.dark .react-datepicker__header {
   border-top-left-radius: 0;
 }
 .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
-  border-top-right-radius: 0.3rem;
+  border-top-right-radius: 8px;
 }
 
 .react-datepicker__year-dropdown-container--select,

@@ -77,15 +77,14 @@
   outline: var(--light-violet) 1px solid;
 }
 .inputContainer.dark input:focus,
-.inputContainer.dark input:hover {
-  outline: var(--dark-violet) 1px solid;
-}
+.inputContainer.dark input:hover,
 .dropDownToggle.dark:hover,
 .dropDownToggle.dark.active,
 .calendarBtn.dark:hover,
 .calendarBtn.active.dark {
-  outline: var(--slate) 1px solid;
+  outline: var(--dark-violet) 1px solid;
 }
+
 .calendarBtn {
   background-image: url("../../../assets/icon-calendar.svg");
   background-repeat: no-repeat;
@@ -114,7 +113,7 @@
   width: 100%;
   background-image: url(../../../assets/icon-arrow-down.svg);
   background-repeat: no-repeat;
-  background-position: right 6% bottom 18px;
+  background-position: right 10px bottom 14px;
   text-align: left;
 }
 .dropDownList {
@@ -149,7 +148,7 @@
 .dropDownList li label {
   width: 100%;
   cursor: pointer;
-  padding: 10px;
+  padding: 15px;
   border-bottom: 1px solid var(--mist);
   background: #ffffff;
 }
