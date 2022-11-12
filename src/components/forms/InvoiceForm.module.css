@@ -59,7 +59,10 @@
 .container.dark form::-webkit-scrollbar-thumb {
   background-color: #252945;
 }
-
+.calendarDark {
+  background-color: #252945;
+  color: #dfe3fa;
+}
 /* Bill From */
 .billFrom {
   max-width: 100%;

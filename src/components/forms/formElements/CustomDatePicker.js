@@ -11,6 +11,7 @@ export default function CustomDatePicker({
   id,
   name,
   customClass,
+  ...props
 }) {
   const [value, onChange] = useState(new Date());
   const [calendarDisplay, setCalendarDisplay] = useState(false);
@@ -38,8 +39,7 @@ export default function CustomDatePicker({
         }`}
       >
         <Calendar
-          onChange={onChange}
-          value={value}
+          {...props}
           calendarType="US"
           className={darkTheme ? "dark" : ""}
           nextLabel=""

@@ -1,8 +1,12 @@
+import { useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "./ReactDatePickerOverride.css";
+import { useState } from "react";
 import useMobileView from "../../hooks/useMobileView";
 import styles from "./InvoiceForm.module.css";
+import formStyles from "./formElements/formElements.module.css";
 import "animate.css";
 import BackButton from "../buttons/BackButton";
-import TextField from "./formElements/TextField";
 import Dropdown from "./formElements/Dropdown";
 import CustomDatePicker from "./formElements/CustomDatePicker";
 import InvoiceItem from "./InvoiceItem";
@@ -10,7 +14,6 @@ import ButtonAddItem from "../buttons/ButtonAddItem";
 import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
-import { useState } from "react";
 
 import React from "react";
 
@@ -20,10 +23,10 @@ export default function InvoiceForm({
   cancelForm,
   selectedInvoice,
 }) {
-  const [form, setForm] = useState({
+  const defaultValues = {
     id: "",
-    createdAt: selectedInvoice ? selectedInvoice.createdAt : "",
-    paymentDue: selectedInvoice ? selectedInvoice.paymentDue : "",
+    createdAt: selectedInvoice ? new Date(selectedInvoice.createdAt) : "",
+    paymentDue: selectedInvoice ? new Date(selectedInvoice.paymentDue) : "",
     description: selectedInvoice ? selectedInvoice.description : "",
     paymentTerms: 1,
     clientName: selectedInvoice ? selectedInvoice.clientName : "",
@@ -41,18 +44,13 @@ export default function InvoiceForm({
       ? selectedInvoice.clientAddress.postCode
       : "",
     clientCountry: selectedInvoice ? selectedInvoice.clientAddress.country : "",
+    items: selectedInvoice ? selectedInvoice.items : [],
     total: 0,
-  });
-  const [itemsList, setItemsList] = useState([]);
-  const [mobileView] = useMobileView();
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setForm((data) => ({ ...data, [name]: value }));
   };
 
+  const { register, handleSubmit, control } = useForm({ defaultValues });
+  const [startDate, setStartDate] = useState(new Date());
+  const [mobileView] = useMobileView();
   return (
     <div
       className={`${styles.container} ${
@@ -60,7 +58,11 @@ export default function InvoiceForm({
       } animate__animated animate__fadeInLeft`}
       style={{ animationDuration: "0.25s" }}
     >
-      <form>
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+        })}
+      >
         {mobileView && (
           <BackButton darkTheme={darkTheme} handleClick={cancelForm} />
         )}
@@ -69,102 +71,118 @@ export default function InvoiceForm({
         </h1>
         <h4>Bill From</h4>
         <section className={styles.billFrom}>
-          <TextField
-            label="Street Address"
-            customClass={styles.streetFrom}
-            darkTheme={darkTheme}
-            name="senderStreet"
-            value={form.senderStreet}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="City"
-            customClass={styles.cityFrom}
-            darkTheme={darkTheme}
-            name="senderCity"
-            value={form.senderCity}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="Post Code"
-            customClass={styles.postCodeFrom}
-            darkTheme={darkTheme}
-            name="senderPostCode"
-            value={form.senderPostCode}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="Country"
-            customClass={styles.countryFrom}
-            darkTheme={darkTheme}
-            name="senderCountry"
-            value={form.senderCountry}
-            handleChange={handleChange}
-          />
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.streetFrom}`}
+          >
+            <label>Street Address</label>
+            <input {...register("senderStreet")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.cityFrom}`}
+          >
+            <label>City</label>
+            <input {...register("senderCity")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.postCodeFrom}`}
+          >
+            <label>Post Code</label>
+            <input {...register("senderPostCode")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.countryFrom}`}
+          >
+            <label>Country</label>
+            <input {...register("senderCountry")} />
+          </div>
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
         <section className={styles.billTo}>
-          <TextField
-            label="Client's Name"
-            customClass={styles.clientName}
-            darkTheme={darkTheme}
-            name="clientName"
-            value={form.clientName}
-            handleChange={handleChange}
-          />
-          <TextField
-            type="email"
-            label="Client's Email"
-            customClass={styles.clientEmail}
-            darkTheme={darkTheme}
-            name="clientEmail"
-            value={form.clientEmail}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="Street Address"
-            customClass={styles.streetTo}
-            darkTheme={darkTheme}
-            name="senderStreet"
-            value={form.senderStreet}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="City"
-            customClass={styles.cityTo}
-            darkTheme={darkTheme}
-            name="senderCity"
-            value={form.senderCity}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="Post Code"
-            customClass={styles.postCodeTo}
-            darkTheme={darkTheme}
-            name="senderPostCode"
-            value={form.senderPostCode}
-            handleChange={handleChange}
-          />
-          <TextField
-            label="Country"
-            customClass={styles.countryTo}
-            darkTheme={darkTheme}
-            name="senderCountry"
-            value={form.senderCountry}
-            handleChange={handleChange}
-          />
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.clientName}`}
+          >
+            <label>Client's Name</label>
+            <input {...register("clientName")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.clientEmail}`}
+          >
+            <label>Client's Email</label>
+            <input {...register("clientEmail")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.streetTo}`}
+          >
+            <label>Street Address</label>
+            <input {...register("clientStreet")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.cityTo}`}
+          >
+            <label>City</label>
+            <input {...register("clientCity")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.postCodeTo}`}
+          >
+            <label>Post Code</label>
+            <input {...register("clientPostCode")} />
+          </div>
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.countryTo}`}
+          >
+            <label>Country</label>
+            <input {...register("clientCountry")} />
+          </div>
         </section>
         <section className={styles.generalDetails}>
-          <CustomDatePicker darkTheme={darkTheme} customClass={styles.date} />
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.date}`}
+          >
+            <label>Payment Due</label>
+            <Controller
+              control={control}
+              name="paymentDue"
+              render={({ field }) => (
+                <DatePicker
+                  onChange={(date) => field.onChange(date)}
+                  selected={field.value}
+                  dateFormat="MMMM d yyyy"
+                />
+              )}
+            />
+          </div>
           <Dropdown darkTheme={darkTheme} customClass={styles.dropDown} />
-          <TextField
-            label="Product Description"
-            customClass={styles.productDesc}
-            darkTheme={darkTheme}
-            name="description"
-            value={form.description}
-            handleChange={handleChange}
-          />
+          <div
+            className={`${formStyles.inputContainer} ${
+              darkTheme && formStyles.dark
+            } ${styles.productDesc}`}
+          >
+            <label>Product Description</label>
+            <input {...register("description")} />
+          </div>
         </section>
         <h3 className="form">Item List</h3>
         <section className={styles.itemList}>
@@ -183,8 +201,7 @@ export default function InvoiceForm({
                   key={index}
                   darkTheme={darkTheme}
                   item={item}
-                  form={form}
-                  handleChange={handleChange}
+                  index={index}
                 />
               );
             })}
@@ -212,7 +229,7 @@ export default function InvoiceForm({
           )}
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
-            handleClick={(e) => e.preventDefault()}
+            type="submit"
             customClass="responsive"
           />
         </section>
