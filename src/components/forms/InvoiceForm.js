@@ -14,6 +14,7 @@ import ButtonAddItem from "../buttons/ButtonAddItem";
 import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
+import calendarIcon from "../../assets/icon-calendar.svg";
 
 import React from "react";
 
@@ -25,8 +26,12 @@ export default function InvoiceForm({
 }) {
   const defaultValues = {
     id: "",
-    createdAt: selectedInvoice ? new Date(selectedInvoice.createdAt) : "",
-    paymentDue: selectedInvoice ? new Date(selectedInvoice.paymentDue) : "",
+    createdAt: selectedInvoice
+      ? new Date(selectedInvoice.createdAt)
+      : new Date(),
+    paymentDue: selectedInvoice
+      ? new Date(selectedInvoice.paymentDue)
+      : new Date(),
     description: selectedInvoice ? selectedInvoice.description : "",
     paymentTerms: 1,
     clientName: selectedInvoice ? selectedInvoice.clientName : "",
@@ -162,6 +167,7 @@ export default function InvoiceForm({
             } ${styles.date}`}
           >
             <label>Payment Due</label>
+            <img src={calendarIcon} alt="calendar icon" width="16" />
             <Controller
               control={control}
               name="paymentDue"
@@ -170,6 +176,8 @@ export default function InvoiceForm({
                   onChange={(date) => field.onChange(date)}
                   selected={field.value}
                   dateFormat="MMMM d yyyy"
+                  showPopperArrow={false}
+                  className={styles.dateInput}
                 />
               )}
             />
