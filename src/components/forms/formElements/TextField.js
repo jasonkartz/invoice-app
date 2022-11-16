@@ -1,37 +1,33 @@
 import styles from "./formElements.module.css";
+import { forwardRef } from "react";
 
-export default function TextField({
-  darkTheme,
-  label,
-  id,
-  name,
-  customClass,
-  type,
-  value,
-  handleChange,
-}) {
-  return (
-    <div
-      className={`${styles.inputContainer} ${darkTheme && styles.dark} ${
-        customClass && customClass
-      }`}
-    >
-      {label && <label htmlFor={id}>{label}</label>}
-      <input
-        type={type}
-        id={id}
-        name={name}
-        value={value}
-        onChange={handleChange}
-      />
-    </div>
-  );
-}
+const TextField = forwardRef(
+  (
+    { darkTheme, name, label, customClass, noStyles, type, readOnly, ...rest },
+    ref
+  ) => {
+    return (
+      <div
+        className={`${!noStyles && styles.inputContainer} ${
+          darkTheme && styles.dark
+        } ${customClass && customClass}`}
+      >
+        {label && <label>{label}</label>}
+        <input
+          type={type}
+          readOnly={readOnly}
+          name={name}
+          {...rest}
+          ref={ref}
+        />
+      </div>
+    );
+  }
+);
 
 TextField.defaultProps = {
-  label: "Text",
-  id: "text",
   name: "text",
   type: "text",
-  handleChange: null,
 };
+
+export default TextField;

@@ -1,5 +1,5 @@
 import useMobileView from "../../hooks/useMobileView";
-import styles from "./InvoiceItem.module.css";
+import itemStyles from "./InvoiceItem.module.css";
 import TextField from "./formElements/TextField";
 import { useState } from "react";
 
@@ -18,11 +18,13 @@ export default function InvoiceItem({ darkTheme, item }) {
     setForm((formData) => ({ ...formData, [name]: value }));
   };
   return (
-    <div className={`${styles.itemContainer} ${darkTheme && styles.dark}`}>
+    <div
+      className={`${itemStyles.itemContainer} ${darkTheme && itemStyles.dark}`}
+    >
       <TextField
         label={mobileView && "Item Name"}
         darkTheme={darkTheme}
-        customClass={styles.name}
+        customClass={itemStyles.name}
         name="name"
         value={form.name}
         onChange={handleChange}
@@ -30,7 +32,7 @@ export default function InvoiceItem({ darkTheme, item }) {
       <TextField
         label={mobileView && "Qty."}
         darkTheme={darkTheme}
-        customClass={styles.qty}
+        customClass={itemStyles.qty}
         name="quantity"
         value={form.quantity}
         type="number"
@@ -39,18 +41,18 @@ export default function InvoiceItem({ darkTheme, item }) {
       <TextField
         label={mobileView && "Price"}
         darkTheme={darkTheme}
-        customClass={styles.price}
+        customClass={itemStyles.price}
         name="price"
         value={form.price.toFixed(2)}
         type="number"
         onChange={handleChange}
       />
-      <div className={styles.total}>
+      <div className={itemStyles.total}>
         {mobileView && <p>Total</p>}
-        <p className={styles.bold}>${form.total.toFixed(2)}</p>
+        <p className={itemStyles.bold}>${form.total.toFixed(2)}</p>
       </div>
       <button
-        className={styles.delete}
+        className={itemStyles.delete}
         onClick={(e) => {
           e.preventDefault();
         }}

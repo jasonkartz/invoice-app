@@ -24,7 +24,6 @@
     "qty price total delete";
   row-gap: 24px;
   column-gap: 16px;
-
   color: var(--pastel-violet);
 }
 .itemContainer.dark {
@@ -43,10 +42,20 @@
 }
 .total {
   grid-area: total;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: auto;
+  max-width: 70px;
+}
+.total input {
+  font-weight: 700;
+  border: none;
+  outline: none;
+  padding: none;
+  height: 38px;
+  width: 100%;
+  background-color: transparent;
+  color: var(--pastel-violet);
+}
+.total.dark input {
+  color: #dfe3fa;
 }
 .total .bold {
   font-weight: 700;
@@ -78,7 +87,7 @@
     width: 214px;
   }
   .qty {
-    width: 50px;
+    width: 55px;
   }
   .price {
     width: 96px;

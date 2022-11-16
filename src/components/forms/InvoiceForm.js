@@ -1,14 +1,16 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "./ReactDatePickerOverride.css";
 import { useState } from "react";
 import useMobileView from "../../hooks/useMobileView";
 import styles from "./InvoiceForm.module.css";
 import formStyles from "./formElements/formElements.module.css";
+import itemStyles from "./InvoiceItem.module.css";
 import "animate.css";
 import BackButton from "../buttons/BackButton";
 import Dropdown from "./formElements/Dropdown";
 import CustomDatePicker from "./formElements/CustomDatePicker";
+import TextField from "./formElements/TextField";
 import InvoiceItem from "./InvoiceItem";
 import ButtonAddItem from "../buttons/ButtonAddItem";
 import ButtonStandard from "../buttons/ButtonStandard";
@@ -53,9 +55,15 @@ export default function InvoiceForm({
     total: 0,
   };
 
-  const { register, handleSubmit, getValues, control } = useForm({
+  const { register, handleSubmit, getValues, setValue, control } = useForm({
     defaultValues,
   });
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: "items",
+    }
+  );
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
   return (
@@ -78,89 +86,79 @@ export default function InvoiceForm({
         </h1>
         <h4>Bill From</h4>
         <section className={styles.billFrom}>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.streetFrom}`}
-          >
-            <label>Street Address</label>
-            <input {...register("senderStreet")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.cityFrom}`}
-          >
-            <label>City</label>
-            <input {...register("senderCity")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.postCodeFrom}`}
-          >
-            <label>Post Code</label>
-            <input {...register("senderPostCode")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.countryFrom}`}
-          >
-            <label>Country</label>
-            <input {...register("senderCountry")} />
-          </div>
+          <TextField
+            customClass={styles.streetFrom}
+            darkTheme={darkTheme}
+            label="Street Address"
+            name="senderStreet"
+            {...register("senderStreet")}
+          />
+          <TextField
+            customClass={styles.cityFrom}
+            darkTheme={darkTheme}
+            label="City"
+            name="senderCity"
+            {...register("senderCity")}
+          />
+          <TextField
+            customClass={styles.postCodeFrom}
+            darkTheme={darkTheme}
+            label="Post Code"
+            name="senderPostCode"
+            {...register("senderPostCode")}
+          />
+          <TextField
+            customClass={styles.countryFrom}
+            darkTheme={darkTheme}
+            label="Country"
+            name="senderCountry"
+            {...register("senderCountry")}
+          />
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
         <section className={styles.billTo}>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.clientName}`}
-          >
-            <label>Client's Name</label>
-            <input {...register("clientName")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.clientEmail}`}
-          >
-            <label>Client's Email</label>
-            <input {...register("clientEmail")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.streetTo}`}
-          >
-            <label>Street Address</label>
-            <input {...register("clientStreet")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.cityTo}`}
-          >
-            <label>City</label>
-            <input {...register("clientCity")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.postCodeTo}`}
-          >
-            <label>Post Code</label>
-            <input {...register("clientPostCode")} />
-          </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.countryTo}`}
-          >
-            <label>Country</label>
-            <input {...register("clientCountry")} />
-          </div>
+          <TextField
+            customClass={styles.clientName}
+            darkTheme={darkTheme}
+            label="Client's Name"
+            name="clientName"
+            {...register("clientName")}
+          />
+          <TextField
+            customClass={styles.clientEmail}
+            darkTheme={darkTheme}
+            label="Client's Email"
+            name="clientEmail"
+            {...register("clientEmail")}
+          />
+          <TextField
+            customClass={styles.streetTo}
+            darkTheme={darkTheme}
+            label="Street Address"
+            name="clientStreet"
+            {...register("clientStreet")}
+          />
+          <TextField
+            customClass={styles.cityTo}
+            darkTheme={darkTheme}
+            label="City"
+            name="clientCity"
+            {...register("clientCity")}
+          />
+          <TextField
+            customClass={styles.postCodeTo}
+            darkTheme={darkTheme}
+            label="Post Code"
+            name="clientPostCode"
+            {...register("clientPostCode")}
+          />
+          <TextField
+            customClass={styles.countryTo}
+            darkTheme={darkTheme}
+            label="Country"
+            name="clientCountry"
+            {...register("clientCountry")}
+          />
         </section>
         <section className={styles.generalDetails}>
           <div
@@ -263,14 +261,13 @@ export default function InvoiceForm({
               </li>
             </ul>
           </div>
-          <div
-            className={`${formStyles.inputContainer} ${
-              darkTheme && formStyles.dark
-            } ${styles.productDesc}`}
-          >
-            <label>Product Description</label>
-            <input {...register("description")} />
-          </div>
+          <TextField
+            customClass={styles.productDesc}
+            darkTheme={darkTheme}
+            label="Product Description"
+            name="description"
+            {...register("description")}
+          />
         </section>
         <h3 className="form">Item List</h3>
         <section className={styles.itemList}>
@@ -283,14 +280,82 @@ export default function InvoiceForm({
             </div>
           )}
           {selectedInvoice &&
-            selectedInvoice.items.map((item, index) => {
+            fields.map((field, index) => {
               return (
-                <InvoiceItem
-                  key={index}
-                  darkTheme={darkTheme}
-                  item={item}
-                  index={index}
-                />
+                <div
+                  key={field.id}
+                  className={`${itemStyles.itemContainer} ${
+                    darkTheme && itemStyles.dark
+                  }`}
+                >
+                  <TextField
+                    label={mobileView && "Item Name"}
+                    darkTheme={darkTheme}
+                    customClass={itemStyles.name}
+                    name="name"
+                    {...register(`items.${index}.name`)}
+                  />
+                  <TextField
+                    label={mobileView && "Qty."}
+                    darkTheme={darkTheme}
+                    customClass={itemStyles.qty}
+                    type="number"
+                    name="quantity"
+                    {...register(`items.${index}.quantity`, {
+                      valueAsNumber: true,
+                      onChange: (e) => {
+                        const qty = e.target.value;
+                        const price = getValues(`items.${index}.price`);
+                        const sum = price * qty;
+                        setValue(`items.${index}.total`, sum.toFixed(2));
+                      },
+                    })}
+                  />
+                  <TextField
+                    label={mobileView && "Price"}
+                    darkTheme={darkTheme}
+                    customClass={itemStyles.price}
+                    type="number"
+                    name="price"
+                    {...register(`items.${index}.price`, {
+                      valueAsNumber: true,
+                      onChange: (e) => {
+                        const qty = getValues(`items.${index}.quantity`);
+                        const price = e.target.value;
+                        const sum = price * qty;
+                        setValue(`items.${index}.total`, sum.toFixed(2));
+                      },
+                    })}
+                  />
+                  <TextField
+                    label={mobileView && "Total"}
+                    noStyles={true}
+                    customClass={`${itemStyles.total} ${
+                      darkTheme && itemStyles.dark
+                    }`}
+                    name="total"
+                    {...register(`items.${index}.total`)}
+                    readOnly={true}
+                  />
+
+                  <button
+                    className={itemStyles.delete}
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <svg
+                      width="13"
+                      height="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                        fillRule="nonzero"
+                      />
+                    </svg>
+                  </button>
+                </div>
               );
             })}
 
