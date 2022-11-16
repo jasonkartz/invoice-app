@@ -332,7 +332,9 @@ export default function InvoiceForm({
                     darkTheme && itemStyles.dark
                   }`}
                   name="total"
-                  {...register(`items.${index}.total`, { valueAsNumber: true })}
+                  {...register(`items.${index}.total`, {
+                    valueAsNumber: true,
+                  })}
                   readOnly={true}
                 />
 
@@ -360,7 +362,7 @@ export default function InvoiceForm({
           <ButtonAddItem
             darkTheme={darkTheme}
             handleClick={() => {
-              append({ name: "", quantity: 0, price: 0, total: 0 });
+              append({ name: "", quantity: 0, price: 0.0, total: "" });
             }}
           />
         </section>

@@ -46,6 +46,9 @@
 }
 .total input {
   font-weight: 700;
+  font-size: 12px;
+  font-family: "Spartan";
+  letter-spacing: -0.25px;
   border: none;
   outline: none;
   padding: none;
