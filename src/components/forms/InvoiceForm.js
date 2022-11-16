@@ -52,7 +52,7 @@ export default function InvoiceForm({
       : "",
     clientCountry: selectedInvoice ? selectedInvoice.clientAddress.country : "",
     items: selectedInvoice ? selectedInvoice.items : [],
-    total: 0,
+    total: selectedInvoice ? selectedInvoice.total : 0,
   };
 
   const { register, handleSubmit, getValues, setValue, control } = useForm({
@@ -213,8 +213,7 @@ export default function InvoiceForm({
                   {...register("paymentTerms")}
                   id="1"
                   value={1}
-                  onClick={(e) => {
-                    e.preventDefault();
+                  onClick={() => {
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -226,8 +225,7 @@ export default function InvoiceForm({
                   {...register("paymentTerms")}
                   id="7"
                   value={7}
-                  onClick={(e) => {
-                    e.preventDefault();
+                  onClick={() => {
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -279,90 +277,90 @@ export default function InvoiceForm({
               <span className={styles.total}>Total</span>
             </div>
           )}
-          {selectedInvoice &&
-            fields.map((field, index) => {
-              return (
-                <div
-                  key={field.id}
-                  className={`${itemStyles.itemContainer} ${
+          {fields.map((field, index) => {
+            return (
+              <div
+                key={field.id}
+                className={`${itemStyles.itemContainer} ${
+                  darkTheme && itemStyles.dark
+                }`}
+              >
+                <TextField
+                  label={mobileView && "Item Name"}
+                  darkTheme={darkTheme}
+                  customClass={itemStyles.name}
+                  name="name"
+                  {...register(`items.${index}.name`)}
+                />
+                <TextField
+                  label={mobileView && "Qty."}
+                  darkTheme={darkTheme}
+                  customClass={itemStyles.qty}
+                  type="number"
+                  name="quantity"
+                  {...register(`items.${index}.quantity`, {
+                    valueAsNumber: true,
+                    onChange: (e) => {
+                      const qty = e.target.value;
+                      const price = getValues(`items.${index}.price`);
+                      const sum = price * qty;
+                      setValue(`items.${index}.total`, sum.toFixed(2));
+                    },
+                  })}
+                />
+                <TextField
+                  label={mobileView && "Price"}
+                  darkTheme={darkTheme}
+                  customClass={itemStyles.price}
+                  type="number"
+                  step="any"
+                  name="price"
+                  {...register(`items.${index}.price`, {
+                    valueAsNumber: true,
+                    onChange: (e) => {
+                      const qty = getValues(`items.${index}.quantity`);
+                      const price = e.target.value;
+                      const sum = price * qty;
+                      setValue(`items.${index}.total`, sum.toFixed(2));
+                    },
+                  })}
+                />
+                <TextField
+                  label={mobileView && "Total"}
+                  noStyles={true}
+                  customClass={`${itemStyles.total} ${
                     darkTheme && itemStyles.dark
                   }`}
-                >
-                  <TextField
-                    label={mobileView && "Item Name"}
-                    darkTheme={darkTheme}
-                    customClass={itemStyles.name}
-                    name="name"
-                    {...register(`items.${index}.name`)}
-                  />
-                  <TextField
-                    label={mobileView && "Qty."}
-                    darkTheme={darkTheme}
-                    customClass={itemStyles.qty}
-                    type="number"
-                    name="quantity"
-                    {...register(`items.${index}.quantity`, {
-                      valueAsNumber: true,
-                      onChange: (e) => {
-                        const qty = e.target.value;
-                        const price = getValues(`items.${index}.price`);
-                        const sum = price * qty;
-                        setValue(`items.${index}.total`, sum.toFixed(2));
-                      },
-                    })}
-                  />
-                  <TextField
-                    label={mobileView && "Price"}
-                    darkTheme={darkTheme}
-                    customClass={itemStyles.price}
-                    type="number"
-                    name="price"
-                    {...register(`items.${index}.price`, {
-                      valueAsNumber: true,
-                      onChange: (e) => {
-                        const qty = getValues(`items.${index}.quantity`);
-                        const price = e.target.value;
-                        const sum = price * qty;
-                        setValue(`items.${index}.total`, sum.toFixed(2));
-                      },
-                    })}
-                  />
-                  <TextField
-                    label={mobileView && "Total"}
-                    noStyles={true}
-                    customClass={`${itemStyles.total} ${
-                      darkTheme && itemStyles.dark
-                    }`}
-                    name="total"
-                    {...register(`items.${index}.total`)}
-                    readOnly={true}
-                  />
+                  name="total"
+                  {...register(`items.${index}.total`, { valueAsNumber: true })}
+                  readOnly={true}
+                />
 
-                  <button
-                    className={itemStyles.delete}
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
+                <button
+                  className={itemStyles.delete}
+                  onClick={() => {
+                    remove(index);
+                  }}
+                >
+                  <svg
+                    width="13"
+                    height="16"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      width="13"
-                      height="16"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                        fillRule="nonzero"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              );
-            })}
+                    <path
+                      d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                      fillRule="nonzero"
+                    />
+                  </svg>
+                </button>
+              </div>
+            );
+          })}
 
           <ButtonAddItem
             darkTheme={darkTheme}
-            handleClick={(e) => {
-              e.preventDefault();
+            handleClick={() => {
+              append({ name: "", quantity: 0, price: 0, total: 0 });
             }}
           />
         </section>
