@@ -67,6 +67,12 @@ export default function InvoiceForm({
   });
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
+
+  const tallyItems = (data) => {
+    let invoiceTotal = 0;
+    data.items.forEach((item) => (invoiceTotal += item.total));
+    setValue("total", invoiceTotal.toFixed(2));
+  };
   return (
     <div
       className={`${styles.container} ${
@@ -76,6 +82,7 @@ export default function InvoiceForm({
     >
       <form
         onSubmit={handleSubmit((data) => {
+          tallyItems(data);
           console.log(data);
           /*if (invoiceEdit) {
             updateInvoice(data, data.id);
