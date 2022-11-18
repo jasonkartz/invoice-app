@@ -9,7 +9,7 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import "animate.css";
 
 function App() {
-  const [invoices, isLoading] = useLocalStorage();
+  const [invoices, isLoading, updateInvoice, addInvoice] = useLocalStorage();
   //localStorage.clear();
   console.log(invoices);
   const [screen, setScreen] = useState("main");
@@ -78,6 +78,8 @@ function App() {
         selectedInvoice={invoices.length && invoices[selectedIndex]}
         invoices={invoices}
         isLoading={isLoading}
+        updateInvoice={updateInvoice}
+        addInvoice={addInvoice}
       >
         {screen === "main" && invoices.length > 0 && displayInvoices()}
         {screen === "viewInvoice" && (

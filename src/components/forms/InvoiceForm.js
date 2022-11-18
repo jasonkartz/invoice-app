@@ -1,4 +1,5 @@
 import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { customAlphabet } from "nanoid";
 import DatePicker from "react-datepicker";
 import "./ReactDatePickerOverride.css";
 import { useState } from "react";
@@ -8,10 +9,7 @@ import formStyles from "./formElements/formElements.module.css";
 import itemStyles from "./InvoiceItem.module.css";
 import "animate.css";
 import BackButton from "../buttons/BackButton";
-import Dropdown from "./formElements/Dropdown";
-import CustomDatePicker from "./formElements/CustomDatePicker";
 import TextField from "./formElements/TextField";
-import InvoiceItem from "./InvoiceItem";
 import ButtonAddItem from "../buttons/ButtonAddItem";
 import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
@@ -25,9 +23,13 @@ export default function InvoiceForm({
   invoiceEdit,
   cancelForm,
   selectedInvoice,
+  updateInvoice,
+  addInvoice,
 }) {
+  const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", 6);
+  const newID = nanoid();
   const defaultValues = {
-    id: "",
+    id: selectedInvoice ? selectedInvoice.id : newID,
     createdAt: selectedInvoice
       ? new Date(selectedInvoice.createdAt)
       : new Date(),
@@ -58,12 +60,10 @@ export default function InvoiceForm({
   const { register, handleSubmit, getValues, setValue, control } = useForm({
     defaultValues,
   });
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: "items",
-    }
-  );
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "items",
+  });
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
   return (
@@ -75,7 +75,11 @@ export default function InvoiceForm({
     >
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(data);
+          if (invoiceEdit) {
+            updateInvoice(data, data.id);
+          } else {
+            addInvoice(data);
+          }
         })}
       >
         {mobileView && (

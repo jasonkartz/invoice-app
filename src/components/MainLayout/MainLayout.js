@@ -22,6 +22,8 @@ export default function MainLayout({
   selectedInvoice,
   invoices,
   isLoading,
+  updateInvoice,
+  addInvoice,
 }) {
   const invoiceCount = Children.toArray(children).length;
 
@@ -47,6 +49,8 @@ export default function MainLayout({
           cancelForm={(e) => cancelForm(e)}
           invoiceEdit={displayForm.editInvoice}
           selectedInvoice={displayForm.editInvoice && selectedInvoice}
+          updateInvoice={updateInvoice}
+          addInvoice={addInvoice}
         />
       )}
       <main className={styles.main}>
