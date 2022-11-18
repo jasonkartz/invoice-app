@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useDarkTheme from "./hooks/useDarkTheme";
-import useMobileView from "./hooks/useMobileView";
 import useLocalStorage from "./hooks/useLocalStorage";
 import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
@@ -17,7 +16,6 @@ function App() {
     display: false,
     editInvoice: false,
   });
-  const [mobileView] = useMobileView(); //mobile screens and resizing screens
   const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [invoiceFilter, setInvoiceFilter] = useState({

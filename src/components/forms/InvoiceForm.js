@@ -41,18 +41,19 @@ export default function InvoiceForm({
     clientName: selectedInvoice ? selectedInvoice.clientName : "",
     clientEmail: selectedInvoice ? selectedInvoice.clientEmail : "",
     status: "draft",
-    senderStreet: selectedInvoice ? selectedInvoice.senderAddress.street : "",
-    senderCity: selectedInvoice ? selectedInvoice.senderAddress.city : "",
-    senderPostCode: selectedInvoice
-      ? selectedInvoice.senderAddress.postCode
-      : "",
-    senderCountry: selectedInvoice ? selectedInvoice.senderAddress.country : "",
-    clientStreet: selectedInvoice ? selectedInvoice.clientAddress.street : "",
-    clientCity: selectedInvoice ? selectedInvoice.clientAddress.city : "",
-    clientPostCode: selectedInvoice
-      ? selectedInvoice.clientAddress.postCode
-      : "",
-    clientCountry: selectedInvoice ? selectedInvoice.clientAddress.country : "",
+    senderAddress: {
+      street: selectedInvoice ? selectedInvoice.senderAddress.street : "",
+      city: selectedInvoice ? selectedInvoice.senderAddress.city : "",
+      postCode: selectedInvoice ? selectedInvoice.senderAddress.postCode : "",
+      country: selectedInvoice ? selectedInvoice.senderAddress.country : "",
+    },
+    clientAddress: {
+      street: selectedInvoice ? selectedInvoice.clientAddress.street : "",
+      city: selectedInvoice ? selectedInvoice.clientAddress.city : "",
+      postCode: selectedInvoice ? selectedInvoice.clientAddress.postCode : "",
+      country: selectedInvoice ? selectedInvoice.clientAddress.country : "",
+    },
+
     items: selectedInvoice ? selectedInvoice.items : [],
     total: selectedInvoice ? selectedInvoice.total : 0,
   };
@@ -75,11 +76,12 @@ export default function InvoiceForm({
     >
       <form
         onSubmit={handleSubmit((data) => {
-          if (invoiceEdit) {
+          console.log(data);
+          /*if (invoiceEdit) {
             updateInvoice(data, data.id);
           } else {
             addInvoice(data);
-          }
+          }*/
         })}
       >
         {mobileView && (
@@ -94,29 +96,29 @@ export default function InvoiceForm({
             customClass={styles.streetFrom}
             darkTheme={darkTheme}
             label="Street Address"
-            name="senderStreet"
-            {...register("senderStreet")}
+            name="street"
+            {...register("senderAddress.street")}
           />
           <TextField
             customClass={styles.cityFrom}
             darkTheme={darkTheme}
             label="City"
-            name="senderCity"
-            {...register("senderCity")}
+            name="city"
+            {...register("senderAddress.city")}
           />
           <TextField
             customClass={styles.postCodeFrom}
             darkTheme={darkTheme}
             label="Post Code"
-            name="senderPostCode"
-            {...register("senderPostCode")}
+            name="postCode"
+            {...register("senderAddress.postCode")}
           />
           <TextField
             customClass={styles.countryFrom}
             darkTheme={darkTheme}
             label="Country"
-            name="senderCountry"
-            {...register("senderCountry")}
+            name="country"
+            {...register("senderAddress.country")}
           />
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
@@ -139,29 +141,29 @@ export default function InvoiceForm({
             customClass={styles.streetTo}
             darkTheme={darkTheme}
             label="Street Address"
-            name="clientStreet"
-            {...register("clientStreet")}
+            name="street"
+            {...register("clientAddress.street")}
           />
           <TextField
             customClass={styles.cityTo}
             darkTheme={darkTheme}
             label="City"
-            name="clientCity"
-            {...register("clientCity")}
+            name="city"
+            {...register("clientAddress.city")}
           />
           <TextField
             customClass={styles.postCodeTo}
             darkTheme={darkTheme}
             label="Post Code"
-            name="clientPostCode"
-            {...register("clientPostCode")}
+            name="postCode"
+            {...register("clientAddress.postCode")}
           />
           <TextField
             customClass={styles.countryTo}
             darkTheme={darkTheme}
             label="Country"
-            name="clientCountry"
-            {...register("clientCountry")}
+            name="country"
+            {...register("clientAddress.country")}
           />
         </section>
         <section className={styles.generalDetails}>
