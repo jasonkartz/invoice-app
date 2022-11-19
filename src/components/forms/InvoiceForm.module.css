@@ -28,7 +28,7 @@
 .container.dark {
   color: var(--light-gray);
 }
-.container form {
+.container .form {
   margin-top: 72px;
   background-color: white;
   width: 100%;
@@ -40,23 +40,23 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.container.dark form {
+.container.dark .form {
   background-color: var(--darker-gray);
 }
-.container.dark form h1 {
+.container.dark .form h1 {
   color: white;
 }
-.container form h4 {
+.container .form h4 {
   color: var(--dark-violet);
 }
-.container form::-webkit-scrollbar {
+.container .form::-webkit-scrollbar {
   width: 8px;
 }
-.container form::-webkit-scrollbar-thumb {
+.container .form::-webkit-scrollbar-thumb {
   background-color: #dfe3fa;
   border-radius: 4px;
 }
-.container.dark form::-webkit-scrollbar-thumb {
+.container.dark .form::-webkit-scrollbar-thumb {
   background-color: #252945;
 }
 .calendarDark {
@@ -152,14 +152,14 @@
   box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
-.container.dark form .btnSection {
+.container.dark .form .btnSection {
   box-shadow: 0px -5px 50px 5px rgba(0, 0, 0, 0.5);
 }
 .btnDiscard {
   margin-right: auto;
 }
 @media (min-width: 375px) {
-  .container form {
+  .container .form {
     padding: 24px 24px 225px 24px;
   }
   .btnSection {
@@ -167,13 +167,13 @@
   }
 }
 @media (min-width: 700px) {
-  .container form {
+  .container .form {
     width: 616px;
     border-radius: 0px 20px 20px 0px;
     padding: 56px 56px 250px 56px;
   }
 
-  .container form h1 {
+  .container .form h1 {
     margin-bottom: 24px;
   }
   .billFrom {
@@ -236,12 +236,12 @@
   }
 }
 @media (min-width: 768px) {
-  .container form {
+  .container .form {
     margin-top: 80px;
   }
 }
 @media (min-width: 1000px) {
-  .container form {
+  .container .form {
     margin-top: 0;
     width: 719px;
     padding-left: 159px;

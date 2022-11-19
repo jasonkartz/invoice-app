@@ -21,7 +21,7 @@ import React from "react";
 export default function InvoiceForm({
   darkTheme,
   invoiceEdit,
-  cancelForm,
+  closeForm,
   selectedInvoice,
   updateInvoice,
   addInvoice,
@@ -40,7 +40,7 @@ export default function InvoiceForm({
     paymentTerms: selectedInvoice ? selectedInvoice.paymentTerms : 1,
     clientName: selectedInvoice ? selectedInvoice.clientName : "",
     clientEmail: selectedInvoice ? selectedInvoice.clientEmail : "",
-    status: "draft",
+    status: selectedInvoice ? selectedInvoice.status : "pending",
     senderAddress: {
       street: selectedInvoice ? selectedInvoice.senderAddress.street : "",
       city: selectedInvoice ? selectedInvoice.senderAddress.city : "",
@@ -68,10 +68,18 @@ export default function InvoiceForm({
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
 
-  const tallyItems = (data) => {
+  const tallyItems = () => {
     let invoiceTotal = 0;
-    data.items.forEach((item) => (invoiceTotal += item.total));
-    setValue("total", invoiceTotal.toFixed(2));
+    let items = getValues("items");
+    items.forEach((item) => (invoiceTotal += item.total).toFixed(2));
+    setValue("total", invoiceTotal);
+  };
+
+  const setPaymentDue = (paymentTerms) => {
+    const createdAt = new Date(getValues("createdAt"));
+    const paymentDue = createdAt.setDate(createdAt.getDate() + paymentTerms);
+
+    setValue("paymentDue", new Date(paymentDue));
   };
   return (
     <div
@@ -80,19 +88,9 @@ export default function InvoiceForm({
       } animate__animated animate__fadeInLeft`}
       style={{ animationDuration: "0.25s" }}
     >
-      <form
-        onSubmit={handleSubmit((data) => {
-          tallyItems(data);
-          console.log(data);
-          /*if (invoiceEdit) {
-            updateInvoice(data, data.id);
-          } else {
-            addInvoice(data);
-          }*/
-        })}
-      >
+      <div className={styles.form}>
         {mobileView && (
-          <BackButton darkTheme={darkTheme} handleClick={cancelForm} />
+          <BackButton darkTheme={darkTheme} handleClick={closeForm} />
         )}
         <h1 className="alt-heading">
           {invoiceEdit ? `Edit #${selectedInvoice.id}` : "New Invoice"}
@@ -186,7 +184,11 @@ export default function InvoiceForm({
               name="createdAt"
               render={({ field }) => (
                 <DatePicker
-                  onChange={(date) => field.onChange(date)}
+                  onChange={(date) => {
+                    field.onChange(date);
+                    const paymentTerms = Number(getValues("paymentTerms"));
+                    setPaymentDue(paymentTerms);
+                  }}
                   selected={field.value}
                   dateFormat="MMMM d yyyy"
                   showPopperArrow={false}
@@ -207,8 +209,7 @@ export default function InvoiceForm({
               className={`${formStyles.dropDownToggle} ${
                 darkTheme && formStyles.dark
               }`}
-              onClick={(e) => {
-                e.preventDefault();
+              onClick={() => {
                 setToggleDropdown(!toggleDropdown);
               }}
             >
@@ -223,10 +224,13 @@ export default function InvoiceForm({
               <li>
                 <input
                   type="radio"
-                  {...register("paymentTerms")}
+                  {...register("paymentTerms", {
+                    valueAsNumber: true,
+                  })}
                   id="1"
                   value={1}
                   onClick={() => {
+                    setPaymentDue(1);
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -235,10 +239,13 @@ export default function InvoiceForm({
               <li>
                 <input
                   type="radio"
-                  {...register("paymentTerms")}
+                  {...register("paymentTerms", {
+                    valueAsNumber: true,
+                  })}
                   id="7"
                   value={7}
                   onClick={() => {
+                    setPaymentDue(7);
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -247,11 +254,13 @@ export default function InvoiceForm({
               <li>
                 <input
                   type="radio"
-                  {...register("paymentTerms")}
+                  {...register("paymentTerms", {
+                    valueAsNumber: true,
+                  })}
                   id="14"
                   value={14}
-                  onClick={(e) => {
-                    e.preventDefault();
+                  onClick={() => {
+                    setPaymentDue(14);
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -260,11 +269,13 @@ export default function InvoiceForm({
               <li>
                 <input
                   type="radio"
-                  {...register("paymentTerms")}
+                  {...register("paymentTerms", {
+                    valueAsNumber: true,
+                  })}
                   id="30"
                   value={30}
-                  onClick={(e) => {
-                    e.preventDefault();
+                  onClick={() => {
+                    setPaymentDue(30);
                     setToggleDropdown(!toggleDropdown);
                   }}
                 />
@@ -318,6 +329,7 @@ export default function InvoiceForm({
                       const price = getValues(`items.${index}.price`);
                       const sum = price * qty;
                       setValue(`items.${index}.total`, sum.toFixed(2));
+                      tallyItems();
                     },
                   })}
                 />
@@ -335,6 +347,7 @@ export default function InvoiceForm({
                       const price = e.target.value;
                       const sum = price * qty;
                       setValue(`items.${index}.total`, sum.toFixed(2));
+                      tallyItems();
                     },
                   })}
                 />
@@ -382,24 +395,37 @@ export default function InvoiceForm({
         <section className={styles.btnSection}>
           <ButtonStandard
             darkTheme={darkTheme}
-            handleClick={cancelForm}
+            handleClick={closeForm}
             btnText={invoiceEdit ? "Cancel" : "Discard"}
             customClass={`responsive ${!invoiceEdit && styles.btnDiscard}`}
           />
           {!invoiceEdit && (
             <ButtonSaveDraft
-              handleClick={(e) => e.preventDefault()}
+              handleClick={() => {
+                setValue("status", "draft");
+                const data = getValues();
+                addInvoice(data);
+                closeForm();
+              }}
               darkTheme={darkTheme}
               customClass="responsive"
             />
           )}
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
-            type="submit"
+            onClick={() => {
+              const data = getValues();
+              if (invoiceEdit) {
+                updateInvoice(data, data.id);
+              } else {
+                addInvoice(data);
+              }
+              closeForm();
+            }}
             customClass="responsive"
           />
         </section>
-      </form>
+      </div>
     </div>
   );
 }

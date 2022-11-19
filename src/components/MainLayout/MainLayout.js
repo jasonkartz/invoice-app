@@ -33,8 +33,7 @@ export default function MainLayout({
       editInvoice: false,
     });
   };
-  const cancelForm = (e) => {
-    e.preventDefault();
+  const closeForm = () => {
     setDisplayForm({
       display: false,
       editInvoice: false,
@@ -46,7 +45,7 @@ export default function MainLayout({
       {displayForm.display && (
         <InvoiceForm
           darkTheme={darkTheme}
-          cancelForm={(e) => cancelForm(e)}
+          closeForm={() => closeForm()}
           invoiceEdit={displayForm.editInvoice}
           selectedInvoice={displayForm.editInvoice && selectedInvoice}
           updateInvoice={updateInvoice}
