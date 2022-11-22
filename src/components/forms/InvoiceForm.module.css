@@ -208,22 +208,7 @@
   .productDesc {
     grid-area: productDesc;
   }
-  .itemHeading {
-    min-width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 18px;
-  }
-  .name {
-    min-width: 211px;
-  }
-  .qty {
-    grid-area: qty;
-    min-width: 45px;
-  }
-  .price {
-    min-width: 97px;
-  }
+
   .itemList {
     gap: 16px;
   }

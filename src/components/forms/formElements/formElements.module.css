@@ -24,11 +24,27 @@
   width: auto;
   min-width: 0;
 }
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.labelContainer p {
+  font-size: 10px;
+}
+.labelContainer.error {
+  color: #ec5757;
+}
+.labelContainer label,
 .inputContainer label {
   margin-bottom: 10px;
 }
-.inputContainer input[type="date"]::-webkit-inner-spin-button {
+.inputContainer input::-webkit-inner-spin-button,
+.inputContainer input::-webkit-outer-spin-button {
   display: none;
+  margin: 0;
+}
+.inputContainer input[type="number"] {
+  -moz-appearance: textfield;
 }
 .inputContainer input[type="date"]::-webkit-calendar-picker-indicator {
   background-image: url("../../../assets/icon-calendar.svg");
@@ -84,7 +100,11 @@
 .calendarBtn.active.dark {
   outline: var(--dark-violet) 1px solid;
 }
-
+.inputContainer input.error,
+.inputContainer.dark input.error:focus,
+.inputContainer.dark input.error:hover {
+  outline: 1px solid #ec5757;
+}
 .calendarBtn {
   background-image: url("../../../assets/icon-calendar.svg");
   background-repeat: no-repeat;

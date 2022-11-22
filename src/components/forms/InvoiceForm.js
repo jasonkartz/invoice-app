@@ -58,9 +58,17 @@ export default function InvoiceForm({
     total: selectedInvoice ? selectedInvoice.total : 0,
   };
 
-  const { register, handleSubmit, getValues, setValue, control } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    setValue,
+    control,
+  } = useForm({
     defaultValues,
   });
+  console.log(errors);
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
@@ -80,6 +88,14 @@ export default function InvoiceForm({
     const paymentDue = createdAt.setDate(createdAt.getDate() + paymentTerms);
 
     setValue("paymentDue", new Date(paymentDue));
+  };
+  const updateOrAddInvoice = (data) => {
+    if (invoiceEdit) {
+      updateInvoice(data, data.id);
+    } else {
+      addInvoice(data);
+    }
+    closeForm();
   };
   return (
     <div
@@ -101,29 +117,41 @@ export default function InvoiceForm({
             customClass={styles.streetFrom}
             darkTheme={darkTheme}
             label="Street Address"
+            error={errors.senderAddress?.street}
             name="street"
-            {...register("senderAddress.street")}
+            {...register("senderAddress.street", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.cityFrom}
             darkTheme={darkTheme}
             label="City"
+            error={errors.senderAddress?.city}
             name="city"
-            {...register("senderAddress.city")}
+            {...register("senderAddress.city", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.postCodeFrom}
             darkTheme={darkTheme}
             label="Post Code"
+            error={errors.senderAddress?.postCode}
             name="postCode"
-            {...register("senderAddress.postCode")}
+            {...register("senderAddress.postCode", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.countryFrom}
             darkTheme={darkTheme}
             label="Country"
+            error={errors.senderAddress?.country}
             name="country"
-            {...register("senderAddress.country")}
+            {...register("senderAddress.country", {
+              required: true,
+            })}
           />
         </section>
         <h4 className={styles.billToTitle}>Bill To</h4>
@@ -132,43 +160,61 @@ export default function InvoiceForm({
             customClass={styles.clientName}
             darkTheme={darkTheme}
             label="Client's Name"
+            error={errors.clientName}
             name="clientName"
-            {...register("clientName")}
+            {...register("clientName", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.clientEmail}
             darkTheme={darkTheme}
             label="Client's Email"
+            error={errors.clientEmail}
             name="clientEmail"
-            {...register("clientEmail")}
+            {...register("clientEmail", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.streetTo}
             darkTheme={darkTheme}
             label="Street Address"
+            error={errors.clientAddress?.street}
             name="street"
-            {...register("clientAddress.street")}
+            {...register("clientAddress.street", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.cityTo}
             darkTheme={darkTheme}
             label="City"
+            error={errors.clientAddress?.city}
             name="city"
-            {...register("clientAddress.city")}
+            {...register("clientAddress.city", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.postCodeTo}
             darkTheme={darkTheme}
             label="Post Code"
+            error={errors.clientAddress?.postCode}
             name="postCode"
-            {...register("clientAddress.postCode")}
+            {...register("clientAddress.postCode", {
+              required: true,
+            })}
           />
           <TextField
             customClass={styles.countryTo}
             darkTheme={darkTheme}
             label="Country"
+            error={errors.clientAddress?.country}
             name="country"
-            {...register("clientAddress.country")}
+            {...register("clientAddress.country", {
+              required: true,
+            })}
           />
         </section>
         <section className={styles.generalDetails}>
@@ -226,6 +272,7 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
+                    required: true,
                   })}
                   id="1"
                   value={1}
@@ -241,6 +288,7 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
+                    required: true,
                   })}
                   id="7"
                   value={7}
@@ -256,6 +304,7 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
+                    required: true,
                   })}
                   id="14"
                   value={14}
@@ -271,6 +320,7 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
+                    required: true,
                   })}
                   id="30"
                   value={30}
@@ -287,20 +337,15 @@ export default function InvoiceForm({
             customClass={styles.productDesc}
             darkTheme={darkTheme}
             label="Product Description"
+            error={errors.description}
             name="description"
-            {...register("description")}
+            {...register("description", {
+              required: true,
+            })}
           />
         </section>
         <h3 className="form">Item List</h3>
         <section className={styles.itemList}>
-          {!mobileView && (
-            <div className={styles.itemHeading}>
-              <span className={styles.name}>Item Name</span>
-              <span className={styles.qty}>Qty.</span>
-              <span className={styles.price}>Price</span>
-              <span className={styles.total}>Total</span>
-            </div>
-          )}
           {fields.map((field, index) => {
             return (
               <div
@@ -310,20 +355,39 @@ export default function InvoiceForm({
                 }`}
               >
                 <TextField
-                  label={mobileView && "Item Name"}
+                  label={
+                    mobileView
+                      ? "Item Name"
+                      : !mobileView && index === 0
+                      ? "Item Name"
+                      : null
+                  }
+                  error={errors?.items?.[index]?.name}
                   darkTheme={darkTheme}
                   customClass={itemStyles.name}
                   name="name"
-                  {...register(`items.${index}.name`)}
+                  {...register(`items.${index}.name`, {
+                    required: true,
+                  })}
                 />
                 <TextField
-                  label={mobileView && "Qty."}
+                  label={
+                    mobileView
+                      ? "Qty."
+                      : !mobileView && index === 0
+                      ? "Qty."
+                      : null
+                  }
+                  error={errors?.items?.[index]?.quantity}
                   darkTheme={darkTheme}
                   customClass={itemStyles.qty}
                   type="number"
                   name="quantity"
                   {...register(`items.${index}.quantity`, {
                     valueAsNumber: true,
+                    required: true,
+                    min: 1,
+
                     onChange: (e) => {
                       const qty = e.target.value;
                       const price = getValues(`items.${index}.price`);
@@ -334,7 +398,14 @@ export default function InvoiceForm({
                   })}
                 />
                 <TextField
-                  label={mobileView && "Price"}
+                  label={
+                    mobileView
+                      ? "Price"
+                      : !mobileView && index === 0
+                      ? "Price"
+                      : null
+                  }
+                  error={errors?.items?.[index]?.price}
                   darkTheme={darkTheme}
                   customClass={itemStyles.price}
                   type="number"
@@ -342,6 +413,8 @@ export default function InvoiceForm({
                   name="price"
                   {...register(`items.${index}.price`, {
                     valueAsNumber: true,
+                    required: true,
+                    min: 1,
                     onChange: (e) => {
                       const qty = getValues(`items.${index}.quantity`);
                       const price = e.target.value;
@@ -352,7 +425,13 @@ export default function InvoiceForm({
                   })}
                 />
                 <TextField
-                  label={mobileView && "Total"}
+                  label={
+                    mobileView
+                      ? "Total"
+                      : !mobileView && index === 0
+                      ? "Total"
+                      : null
+                  }
                   noStyles={true}
                   customClass={`${itemStyles.total} ${
                     darkTheme && itemStyles.dark
@@ -413,15 +492,9 @@ export default function InvoiceForm({
           )}
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
-            onClick={() => {
-              const data = getValues();
-              if (invoiceEdit) {
-                updateInvoice(data, data.id);
-              } else {
-                addInvoice(data);
-              }
-              closeForm();
-            }}
+            onClick={handleSubmit((data) => {
+              updateOrAddInvoice(data);
+            })}
             customClass="responsive"
           />
         </section>
