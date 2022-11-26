@@ -18,6 +18,7 @@ const TextField = forwardRef(
         </div>
         <input
           className={error && styles.error}
+          autoComplete="none"
           type={type}
           name={name}
           {...rest}

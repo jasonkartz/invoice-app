@@ -138,6 +138,12 @@
   flex-direction: column;
   gap: 48px;
 }
+.alert {
+  color: #ec5757;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .btnSection {
   position: fixed;
   bottom: 0;
@@ -223,6 +229,9 @@
 @media (min-width: 768px) {
   .container .form {
     margin-top: 80px;
+  }
+  .alert {
+    margin-top: 10px;
   }
 }
 @media (min-width: 1000px) {

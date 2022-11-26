@@ -97,6 +97,26 @@ export default function InvoiceForm({
     }
     closeForm();
   };
+
+  const errorCheck = () => {
+    if (
+      errors.senderAddress ||
+      errors.clientName ||
+      errors.clientEmail ||
+      errors.clientAddress ||
+      errors.description ||
+      errors.items
+    ) {
+      return <p>- All fields must be filled</p>;
+    }
+  };
+
+  const itemCheck = () => {
+    const items = getValues("items");
+    if (!items[0]) {
+      return <p>- An item must be added</p>;
+    }
+  };
   return (
     <div
       className={`${styles.container} ${
@@ -272,7 +292,6 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
-                    required: true,
                   })}
                   id="1"
                   value={1}
@@ -288,7 +307,6 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
-                    required: true,
                   })}
                   id="7"
                   value={7}
@@ -304,7 +322,6 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
-                    required: true,
                   })}
                   id="14"
                   value={14}
@@ -320,7 +337,6 @@ export default function InvoiceForm({
                   type="radio"
                   {...register("paymentTerms", {
                     valueAsNumber: true,
-                    required: true,
                   })}
                   id="30"
                   value={30}
@@ -470,6 +486,10 @@ export default function InvoiceForm({
               append({ name: "", quantity: 0, price: 0.0, total: "" });
             }}
           />
+          <div className={styles.alert}>
+            {errorCheck()}
+            {itemCheck()}
+          </div>
         </section>
         <section className={styles.btnSection}>
           <ButtonStandard
