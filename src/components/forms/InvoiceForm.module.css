@@ -144,6 +144,9 @@
   flex-direction: column;
   gap: 5px;
 }
+.btnError {
+  border: solid 1px #ec5757;
+}
 .btnSection {
   position: fixed;
   bottom: 0;

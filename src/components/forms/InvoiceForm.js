@@ -1,8 +1,8 @@
 import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { useState, useEffect } from "react";
 import { customAlphabet } from "nanoid";
 import DatePicker from "react-datepicker";
 import "./ReactDatePickerOverride.css";
-import { useState } from "react";
 import useMobileView from "../../hooks/useMobileView";
 import styles from "./InvoiceForm.module.css";
 import formStyles from "./formElements/formElements.module.css";
@@ -64,6 +64,8 @@ export default function InvoiceForm({
     formState: { errors },
     getValues,
     setValue,
+    setError,
+    clearErrors,
     control,
   } = useForm({
     defaultValues,
@@ -76,6 +78,17 @@ export default function InvoiceForm({
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
 
+  const [itemsError, setItemsError] = useState(false);
+
+  useEffect(() => {
+    const items = getValues("items");
+    if (!items.length) {
+      setError("noItems");
+    } else {
+      clearErrors("noItems");
+    }
+  }, [getValues("items")]);
+  console.log(itemsError);
   const tallyItems = () => {
     let invoiceTotal = 0;
     let items = getValues("items");
@@ -111,12 +124,6 @@ export default function InvoiceForm({
     }
   };
 
-  const itemCheck = () => {
-    const items = getValues("items");
-    if (!items[0]) {
-      return <p>- An item must be added</p>;
-    }
-  };
   return (
     <div
       className={`${styles.container} ${
@@ -482,13 +489,16 @@ export default function InvoiceForm({
 
           <ButtonAddItem
             darkTheme={darkTheme}
+            customClass={itemsError && styles.btnError}
             handleClick={() => {
               append({ name: "", quantity: 0, price: 0.0, total: "" });
+              clearErrors("errors.noItems");
+              setItemsError(false);
             }}
           />
           <div className={styles.alert}>
             {errorCheck()}
-            {itemCheck()}
+            {itemsError && <p>- An item must be added</p>}
           </div>
         </section>
         <section className={styles.btnSection}>
@@ -513,6 +523,9 @@ export default function InvoiceForm({
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
             onClick={handleSubmit((data) => {
+              if (errors.noItems) {
+                setItemsError(true);
+              }
               updateOrAddInvoice(data);
             })}
             customClass="responsive"
