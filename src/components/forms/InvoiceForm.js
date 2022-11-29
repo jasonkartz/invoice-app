@@ -1,5 +1,5 @@
 import { useForm, Controller, useFieldArray } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { customAlphabet } from "nanoid";
 import DatePicker from "react-datepicker";
 import "./ReactDatePickerOverride.css";
@@ -77,9 +77,7 @@ export default function InvoiceForm({
   });
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [mobileView] = useMobileView();
-
-  const [itemsError, setItemsError] = useState(false);
-
+  //if no items are added, sets an error. Clears error once an item is added.
   useEffect(() => {
     const items = getValues("items");
     if (!items.length) {
@@ -88,7 +86,12 @@ export default function InvoiceForm({
       clearErrors("noItems");
     }
   }, [getValues("items")]);
-  console.log(itemsError);
+
+  const clicked = useRef(false);
+  const onSubmit = (data) => updateOrAddInvoice(data);
+  //sets ref as true once submit button is clicked and errors exists
+  const onError = () => (clicked.current = true);
+
   const tallyItems = () => {
     let invoiceTotal = 0;
     let items = getValues("items");
@@ -489,16 +492,16 @@ export default function InvoiceForm({
 
           <ButtonAddItem
             darkTheme={darkTheme}
-            customClass={itemsError && styles.btnError}
+            customClass={clicked.current && errors.noItems && styles.btnError}
             handleClick={() => {
               append({ name: "", quantity: 0, price: 0.0, total: "" });
-              clearErrors("errors.noItems");
-              setItemsError(false);
             }}
           />
           <div className={styles.alert}>
             {errorCheck()}
-            {itemsError && <p>- An item must be added</p>}
+            {clicked.current && errors.noItems && (
+              <p>- An item must be added</p>
+            )}
           </div>
         </section>
         <section className={styles.btnSection}>
@@ -522,12 +525,7 @@ export default function InvoiceForm({
           )}
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
-            onClick={handleSubmit((data) => {
-              if (errors.noItems) {
-                setItemsError(true);
-              }
-              updateOrAddInvoice(data);
-            })}
+            onClick={handleSubmit(onSubmit, onError)}
             customClass="responsive"
           />
         </section>
