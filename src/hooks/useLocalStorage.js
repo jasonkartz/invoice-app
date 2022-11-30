@@ -11,7 +11,7 @@ const useLocalStorage = () => {
       const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
       setInvoices(invoiceData);
       setIsLoading(false);
-    }, 1000);
+    }, 3000);
   }, []);
 
   const updateInvoice = (updatedInvoice, updatedInvoiceId) => {
@@ -26,8 +26,12 @@ const useLocalStorage = () => {
     localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
   };
 
-  const addInvoice = (newInvoice) => {
+  const addInvoice = (newInvoice, isDraft) => {
+    if (isDraft) {
+      newInvoice.status = "draft";
+    }
     setInvoices((currentInvoices) => [...currentInvoices, newInvoice]);
+    localStorage.setItem("invoiceData", JSON.stringify(invoices));
   };
 
   return [invoices, isLoading, updateInvoice, addInvoice];

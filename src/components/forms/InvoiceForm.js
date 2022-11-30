@@ -87,8 +87,25 @@ export default function InvoiceForm({
     }
   }, [getValues("items")]);
 
+  const updateOrAddInvoice = (data) => {
+    if (invoiceEdit) {
+      updateInvoice(data, data.id);
+    } else {
+      addInvoice(data, false);
+    }
+    closeForm();
+  };
+
   const clicked = useRef(false);
-  const onSubmit = (data) => updateOrAddInvoice(data);
+
+  const onSubmit = (data) => {
+    updateOrAddInvoice(data);
+  };
+  const saveDraft = (data) => {
+    addInvoice(data, true);
+    closeForm();
+  };
+
   //sets ref as true once submit button is clicked and errors exists
   const onError = () => (clicked.current = true);
 
@@ -104,14 +121,6 @@ export default function InvoiceForm({
     const paymentDue = createdAt.setDate(createdAt.getDate() + paymentTerms);
 
     setValue("paymentDue", new Date(paymentDue));
-  };
-  const updateOrAddInvoice = (data) => {
-    if (invoiceEdit) {
-      updateInvoice(data, data.id);
-    } else {
-      addInvoice(data);
-    }
-    closeForm();
   };
 
   const errorCheck = () => {
@@ -513,19 +522,14 @@ export default function InvoiceForm({
           />
           {!invoiceEdit && (
             <ButtonSaveDraft
-              handleClick={() => {
-                setValue("status", "draft");
-                const data = getValues();
-                addInvoice(data);
-                closeForm();
-              }}
+              onClick={handleSubmit(saveDraft, onError)}
               darkTheme={darkTheme}
               customClass="responsive"
             />
           )}
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
-            onClick={handleSubmit(onSubmit, onError)}
+            onClick={handleSubmit(updateOrAddInvoice, onError)}
             customClass="responsive"
           />
         </section>

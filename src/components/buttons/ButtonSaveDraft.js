@@ -1,16 +1,12 @@
 import styles from "./Buttons.module.css";
 
-export default function ButtonSaveDraft({
-  darkTheme,
-  handleClick,
-  customClass,
-}) {
+export default function ButtonSaveDraft({ darkTheme, customClass, ...props }) {
   return (
     <button
       className={`${styles["save-draft"]} ${darkTheme && styles.dark} ${
         customClass && customClass
       }`}
-      onClick={handleClick}
+      {...props}
     >
       Save as Draft
     </button>
