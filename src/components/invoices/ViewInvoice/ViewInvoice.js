@@ -15,6 +15,7 @@ export default function ViewInvoice({
   setScreen,
   invoice,
   setDisplayForm,
+  markPaidOrPending,
 }) {
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
@@ -36,6 +37,8 @@ export default function ViewInvoice({
       darkTheme={darkTheme}
       editInvoice={editInvoice}
       deleteInvoice={() => setDeleteConfirm(true)}
+      invoice={invoice}
+      markPaidOrPending={markPaidOrPending}
     />
   );
 

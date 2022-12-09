@@ -8,7 +8,8 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import "animate.css";
 
 function App() {
-  const [invoices, isLoading, updateInvoice, addInvoice] = useLocalStorage();
+  const [invoices, isLoading, updateInvoice, addInvoice, markPaidOrPending] =
+    useLocalStorage();
   //localStorage.clear();
   console.log(invoices);
   const [screen, setScreen] = useState("main");
@@ -84,8 +85,9 @@ function App() {
           <ViewInvoice
             setScreen={setScreen}
             darkTheme={darkTheme}
-            invoice={invoices[selectedIndex]}
+            invoice={invoices.length && invoices[selectedIndex]}
             setDisplayForm={setDisplayForm}
+            markPaidOrPending={markPaidOrPending}
           />
         )}
       </MainLayout>

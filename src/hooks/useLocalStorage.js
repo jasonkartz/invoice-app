@@ -17,6 +17,9 @@ const useLocalStorage = () => {
   const updateInvoice = (updatedInvoice, updatedInvoiceId) => {
     const updatedInvoices = invoices.map((invoice) => {
       if (invoice.id === updatedInvoiceId) {
+        if (updatedInvoice.status === "draft") {
+          updatedInvoice.status = "pending";
+        }
         return updatedInvoice;
       } else {
         return invoice;
@@ -34,7 +37,24 @@ const useLocalStorage = () => {
     localStorage.setItem("invoiceData", JSON.stringify(invoices));
   };
 
-  return [invoices, isLoading, updateInvoice, addInvoice];
+  const markPaidOrPending = (updatedInvoice, updatedInvoiceId) => {
+    const updatedInvoices = invoices.map((invoice) => {
+      if (invoice.id === updatedInvoiceId) {
+        if (updatedInvoice.status === "paid") {
+          updatedInvoice.status = "pending";
+        } else {
+          updatedInvoice.status = "paid";
+        }
+        return updatedInvoice;
+      } else {
+        return invoice;
+      }
+    });
+    setInvoices(updatedInvoices);
+    localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
+  };
+
+  return [invoices, isLoading, updateInvoice, addInvoice, markPaidOrPending];
 };
 
 export default useLocalStorage;

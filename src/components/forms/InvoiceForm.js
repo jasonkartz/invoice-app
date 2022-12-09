@@ -98,9 +98,6 @@ export default function InvoiceForm({
 
   const clicked = useRef(false);
 
-  const onSubmit = (data) => {
-    updateOrAddInvoice(data);
-  };
   const saveDraft = (data) => {
     addInvoice(data, true);
     closeForm();

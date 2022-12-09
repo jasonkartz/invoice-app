@@ -7,6 +7,8 @@ export default function ButtonContainer({
   darkTheme,
   editInvoice,
   deleteInvoice,
+  invoice,
+  markPaidOrPending,
 }) {
   return (
     <div className={`${styles.btnContainer} ${darkTheme && styles.dark}`}>
@@ -17,8 +19,7 @@ export default function ButtonContainer({
       />
       <ButtonDelete handleClick={deleteInvoice} />
       <ButtonPurple
-        btnText="Mark as Paid"
-        handleClick={(e) => e.preventDefault()}
+        btnText={invoice.status !== "paid" ? "Mark as Paid" : "Mark as Pending"}
       />
     </div>
   );
