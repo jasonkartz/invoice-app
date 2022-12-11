@@ -20,6 +20,7 @@ export default function ButtonContainer({
       <ButtonDelete handleClick={deleteInvoice} />
       <ButtonPurple
         btnText={invoice.status !== "paid" ? "Mark as Paid" : "Mark as Pending"}
+        onClick={() => markPaidOrPending(invoice, invoice.id)}
       />
     </div>
   );
