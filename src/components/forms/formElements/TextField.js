@@ -6,6 +6,7 @@ const TextField = forwardRef(
     { darkTheme, name, label, customClass, noStyles, type, error, ...rest },
     ref
   ) => {
+    const errorMessage = () => (error.message ? error.message : "x");
     return (
       <div
         className={`${!noStyles && styles.inputContainer} ${
@@ -14,7 +15,7 @@ const TextField = forwardRef(
       >
         <div className={`${styles.labelContainer} ${error && styles.error}`}>
           {label && <label>{label}</label>}
-          {error && label && <p role="alert">x</p>}
+          {error && label && <p role="alert">{errorMessage()}</p>}
         </div>
         <input
           className={error && styles.error}
