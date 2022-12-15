@@ -1,5 +1,5 @@
 import styles from "./ViewInvoice.module.css";
-import ConfirmDelete from "./ConfirmDelete";
+import PopUp from "../../misc/PopUp";
 import InvoiceHead from "./InvoiceHead";
 import CustomerDetails from "./CustomerDetails";
 import InvoiceItems from "./InvoiceItems";
@@ -7,6 +7,8 @@ import InvoiceItemsMobile from "./InvoiceItemsMobile";
 import InvoiceTotal from "./InvoiceTotal";
 import ButtonContainer from "./ButtonContainer";
 import BackButton from "../../buttons/BackButton";
+import ButtonStandard from "../../buttons/ButtonStandard";
+import ButtonDelete from "../../buttons/ButtonDelete";
 import useMobileView from "../../../hooks/useMobileView";
 import { useState } from "react";
 
@@ -46,13 +48,26 @@ export default function ViewInvoice({
   return (
     <>
       {deleteConfirm && (
-        <ConfirmDelete
+        <PopUp
           cancel={cancelDelete}
           darkTheme={darkTheme}
           invoice={invoice}
-          deleteInvoice={deleteInvoice}
-          setScreen={setScreen}
-        />
+          headingText={`Confirm Deletion`}
+          paragraphText={`Are you sure you want to delete invoice #${invoice.id}? This action
+          cannot be undone.`}
+        >
+          <ButtonStandard
+            btnText="Cancel"
+            darkTheme={darkTheme}
+            handleClick={cancelDelete}
+          />
+          <ButtonDelete
+            onClick={() => {
+              setScreen("main");
+              deleteInvoice(invoice, invoice.id);
+            }}
+          />
+        </PopUp>
       )}
       <div className={`${styles.container} ${darkTheme && styles.dark}`}>
         <BackButton

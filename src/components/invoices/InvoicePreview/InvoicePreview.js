@@ -1,6 +1,6 @@
 import styles from "./InvoicePreview.module.css";
 import arrowRight from "../../../assets/icon-arrow-right.svg";
-import StatusBox from "../../misc/StatusBox/StatusBox";
+import StatusBox from "../../misc/StatusBox";
 
 export default function InvoicePreview({
   id,

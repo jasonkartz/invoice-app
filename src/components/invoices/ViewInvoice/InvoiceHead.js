@@ -1,5 +1,5 @@
 import styles from "./ViewInvoice.module.css";
-import StatusBox from "../../misc/StatusBox/StatusBox";
+import StatusBox from "../../misc/StatusBox";
 
 export default function InvoiceHead({ children, status, darkTheme }) {
   return (

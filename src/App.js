@@ -3,7 +3,7 @@ import useDarkTheme from "./hooks/useDarkTheme";
 import useLocalStorage from "./hooks/useLocalStorage";
 import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
-import EmptyDisplay from "./components/misc/EmptyDisplay/EmptyDisplay";
+import EmptyDisplay from "./components/misc/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import "animate.css";
 
