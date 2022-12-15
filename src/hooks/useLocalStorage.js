@@ -33,8 +33,9 @@ const useLocalStorage = () => {
     if (isDraft) {
       newInvoice.status = "draft";
     }
-    setInvoices((currentInvoices) => [...currentInvoices, newInvoice]);
-    localStorage.setItem("invoiceData", JSON.stringify(invoices));
+    const updatedInvoices = [...invoices, newInvoice];
+    setInvoices(updatedInvoices);
+    localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
   };
 
   const markPaidOrPending = (currentInvoice, currentInvoiceId) => {
