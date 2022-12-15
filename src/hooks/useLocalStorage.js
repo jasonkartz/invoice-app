@@ -14,13 +14,13 @@ const useLocalStorage = () => {
     }, 3000);
   }, []);
 
-  const updateInvoice = (updatedInvoice, updatedInvoiceId) => {
+  const updateInvoice = (currentInvoice, currentInvoiceId) => {
     const updatedInvoices = invoices.map((invoice) => {
-      if (invoice.id === updatedInvoiceId) {
-        if (updatedInvoice.status === "draft") {
-          updatedInvoice.status = "pending";
+      if (invoice.id === currentInvoiceId) {
+        if (currentInvoice.status === "draft") {
+          currentInvoice.status = "pending";
         }
-        return updatedInvoice;
+        return currentInvoice;
       } else {
         return invoice;
       }
@@ -37,15 +37,15 @@ const useLocalStorage = () => {
     localStorage.setItem("invoiceData", JSON.stringify(invoices));
   };
 
-  const markPaidOrPending = (updatedInvoice, updatedInvoiceId) => {
+  const markPaidOrPending = (currentInvoice, currentInvoiceId) => {
     const updatedInvoices = invoices.map((invoice) => {
-      if (invoice.id === updatedInvoiceId) {
-        if (updatedInvoice.status === "paid") {
-          updatedInvoice.status = "pending";
+      if (invoice.id === currentInvoiceId) {
+        if (currentInvoice.status === "paid") {
+          currentInvoice.status = "pending";
         } else {
-          updatedInvoice.status = "paid";
+          currentInvoice.status = "paid";
         }
-        return updatedInvoice;
+        return currentInvoice;
       } else {
         return invoice;
       }
@@ -54,7 +54,22 @@ const useLocalStorage = () => {
     localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
   };
 
-  return [invoices, isLoading, updateInvoice, addInvoice, markPaidOrPending];
+  const deleteInvoice = (currentInvoice, currentInvoiceId) => {
+    const updatedInvoices = invoices.filter(
+      (invoice) => invoice.id !== currentInvoiceId
+    );
+    setInvoices(updatedInvoices);
+    localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
+  };
+
+  return [
+    invoices,
+    isLoading,
+    updateInvoice,
+    addInvoice,
+    markPaidOrPending,
+    deleteInvoice,
+  ];
 };
 
 export default useLocalStorage;

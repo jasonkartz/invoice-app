@@ -17,7 +17,7 @@ export default function ButtonContainer({
         handleClick={editInvoice}
         btnText="Edit"
       />
-      <ButtonDelete handleClick={deleteInvoice} />
+      <ButtonDelete onClick={deleteInvoice} />
       <ButtonPurple
         btnText={invoice.status !== "paid" ? "Mark as Paid" : "Mark as Pending"}
         onClick={() => markPaidOrPending(invoice, invoice.id)}

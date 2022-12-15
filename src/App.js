@@ -8,8 +8,14 @@ import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import "animate.css";
 
 function App() {
-  const [invoices, isLoading, updateInvoice, addInvoice, markPaidOrPending] =
-    useLocalStorage();
+  const [
+    invoices,
+    isLoading,
+    updateInvoice,
+    addInvoice,
+    markPaidOrPending,
+    deleteInvoice,
+  ] = useLocalStorage();
   //localStorage.clear();
   console.log(invoices);
   const [screen, setScreen] = useState("main");
@@ -88,6 +94,7 @@ function App() {
             invoice={invoices.length && invoices[selectedIndex]}
             setDisplayForm={setDisplayForm}
             markPaidOrPending={markPaidOrPending}
+            deleteInvoice={deleteInvoice}
           />
         )}
       </MainLayout>

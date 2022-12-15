@@ -1,10 +1,10 @@
 import styles from "./Buttons.module.css";
 
-export default function ButtonDelete({ handleClick, customClass }) {
+export default function ButtonDelete({ customClass, ...props }) {
   return (
     <button
       className={`${styles.delete} ${customClass && customClass}`}
-      onClick={handleClick}
+      {...props}
     >
       Delete
     </button>
