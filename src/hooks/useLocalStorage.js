@@ -54,7 +54,7 @@ const useLocalStorage = () => {
     localStorage.setItem("invoiceData", JSON.stringify(updatedInvoices));
   };
 
-  const deleteInvoice = (currentInvoice, currentInvoiceId) => {
+  const deleteInvoice = (currentInvoiceId) => {
     const updatedInvoices = invoices.filter(
       (invoice) => invoice.id !== currentInvoiceId
     );

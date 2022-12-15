@@ -64,7 +64,7 @@ export default function ViewInvoice({
           <ButtonDelete
             onClick={() => {
               setScreen("main");
-              deleteInvoice(invoice, invoice.id);
+              deleteInvoice(invoice.id);
             }}
           />
         </PopUp>
