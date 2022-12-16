@@ -539,3 +539,12 @@ export default function InvoiceForm({
     </div>
   );
 }
+
+/*
+updates:
+
+- convert and use dropdown component to be used with this form
+- "save as draft" should allow empty fields
+- if form is in draft, "mark as pending/paid" should be disabled or not visable
+- edit nanoid rules to generate ID as 2 random capital letters, followed by 4 numbers
+*/
