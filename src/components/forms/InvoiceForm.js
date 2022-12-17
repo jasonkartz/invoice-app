@@ -3,7 +3,6 @@ import {
   Controller,
   useFieldArray,
   FormProvider,
-  useFormContext,
 } from "react-hook-form";
 import { useState, useEffect, useRef } from "react";
 import { customAlphabet } from "nanoid";
@@ -84,7 +83,7 @@ export default function InvoiceForm({
     control,
     name: "items",
   });
-  const [toggleDropdown, setToggleDropdown] = useState(false);
+
   const [mobileView] = useMobileView();
   //if no items are added, sets an error. Clears error once an item is added.
   useEffect(() => {
