@@ -147,10 +147,13 @@ export default function InvoiceForm({
         {mobileView && (
           <BackButton darkTheme={darkTheme} handleClick={closeForm} />
         )}
+
         <h1 className="alt-heading">
           {invoiceEdit ? `Edit #${selectedInvoice.id}` : "New Invoice"}
         </h1>
+
         <h4>Bill From</h4>
+
         <section className={styles.billFrom}>
           <TextField
             customClass={styles.streetFrom}
@@ -162,6 +165,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.cityFrom}
             darkTheme={darkTheme}
@@ -172,6 +176,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.postCodeFrom}
             darkTheme={darkTheme}
@@ -182,6 +187,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.countryFrom}
             darkTheme={darkTheme}
@@ -193,7 +199,9 @@ export default function InvoiceForm({
             })}
           />
         </section>
+
         <h4 className={styles.billToTitle}>Bill To</h4>
+
         <section className={styles.billTo}>
           <TextField
             customClass={styles.clientName}
@@ -205,6 +213,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.clientEmail}
             darkTheme={darkTheme}
@@ -220,6 +229,7 @@ export default function InvoiceForm({
               },
             })}
           />
+
           <TextField
             customClass={styles.streetTo}
             darkTheme={darkTheme}
@@ -230,6 +240,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.cityTo}
             darkTheme={darkTheme}
@@ -240,6 +251,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.postCodeTo}
             darkTheme={darkTheme}
@@ -250,6 +262,7 @@ export default function InvoiceForm({
               required: true,
             })}
           />
+
           <TextField
             customClass={styles.countryTo}
             darkTheme={darkTheme}
@@ -261,6 +274,7 @@ export default function InvoiceForm({
             })}
           />
         </section>
+
         <section className={styles.generalDetails}>
           <div
             className={`${formStyles.inputContainer} ${
@@ -268,7 +282,9 @@ export default function InvoiceForm({
             } ${styles.date}`}
           >
             <label>{selectedInvoice ? "Invoice Date" : "Issue Date"}</label>
+
             <img src={calendarIcon} alt="calendar icon" width="16" />
+
             <Controller
               control={control}
               name="createdAt"
@@ -288,13 +304,15 @@ export default function InvoiceForm({
             />
           </div>
 
-          {/* Drop Down */}
+          {/* Payment Terms Drop Down */}
+
           <div
             className={`${formStyles.dropDownContainer} ${
               darkTheme && formStyles.dark
             } ${styles.dropdown}`}
           >
             <p>Payment Terms</p>
+
             <button
               className={`${formStyles.dropDownToggle} ${
                 darkTheme && formStyles.dark
@@ -306,6 +324,7 @@ export default function InvoiceForm({
               Net {getValues("paymentTerms")} Day
               {getValues("paymentTerms") !== "1" && "s"}
             </button>
+
             <ul
               className={`${formStyles.dropDownList} ${
                 toggleDropdown && formStyles.display
@@ -326,6 +345,7 @@ export default function InvoiceForm({
                 />
                 <label htmlFor="1">Net 1 Day</label>
               </li>
+
               <li>
                 <input
                   type="radio"
@@ -341,6 +361,7 @@ export default function InvoiceForm({
                 />
                 <label htmlFor="7">Net 7 Days</label>
               </li>
+
               <li>
                 <input
                   type="radio"
@@ -356,6 +377,7 @@ export default function InvoiceForm({
                 />
                 <label htmlFor="14">Net 14 Days</label>
               </li>
+
               <li>
                 <input
                   type="radio"
@@ -373,6 +395,8 @@ export default function InvoiceForm({
               </li>
             </ul>
           </div>
+          {/* END Payment Terms Drop Down */}
+
           <TextField
             customClass={styles.productDesc}
             darkTheme={darkTheme}
@@ -384,7 +408,9 @@ export default function InvoiceForm({
             })}
           />
         </section>
+
         <h3 className="form">Item List</h3>
+
         <section className={styles.itemList}>
           {fields.map((field, index) => {
             return (
@@ -410,6 +436,7 @@ export default function InvoiceForm({
                     required: true,
                   })}
                 />
+
                 <TextField
                   label={
                     mobileView
@@ -437,6 +464,7 @@ export default function InvoiceForm({
                     },
                   })}
                 />
+
                 <TextField
                   label={
                     mobileView
@@ -464,6 +492,7 @@ export default function InvoiceForm({
                     },
                   })}
                 />
+
                 <TextField
                   label={
                     mobileView
@@ -511,6 +540,7 @@ export default function InvoiceForm({
               append({ name: "", quantity: 0, price: 0.0, total: "" });
             }}
           />
+
           <div className={styles.alert}>
             {errorCheck()}
             {clicked.current && errors.noItems && (
@@ -518,6 +548,7 @@ export default function InvoiceForm({
             )}
           </div>
         </section>
+
         <section className={styles.btnSection}>
           <ButtonStandard
             darkTheme={darkTheme}
@@ -525,6 +556,7 @@ export default function InvoiceForm({
             btnText={invoiceEdit ? "Cancel" : "Discard"}
             customClass={`responsive ${!invoiceEdit && styles.btnDiscard}`}
           />
+
           {!invoiceEdit && (
             <ButtonSaveDraft
               onClick={saveDraft}
@@ -532,6 +564,7 @@ export default function InvoiceForm({
               customClass="responsive"
             />
           )}
+
           <ButtonPurple
             btnText={invoiceEdit ? "Save Changes" : "Save & Send"}
             onClick={handleSubmit(updateOrAddInvoice, onError)}
