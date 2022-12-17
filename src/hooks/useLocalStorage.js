@@ -3,6 +3,7 @@ import data from "../data/data.json";
 const useLocalStorage = () => {
   const [invoices, setInvoices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       if (!localStorage.invoiceData) {
