@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useDarkTheme from "./hooks/useDarkTheme";
 import useLocalStorage from "./hooks/useLocalStorage";
 import MainLayout from "./components/MainLayout/MainLayout";
@@ -17,7 +17,7 @@ function App() {
     deleteInvoice,
   ] = useLocalStorage();
   //localStorage.clear();
-  console.log(invoices);
+
   const [screen, setScreen] = useState("main");
   const [displayForm, setDisplayForm] = useState({
     display: false,

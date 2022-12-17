@@ -1,6 +1,6 @@
-import useMobileView from "../../hooks/useMobileView";
+import useMobileView from "../../../hooks/useMobileView";
 import styles from "./InvoiceItem.module.css";
-import TextField from "./formElements/TextField";
+import TextField from "./TextField";
 import { useFormContext } from "react-hook-form";
 
 export default function InvoiceItem({

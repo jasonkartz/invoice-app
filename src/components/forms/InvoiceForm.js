@@ -19,7 +19,7 @@ import ButtonStandard from "../buttons/ButtonStandard";
 import ButtonSaveDraft from "../buttons/ButtonSaveDraft";
 import ButtonPurple from "../buttons/ButtonPurple";
 import PaymentTermsDropdown from "./formElements/PaymentTermsDropdown";
-import InvoiceItem from "./InvoiceItem";
+import InvoiceItem from "./formElements/InvoiceItem";
 import calendarIcon from "../../assets/icon-calendar.svg";
 
 import React from "react";
@@ -85,6 +85,7 @@ export default function InvoiceForm({
   });
 
   const [mobileView] = useMobileView();
+
   //if no items are added, sets an error. Clears error once an item is added.
   useEffect(() => {
     const items = getValues("items");
