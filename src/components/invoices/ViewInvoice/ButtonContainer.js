@@ -18,10 +18,14 @@ export default function ButtonContainer({
         btnText="Edit"
       />
       <ButtonDelete onClick={deleteInvoice} />
-      <ButtonPurple
-        btnText={invoice.status !== "paid" ? "Mark as Paid" : "Mark as Pending"}
-        onClick={() => markPaidOrPending(invoice, invoice.id)}
-      />
+      {invoice.status !== "draft" && (
+        <ButtonPurple
+          btnText={
+            invoice.status !== "paid" ? "Mark as Paid" : "Mark as Pending"
+          }
+          onClick={() => markPaidOrPending(invoice, invoice.id)}
+        />
+      )}
     </div>
   );
 }
