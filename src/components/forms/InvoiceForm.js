@@ -26,8 +26,10 @@ export default function InvoiceForm({
   updateInvoice,
   addInvoice,
 }) {
-  const nanoid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", 6);
-  const newID = nanoid();
+  // generate random ID in 2 parts: 2 letters, then 4 numbers
+  const alphabetid = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 2);
+  const numberid = customAlphabet("1234567890", 4);
+  const newID = alphabetid() + numberid();
   const defaultValues = {
     id: selectedInvoice ? selectedInvoice.id : newID,
     createdAt: selectedInvoice
@@ -545,5 +547,4 @@ export default function InvoiceForm({
 updates:
 
 - convert and use dropdown component to be used with this form
-- edit nanoid rules to generate ID as 2 random capital letters, followed by 4 numbers
 */
