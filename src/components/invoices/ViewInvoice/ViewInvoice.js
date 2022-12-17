@@ -10,7 +10,7 @@ import BackButton from "../../buttons/BackButton";
 import ButtonStandard from "../../buttons/ButtonStandard";
 import ButtonDelete from "../../buttons/ButtonDelete";
 import useMobileView from "../../../hooks/useMobileView";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ViewInvoice({
   darkTheme,
@@ -44,6 +44,10 @@ export default function ViewInvoice({
       markPaidOrPending={markPaidOrPending}
     />
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
