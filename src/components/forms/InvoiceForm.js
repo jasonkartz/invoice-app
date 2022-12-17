@@ -98,8 +98,9 @@ export default function InvoiceForm({
 
   const clicked = useRef(false);
 
-  const saveDraft = (data) => {
-    addInvoice(data, true);
+  const saveDraft = () => {
+    const formData = getValues();
+    addInvoice(formData, true);
     closeForm();
   };
 
@@ -524,7 +525,7 @@ export default function InvoiceForm({
           />
           {!invoiceEdit && (
             <ButtonSaveDraft
-              onClick={handleSubmit(saveDraft, onError)}
+              onClick={saveDraft}
               darkTheme={darkTheme}
               customClass="responsive"
             />
