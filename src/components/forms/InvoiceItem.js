@@ -1,60 +1,103 @@
 import useMobileView from "../../hooks/useMobileView";
-import itemStyles from "./InvoiceItem.module.css";
+import styles from "./InvoiceItem.module.css";
 import TextField from "./formElements/TextField";
-import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 
-export default function InvoiceItem({ darkTheme, item }) {
-  const [form, setForm] = useState({
-    name: item ? item.name : "",
-    quantity: item ? item.quantity : 0,
-    price: item ? item.price : 0,
-    total: item ? item.total : 0,
-  });
+export default function InvoiceItem({
+  darkTheme,
+  index,
+  tallyItems,
+  remove,
+  field,
+}) {
+  const { register, getValues, setValue, errors } = useFormContext();
   const [mobileView] = useMobileView();
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
 
-    setForm((formData) => ({ ...formData, [name]: value }));
-  };
   return (
     <div
-      className={`${itemStyles.itemContainer} ${darkTheme && itemStyles.dark}`}
+      key={field.id}
+      className={`${styles.itemContainer} ${darkTheme && styles.dark}`}
     >
       <TextField
-        label={mobileView && "Item Name"}
+        label={
+          mobileView
+            ? "Item Name"
+            : !mobileView && index === 0
+            ? "Item Name"
+            : null
+        }
+        error={errors?.items?.[index]?.name}
         darkTheme={darkTheme}
-        customClass={itemStyles.name}
+        customClass={styles.name}
         name="name"
-        value={form.name}
-        onChange={handleChange}
+        {...register(`items.${index}.name`, {
+          required: true,
+        })}
       />
+
       <TextField
-        label={mobileView && "Qty."}
+        label={mobileView ? "Qty." : !mobileView && index === 0 ? "Qty." : null}
+        error={errors?.items?.[index]?.quantity}
         darkTheme={darkTheme}
-        customClass={itemStyles.qty}
+        customClass={styles.qty}
+        type="number"
         name="quantity"
-        value={form.quantity}
-        type="number"
-        onChange={handleChange}
+        {...register(`items.${index}.quantity`, {
+          valueAsNumber: true,
+          required: true,
+          min: 1,
+
+          onChange: (e) => {
+            const qty = e.target.value;
+            const price = getValues(`items.${index}.price`);
+            const sum = price * qty;
+            setValue(`items.${index}.total`, sum.toFixed(2));
+            tallyItems();
+          },
+        })}
       />
+
       <TextField
-        label={mobileView && "Price"}
+        label={
+          mobileView ? "Price" : !mobileView && index === 0 ? "Price" : null
+        }
+        error={errors?.items?.[index]?.price}
         darkTheme={darkTheme}
-        customClass={itemStyles.price}
-        name="price"
-        value={form.price.toFixed(2)}
+        customClass={styles.price}
         type="number"
-        onChange={handleChange}
+        step="any"
+        name="price"
+        {...register(`items.${index}.price`, {
+          valueAsNumber: true,
+          required: true,
+          min: 1,
+          onChange: (e) => {
+            const qty = getValues(`items.${index}.quantity`);
+            const price = e.target.value;
+            const sum = price * qty;
+            setValue(`items.${index}.total`, sum.toFixed(2));
+            tallyItems();
+          },
+        })}
       />
-      <div className={itemStyles.total}>
-        {mobileView && <p>Total</p>}
-        <p className={itemStyles.bold}>${form.total.toFixed(2)}</p>
-      </div>
+
+      <TextField
+        label={
+          mobileView ? "Total" : !mobileView && index === 0 ? "Total" : null
+        }
+        noStyles={true}
+        customClass={`${styles.total} ${darkTheme && styles.dark}`}
+        name="total"
+        {...register(`items.${index}.total`, {
+          valueAsNumber: true,
+        })}
+        readOnly={true}
+      />
+
       <button
-        className={itemStyles.delete}
-        onClick={(e) => {
-          e.preventDefault();
+        className={styles.delete}
+        onClick={() => {
+          remove(index);
         }}
       >
         <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg">

@@ -3,7 +3,9 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 export default function Dropdown({ darkTheme, setPaymentDue, customClass }) {
   const [toggleActive, setToggleActive] = useState(false);
+
   const { register, getValues } = useFormContext();
+
   return (
     <div
       className={`${styles.dropDownContainer} ${darkTheme && styles.dark} ${
