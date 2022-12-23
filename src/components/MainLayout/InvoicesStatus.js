@@ -1,26 +1,18 @@
 import useMobileView from "../../hooks/useMobileView";
 
-export default function InvoicesStatus({ allFiltersFalse, invoiceCount }) {
+export default function InvoicesStatus({ invoiceCount }) {
   const [mobileView] = useMobileView(); //mobile screens and resizing screens
 
-  const invoiceDisplayCount = () => {
-    if (allFiltersFalse) {
-      return 0;
-    } else {
-      return invoiceCount;
-    }
-  };
-
-  if (invoiceDisplayCount() === 0) {
+  if (invoiceCount === 0) {
     return <>{"No invoices"}</>;
-  } else if (invoiceDisplayCount() === 1) {
+  } else if (invoiceCount === 1) {
     return <>{mobileView ? "1 invoice" : "There is 1 invoice"}</>;
   } else {
     return (
       <>
         {mobileView
-          ? `${invoiceDisplayCount()} invoices`
-          : `There are ${invoiceDisplayCount()} total invoices`}
+          ? `${invoiceCount} invoices`
+          : `There are ${invoiceCount} total invoices`}
       </>
     );
   }

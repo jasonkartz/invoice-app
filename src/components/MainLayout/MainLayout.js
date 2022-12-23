@@ -5,6 +5,7 @@ import Header from "./Header/Header";
 import FilterOptions from "./FilterOptions/FilterOptions";
 import InvoicesStatus from "./InvoicesStatus";
 import InvoiceForm from "../forms/InvoiceForm";
+import EmptyDisplay from "../misc/EmptyDisplay";
 import { Children, useState } from "react";
 
 export default function MainLayout({
@@ -15,7 +16,6 @@ export default function MainLayout({
   draftChecked,
   pendingChecked,
   paidChecked,
-  allFiltersFalse,
   screen,
   displayForm,
   setDisplayForm,
@@ -66,10 +66,7 @@ export default function MainLayout({
                 </p>
               ) : (
                 <p>
-                  <InvoicesStatus
-                    allFiltersFalse={allFiltersFalse}
-                    invoiceCount={invoiceCount}
-                  />
+                  <InvoicesStatus invoiceCount={invoiceCount} />
                 </p>
               )}
             </div>
@@ -84,7 +81,9 @@ export default function MainLayout({
             <ButtonNewInvoice handleClick={newInvoice} />
           </section>
         )}
-        <section className="invoicesDisplay">{children}</section>
+        <section className="invoicesDisplay">
+          {invoiceCount > 0 ? children : <EmptyDisplay darkTheme={darkTheme} />}
+        </section>
       </main>
     </>
   );

@@ -42,11 +42,9 @@ function App() {
   );
 
   const displayInvoices = () => {
-    if (allFiltersFalse) {
-      return <EmptyDisplay darkTheme={darkTheme} />;
-    } else {
+    if (invoices) {
       return invoices.map((invoice, index) => {
-        if (invoiceFilter[invoice.status]) {
+        if (allFiltersFalse || invoiceFilter[invoice.status]) {
           return (
             <InvoicePreview
               key={invoice.id}
@@ -87,6 +85,7 @@ function App() {
         addInvoice={addInvoice}
       >
         {screen === "main" && invoices.length > 0 && displayInvoices()}
+
         {screen === "viewInvoice" && (
           <ViewInvoice
             setScreen={setScreen}
