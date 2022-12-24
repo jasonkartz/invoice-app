@@ -6,7 +6,7 @@ import FilterOptions from "./FilterOptions/FilterOptions";
 import InvoicesStatus from "./InvoicesStatus";
 import InvoiceForm from "../forms/InvoiceForm";
 import EmptyDisplay from "../misc/EmptyDisplay";
-import { Children, useState } from "react";
+import { Children } from "react";
 
 export default function MainLayout({
   children,
@@ -20,7 +20,6 @@ export default function MainLayout({
   displayForm,
   setDisplayForm,
   selectedInvoice,
-  invoices,
   isLoading,
   updateInvoice,
   addInvoice,
