@@ -177,7 +177,7 @@ export default function InvoiceForm({
             <TextField
               customClass={styles.cityFrom}
               darkTheme={darkTheme}
-              label="City"
+              label="City, State"
               error={errors.senderAddress?.city}
               name="city"
               {...register("senderAddress.city", {
@@ -188,7 +188,7 @@ export default function InvoiceForm({
             <TextField
               customClass={styles.postCodeFrom}
               darkTheme={darkTheme}
-              label="Post Code"
+              label="Post or Zip Code"
               error={errors.senderAddress?.postCode}
               name="postCode"
               {...register("senderAddress.postCode", {
@@ -252,7 +252,7 @@ export default function InvoiceForm({
             <TextField
               customClass={styles.cityTo}
               darkTheme={darkTheme}
-              label="City"
+              label="City, State"
               error={errors.clientAddress?.city}
               name="city"
               {...register("clientAddress.city", {
@@ -263,7 +263,7 @@ export default function InvoiceForm({
             <TextField
               customClass={styles.postCodeTo}
               darkTheme={darkTheme}
-              label="Post Code"
+              label="Post or Zip Code"
               error={errors.clientAddress?.postCode}
               name="postCode"
               {...register("clientAddress.postCode", {
@@ -336,6 +336,7 @@ export default function InvoiceForm({
             {fields.map((field, index) => {
               return (
                 <InvoiceItem
+                  key={index}
                   darkTheme={darkTheme}
                   index={index}
                   tallyItems={tallyItems}

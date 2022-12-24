@@ -9,16 +9,16 @@
     "clientEmail": "jensenh@mail.com",
     "status": "paid",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "106 Kendell Street",
-      "city": "Sharrington",
-      "postCode": "NR24 5WQ",
-      "country": "United Kingdom"
+      "street": "106 E Kendell Street",
+      "city": "Pittsburg, PA",
+      "postCode": "32145",
+      "country": "United States"
     },
     "items": [
       {
@@ -40,16 +40,16 @@
     "clientEmail": "alexgrim@mail.com",
     "status": "pending",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "84 Church Way",
-      "city": "Bradford",
-      "postCode": "BD1 9PB",
-      "country": "United Kingdom"
+      "street": "8413 N Church Way",
+      "city": "Chicago, IL",
+      "postCode": "11341",
+      "country": "United States"
     },
     "items": [
       {
@@ -77,16 +77,16 @@
     "clientEmail": "jm@myco.com",
     "status": "paid",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "79 Dover Road",
-      "city": "Westhall",
-      "postCode": "IP19 3PF",
-      "country": "United Kingdom"
+      "street": "7913 S Dover Road",
+      "city": "Cincinatti, OH",
+      "postCode": "43251",
+      "country": "United States"
     },
     "items": [
       {
@@ -108,16 +108,16 @@
     "clientEmail": "alysa@email.co.uk",
     "status": "pending",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "63 Warwick Road",
-      "city": "Carlisle",
-      "postCode": "CA20 2TG",
-      "country": "United Kingdom"
+      "street": "6345 E Warwick Road",
+      "city": "Salt Lake City, UT",
+      "postCode": "78925",
+      "country": "United States"
     },
     "items": [
       {
@@ -139,10 +139,10 @@
     "clientEmail": "mellisa.clarke@example.com",
     "status": "pending",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
       "street": "46 Abbey Row",
@@ -176,16 +176,16 @@
     "clientEmail": "thomas@dc.com",
     "status": "pending",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "3964  Queens Lane",
-      "city": "Gotham",
+      "street": "3964 W Queens Lane",
+      "city": "Buffalo, NY",
       "postCode": "60457",
-      "country": "United States of America"
+      "country": "United States"
     },
     "items": [
       {
@@ -207,16 +207,16 @@
     "clientEmail": "",
     "status": "draft",
     "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
+      "street": "1919 W Union Terrace Street",
+      "city": "Tempe, AZ",
+      "postCode": "12345",
+      "country": "United States"
     },
     "clientAddress": {
-      "street": "",
-      "city": "",
-      "postCode": "",
-      "country": ""
+      "street": "3245 W National Ave",
+      "city": "Milwaukee, WI",
+      "postCode": "53211",
+      "country": "United States"
     },
     "items": [
       {
