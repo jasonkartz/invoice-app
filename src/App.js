@@ -22,6 +22,7 @@ function App() {
     display: false,
     editInvoice: false,
   });
+
   const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [invoiceFilter, setInvoiceFilter] = useState({
