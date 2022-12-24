@@ -3,7 +3,6 @@ import useDarkTheme from "./hooks/useDarkTheme";
 import useLocalStorage from "./hooks/useLocalStorage";
 import MainLayout from "./components/MainLayout/MainLayout";
 import InvoicePreview from "./components/invoices/InvoicePreview/InvoicePreview";
-import EmptyDisplay from "./components/misc/EmptyDisplay";
 import ViewInvoice from "./components/invoices/ViewInvoice/ViewInvoice";
 import "animate.css";
 
@@ -26,9 +25,9 @@ function App() {
   const [darkTheme, themeSwitch] = useDarkTheme(); //toggling dark theme
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [invoiceFilter, setInvoiceFilter] = useState({
-    draft: true,
-    pending: true,
-    paid: true,
+    draft: false,
+    pending: false,
+    paid: false,
   });
 
   //filtering invoices

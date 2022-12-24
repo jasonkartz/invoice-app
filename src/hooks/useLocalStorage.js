@@ -12,7 +12,7 @@ const useLocalStorage = () => {
       const invoiceData = JSON.parse(localStorage.getItem("invoiceData"));
       setInvoices(invoiceData);
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   const updateInvoice = (currentInvoice, currentInvoiceId) => {

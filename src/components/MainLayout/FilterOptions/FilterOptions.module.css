@@ -10,7 +10,7 @@
   padding: 24px 18px;
   color: var(--navy);
   text-align: left;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
@@ -18,9 +18,7 @@
   border-radius: 8px;
   z-index: 10;
 }
-.filterOptions.display {
-  display: flex;
-}
+
 .filterOptions.dark {
   background-color: var(--slate);
   color: white;
